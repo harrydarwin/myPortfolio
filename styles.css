@@ -1,0 +1,223 @@
+html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,html [type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
+html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+*, *:before, *:after { box-sizing: inherit; }
+
+
+html {
+    font-size: 62.5%;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+}
+
+nav,
+header,
+h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+li {
+    list-style: none;
+}
+
+.wrapper {
+    max-width: 1800px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* DOT SIDE NAV */
+.dotNav {
+    position: fixed;
+    top: 30%;
+    right: 20px;
+}
+
+.dotNav a {
+  background-color: #CCCCCC;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  display: block;
+  margin: 25px 0;
+}
+
+/* TOP NAV BAR */
+.topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.me {
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.topNav {
+    display: flex;
+}
+
+.topNav li {
+    margin: 0 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.topNav a {
+    padding: 5px;
+}
+
+header {
+    border: 2px solid teal;
+    height: 80vh;
+    position: relative;
+}
+
+.headerText {
+    position: absolute;
+    top: 30%;
+    left: -63px;
+}
+
+h1 {
+    font-size: 8rem;
+    text-transform: uppercase;
+    
+}
+
+h1 span {
+    font-style: italic;
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 3.5rem;
+}
+
+.subtitle {
+    display: flex;
+    max-width: 325px;
+    justify-content: space-between;
+    align-items:top;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.subtitle span {
+    display: block;
+    margin-top: 5px;
+}
+
+.headerStyle {
+    height: 2px;
+    width: 126px;
+    background-color: black;
+    margin-top: 2px;
+}
+
+.year {
+    font-style: italic;
+    font-size: 1.3rem;
+    color: slategray;
+}
+
+/* ABOUT ME SECTION */
+
+.aboutSection {
+    width: 70%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+}
+
+.styledHeadings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.styleLine {
+    height: 120px;
+    width: 2px;
+    margin: 40px 0;
+    background-color: black;
+}
+
+.lineTwo {
+    height: 200px;
+    margin-top: 72px;
+}
+
+.aboutMe {
+    border: 1px solid teal;
+    height: 300px;
+    width: 300px;
+    position: relative;
+}
+
+.aboutMe h2 {
+position: absolute;
+bottom: -69px;
+left: 28.5%;
+}
+
+.aboutMe h2 span {
+    display: block;
+    margin-left: 60px;
+}
+
+.aboutText {
+    line-height: 2rem;
+    margin-top: 120px;
+}
+
+.aboutText p {
+    margin-bottom: 10px;
+}
+
+.tagBio {
+    margin: 20px 0;
+}
+
+.tagLine {
+    font-size: 1.9rem;
+    font-weight: 600;
+}
+
+.bio {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 50px;
+}
+
+.bioTag {
+        margin-top: 25px;
+}
+
+
+.photoGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 30px;
+    margin-top: 60px;
+}
