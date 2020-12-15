@@ -9,7 +9,10 @@ myApp.init = () => {
     $('.lightSwitch').on('click', function() {
         console.log("we clicked");
         $('body').toggleClass('darkMode');
-        $('div.line').toggleClass('darkLine')
+        $('div.line').toggleClass('darkLine');
+        $(".scrum").attr("src", "./assets/scrumLight.png");
+        $(".sigma").attr("src", "./assets/sixSigmaLight.png");
+
     })
 }
 
