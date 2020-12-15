@@ -247,6 +247,7 @@ left: 28.5%;
     margin-top: 17%;
 }
 
+/* PROJECTS SECTION */
 .projectContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -297,8 +298,12 @@ h3 span {
 
 .projectText {
     position: absolute;
-    bottom: -165px;
+    bottom: -205px;
     left: 10%;
+} 
+
+.hipText {
+    bottom: -183px;
 }
 
 .pTitleText {
@@ -318,14 +323,34 @@ h3 span {
 }
 
 .projects {
-    padding-bottom: 125px;
+    padding-bottom: 200px;
+}
+
+.project p {
+    margin-bottom: 10px;
+}
+
+.tools {
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.project p span {
+    font-size: 1.5rem;
 }
 
 /* TECHNICAL SKILLS SECTION */ 
+
+
 .skillContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.skillLine {
+    margin-top: 0;
+    height: 100px;
 }
 
 .skillContainer h2 {
@@ -357,6 +382,23 @@ h3 span {
 }
 
 /* CONTACT */
+.contact {
+    padding: 60px 0;
+}
+
+.contact h3 {
+    margin-top: 0;
+}
+
+.contactBox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contactText {
+    margin: 50px 0;
+}
+
 .contact .styleLine {
     height: 2px;
     width: 80px;
@@ -370,7 +412,63 @@ h3 span {
 }
 
 .name {
+    margin: 0 0 25px 0
+}
+
+.placeholder {
+    border: 2px solid teal;
+    width: 70%;
+}
+
+/* .meeting {
+    padding: 10px 5px;
+    background: black;
+    color: white;
     font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 30px;
+} */
+
+.meeting {
+    padding: 10px 5px;
+    border: 2px solid black;
+    font-size: 1.8rem;
+    transition: all .5s;
+}
+
+.meeting:hover {
+    background: black;
+    color: white;
+}
+
+.meeting i {
+    margin-left: 10px;
+}
+
+.meeting span {
+    font-size: 2rem;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+}
+
+.footerStyle {
+    width: 100%;
+    height: 1px;
+    background: rgb(230,230,230);
+    background: radial-gradient(circle, rgba(230,230,230,1) 90%, rgba(255,255,255,1) 100%);
+}
+
+.footerBox {
+    margin: 30px 0;
+}
+
+.footerBox p {
+    margin-bottom: 8px;
+}
+
+.footerBox a {
+    font-size: 2rem;
+    padding: 5px;
+    margin: 0 10px;
 }
