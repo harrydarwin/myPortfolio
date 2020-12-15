@@ -12,17 +12,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css">
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
 
     <title>harryDarwinPortfolio</title>
 </head>
 <body>
     <nav class="dotNav">
         <ul>
-            <li><a href="#home"></a></li>
-            <li><a href="#about"></a></li>
-            <li><a href="#projects"></a></li>
-            <li><a href="#skills"></a></li>
-            <li><a href="#contact"></a></li>
+            <li><a data-page="home" class="dot" href="#home"></a></li>
+            <li><a data-page="about" class="dot" href="#about"></a></li>
+            <li><a data-page="projects" class="dot" href="#projects"></a></li>
+            <li><a data-page="skills" class="dot" href="#skills"></a></li>
+            <li><a data-page="contact" class="dot" href="#contact"></a></li>
         </ul>
     </nav>
     <section id="home">
@@ -31,11 +32,14 @@
                 <p class="me">harrydarwin.com</p>
                 <nav>
                     <ul class="topNav">
-                        <li><a href="#home">Home</a></li>
+                        <li class="home"><a href="#home">Home</a></li>
                         <li><a href="#about">About Me</a></li>
                         <li><a href="#projects">Projects</a></li>
                         <li><a href="#skills">Technical Skills</a></li>
                         <li><a href="#contact">Contact</a></li>
+                        <li>
+                            <div class="lightSwitch"><i class="fas fa-adjust"></i></div>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -43,7 +47,7 @@
                 <div class="headerText">
                     <h1>Harry <span>Darwin</span></h1>
                     <div class="subtitle">
-                        <div class="headerStyle"></div>
+                        <div class="headerStyle line"></div>
                         <p>Web Developer <span>Experiential Architect</span><span class="year">2020</span></p>
                     </div>
                 </div>
@@ -54,16 +58,16 @@
         <div class="wrapper">
             <div class="aboutSection">
                 <div class="styledHeadings">
-                    <div class="styleLine lineOne"></div>
-                    <div class="aboutMe">
+                    <div class="styleLine lineOne line"></div>
+                    <div data-aos="fade-up" class="aboutMe">
                         <h2>About <span>Me</span></h2>
                     </div>
-                    <div class="styleLine lineTwo"></div>
-                    <h2>Team <span>Player</span></h2>
-                    <div class="styleLine lineThree"></div>
+                    <div data-aos="fade-up" class="styleLine line lineTwo"></div>
+                    <h2 data-aos="fade-up">Team <span>Player</span></h2>
+                    <div  data-aos="fade-up" class="styleLine line lineThree"></div>
                 </div>
                 <div class="aboutInfo">
-                    <div class="aboutText">
+                    <div  data-aos="fade-up" class="aboutText">
                         <div class="tagBio">
                             <p class="tagLine">A unique background creates a unique perspective</p>
                             <p class="bio" >I am a highly-versatile operations manager turned developer with a wealth of experience in concept development and project management in the Retail and Food&Beverage industry. I bring experience developing responsive web applications using Javascript, React, HTML, CSS</p>
@@ -85,7 +89,7 @@
                         </ul>
                         <p>Whatever I decide to do, I do with drive and I take it upon myself to learn everything I can along the way.</p>
                     </div>
-                    <div class="photoGrid">
+                    <div data-aos="fade-up" class="photoGrid">
                         <img src="https://www.placecage.com/200/200" alt="">
                         <img src="https://www.placecage.com/200/200" alt="">
                         <img src="https://www.placecage.com/200/200" alt="">
@@ -101,23 +105,26 @@
         <div class="wrapper">
             <div class="projectContainer">
                 <div class="projectRight">
-                    <div class="pTitleText">
+                    <div data-aos="fade-up" class="pTitleText">
                         <h2>My Projects</h2>
                         <div class="pTextContainer">
-                            <div class="styleLineP"></div>
+                            <div class="styleLineP line"></div>
                             <p>Each of the displayed projects was created in less than one week while studying full time and should give you an idea of what I can do, and how quickly I employ new techniques and strategies</p>
                         </div>
                     </div>
                     <div class="project">
-                        <img src="https://www.placecage.com/805/726" alt="">
-                        <div class="projectText">
+                        <div data-aos="fade-up" class="image">
+                            <img src="./assets/collegeNavigator.jpg" alt="Screen shot of college navigator app">
+                        </div>
+                        <div  data-aos="fade-up" class="projectText">
                             <h3>College <span>Navigator</span></h3>
                             <div class="pTextContainer">
-                                <div class="styleLineP"></div>
+                                <div class="styleLineP line"></div>
                                 <div>
-                                    <p>Allows a user to pan for their future studies with the ability to search for post-secondary schools by type and
+                                    <p>Allows a user to plan for their future studies with the ability to search for post-secondary schools by type and
                                         location, while saving favourite schools and adding notes.</p>
                                     <p class="tools"><span>Built With: </span>React / Rest API / Firebase / Javascript / HTML / CSS</p>
+                                    <a href="https://collegenavigator.github.io/project6CollegeNavigator/"><div class="viewIt">View It Live <span class="iconify" data-icon="bi:arrow-right" data-inline="false"></span></div></a>
                                 </div>
                             </div>
                         </div>
@@ -125,28 +132,38 @@
                 </div>
                 <div class="projecLeft">
                     <div class="project hipster">
-                        <img src="https://www.placecage.com/805/574" alt="">
-                        <div class="projectText hipText">
+                        <div data-aos="fade-up" class="image">
+                            <img src="./assets/hipsterApp.jpg" alt="Screen shot of hipster profiler app">
+                        </div>
+                        <div  data-aos="fade-up" class="projectText hipText">
                             <h3>Hipster <span>Profiler</span></h3>
                             <div class="pTextContainer">
-                                <div class="styleLineP"></div>
+                                <div class="styleLineP line"></div>
                                 <div>
                                     <p>A fun web application that takes user input and creates one of thousands of possible hipster profile combinations (all written by me)</p>
                                     <p class="tools"><span>Built With: </span>Jquery / Sass / HTML / CSS</p>
+                                    <a href="https://harrydarwin.github.io/HarryGuloienProject3/">
+                                        <div class="viewIt">View It Live <span class="iconify" data-icon="bi:arrow-right" data-inline="false"></span></div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
                     <div class="project">
-                        <img src="https://www.placecage.com/805/574" alt="">
-                        <div class="projectText">
-                            <h3>Let's <span>Argue</span></h3>
+                        <div data-aos="fade-up" class="image">
+                            <img src="./assets/beerOmatic.jpg" alt="Screen shot of beer o'matic app">
+                        </div>
+                        <div data-aos="fade-up" class="projectText">
+                            <h3>Beer <span>O'Matic</span></h3>
                             <div class="pTextContainer">
-                                <div class="styleLineP"></div>
+                                <div class="styleLineP line"></div>
                                 <div>
-                                    <p>An open forum debating app where users can go to share and defend their opinions or select an open argument to join in on.</p>
-                                    <p class="tools"><span>Built With: </span>React / Firebase / Javascript / HTML / CSS</p>
+                                    <p>Search any beer or select the random button - results are pulled from an API and displayed with a picture and beer info!</p>
+                                    <p class="tools"><span>Built With: </span>HTML / CSS / jQuery / Rest API</p>
+                                    <a href="https://harrydarwin.github.io/Beer-O-Matic-v1.2/">
+                                        <div class="viewIt">View It Live <span class="iconify" data-icon="bi:arrow-right" data-inline="false"></span></div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -157,11 +174,11 @@
     </section>
     <section class="skills">
         <div class="wrapper">
-            <div class="skillContainer">
-                <div class="styleLine skillLine"></div>
-                    <h2 id="skills">Technical Skills</h2>
-                <div class="styleLine horizontal"></div>
-                <div class="skillIcons">
+            <div id="skills"  data-aos="fade-up" class="skillContainer">
+                <div data-aos="fade-up" class="styleLine line skillLine"></div>
+                    <h2>Technical Skills</h2>
+                <div class="styleLine line horizontal"></div>
+                <div data-aos="fade-up" class="skillIcons">
                     <div class="icons"><i class="devicon-html5-plain"></i><p>HTML5</p></div>
                     <div class="icons"><i class="devicon-css3-plain"></i><p>CSS3</p></div>
                     <div class="icons"><i class="devicon-javascript-plain"></i><p>Javascript</p></div>
@@ -184,22 +201,23 @@
     </section>
     <section id="contact" class="contact">
         <div class="wrapper">
-            <div class="contactBox">
+            <div data-aos="fade-up" class="contactBox">
                 <div class="contactText">
                     <h3>Get In Touch <span>With Me</span></h3>
                     <div class="contactContainer">
-                        <div class="styleLine"></div>
+                        <div class="styleLine line"></div>
                         <div>
                             <h4 class="name">Harry Darwin Guloien</h4>
                             <p>Toronto, Ontario, CA</p>
                             <p>647-688-6267</p>
-                            <p>harryguloien@gmail.com</p>
+                            <a class="email" href="mailto:harryguloien@gmail.com">harryguloien@gmail.com</a>
+                            <div class="underline line"></div>
                             <h4>Book A Meeting</h4>
                             <a class="meeting" href="https://calendly.com/harrydarwin/15min">Let's Chat<i class="far fa-calendar-alt"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="placeholder"></div>
+                <div data-aos="fade-up" class="placeholder"></div>
                 
             </div>
         </div>
@@ -208,17 +226,19 @@
         <div class="wrapper">
             <div class="footerStyle"></div>
             <div class="footerBox">
-                <p class="me">Harry Darwin</p>
+                <p class="me">harrydarwin.com</p>
                 <p>2020</p>
                 <div class="media">
                     <a href="https://www.linkedin.com/in/harry-guloien/"><i class="fab fa-linkedin"></i></a>
                     <a href="https://github.com/harrydarwin"><i class="fab fa-github"></i></a>
                     <a href="https://twitter.com/DarwinCodes"><i class="fab fa-twitter"></i></a>
+                    <a href="https://harrydarwin.medium.com/"><i class="fab fa-medium-m"></i></a>
                 </div>
             </div>
         </div>
     </footer>
-
+    <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

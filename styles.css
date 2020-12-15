@@ -57,13 +57,23 @@ li {
     right: 20px;
 }
 
-.dotNav a {
+.dot {
   background-color: #CCCCCC;
   border-radius: 50%;
   width: 8px;
   height: 8px;
   display: block;
   margin: 25px 0;
+  transition: all .1s ease-in-out;
+}
+
+.active {
+    background-color: black;
+}
+
+.dotNav a:hover,
+.dotNav a:focus {
+    transform: scale(1.5);
 }
 
 /* TOP NAV BAR */
@@ -82,6 +92,7 @@ li {
 
 .topNav {
     display: flex;
+    text-transform: uppercase;
 }
 
 .topNav li {
@@ -94,8 +105,25 @@ li {
     padding: 5px;
 }
 
+.topNav li:hover,
+.topNav li:focus {
+    color: #4D6FC1;
+}
+
+.home a {
+    color: #4D6FC1;
+}
+
+.home a:hover,
+.home a:focus {
+    color: black;
+}
+
 header {
-    border: 2px solid teal;
+    background: url(./assets/headerShot.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* border: 2px solid teal; */
     height: 80vh;
     position: relative;
 }
@@ -123,6 +151,15 @@ h2 span {
     display: block;
 }
 
+h3 {
+    margin-top: 20px;
+    font-size: 4rem;
+}
+
+h3 span {
+    display: block;
+}
+
 .subtitle {
     display: flex;
     max-width: 325px;
@@ -138,7 +175,8 @@ h2 span {
 }
 
 .subtitle p {
-    margin-left: 10px;;
+    margin-left: 10px;
+    font-weight: 700;
 }
 
 .headerStyle {
@@ -151,8 +189,8 @@ h2 span {
 .year {
     font-style: italic;
     font-size: 1.3rem;
-    color: slategray;
     display: block;
+    text-align: end;
 }
 
 /* ABOUT ME SECTION */
@@ -270,21 +308,34 @@ left: 28.5%;
     order: 2;
 }
 
-h3 {
-    font-size: 4rem;
-
-}
-
-h3 span {
-    display: block;
-}
-
 .project {
     position: relative;
 }
 
+.project img {
+    border: 1px solid #4D6FC1;
+    padding: 10px;
+}
+
+.viewIt {
+    width: 120px;
+    display: flex;
+    align-items: center;
+    padding: 3px 3px 3px 0;
+}
+
+.viewIt .iconify {
+    font-size: 1.5rem;
+    margin-left: 5px;
+}
+
+.viewIt:hover .iconify,
+.viewIt:focus .iconify {
+    animation: pointer 1s linear infinite;
+}
+
 .hipster {
-    margin-bottom: 325px;
+    margin-bottom: 50px;
 }
 
 .projectText,
@@ -296,18 +347,8 @@ h3 span {
     margin: 0 auto;
 }
 
-.projectText {
-    position: absolute;
-    bottom: -205px;
-    left: 10%;
-} 
-
-.hipText {
-    bottom: -183px;
-}
-
 .pTitleText {
-    margin-bottom: 150px;
+    margin-bottom: 125px;
 }
 
 .pTextContainer {
@@ -320,10 +361,6 @@ h3 span {
     width: 100px;
     background-color: black;
     margin: 4px 20px 0 0;
-}
-
-.projects {
-    padding-bottom: 200px;
 }
 
 .project p {
@@ -371,6 +408,8 @@ h3 span {
     font-size: 2rem;
 }
 
+
+
 .icons img {
     width: 37px;
     height: 37px;
@@ -380,6 +419,18 @@ h3 span {
 .iconify {
     font-size: 4rem;
 }
+
+.icons:hover,
+.icons:focus {
+    animation: pulse 2s ease-in-out infinite;
+    cursor: pointer;
+}
+
+.icons:hover p,
+.icons:focus p{
+    color: #4D6FC1;
+}
+
 
 /* CONTACT */
 .contact {
@@ -411,6 +462,23 @@ h3 span {
     line-height: 2rem;
 }
 
+.email {
+    padding: 5px 5px 5px 0;
+}
+
+.underline {
+    height: 2px;
+    width: 0;
+    background-color: black;
+    transition: all 1s linear;
+}
+
+.email:hover + .underline,
+.email:focus + .underline {
+    width: 100%;
+}
+
+
 .name {
     margin: 0 0 25px 0
 }
@@ -420,13 +488,6 @@ h3 span {
     width: 70%;
 }
 
-/* .meeting {
-    padding: 10px 5px;
-    background: black;
-    color: white;
-    font-size: 1.5rem;
-} */
-
 .meeting {
     padding: 10px 5px;
     border: 2px solid black;
@@ -434,7 +495,8 @@ h3 span {
     transition: all .5s;
 }
 
-.meeting:hover {
+.meeting:hover,
+.meeting:focus {
     background: black;
     color: white;
 }
@@ -468,7 +530,69 @@ footer {
 }
 
 .footerBox a {
+    color: slategray;
     font-size: 2rem;
     padding: 5px;
     margin: 0 10px;
+}
+
+.footerBox i {
+    transition: all .5s;
+}
+
+.footerBox a:hover,
+.footerBox a:focus {
+    color: #4D6FC1;
+}
+
+.footerBox a:hover i,
+.footerBox a:focus i {
+    transform: scale(1.3);
+}
+
+/* DARKMODE */
+.darkMode {
+    background-color: black;
+    color: white;
+}
+
+.darkLine {
+    background: white;
+}
+
+.lightSwitch {
+    cursor: pointer;
+}
+
+@keyframes pulse {
+ 0% {
+     transform: scale(1);
+ }
+ 20% {
+     transform: scale(1.1);
+ }
+ 40% {
+     transform: scale(1);
+ }
+ 60% {
+    transform: scale(1.2);
+}
+80% {
+    transform: scale(1);
+}
+100% {
+    transform: scale(1);
+}}
+
+@keyframes pointer {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+    
 }
