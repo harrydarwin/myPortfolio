@@ -17,10 +17,18 @@ body {
     font-size: 1.3rem;
 }
 
+img {
+    width: 100%;
+}
+
 nav,
 header,
 h1, h2, h3, h4 {
     font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3, h4 {
+    text-transform: uppercase;
 }
 
 p {
@@ -99,9 +107,7 @@ header {
 }
 
 h1 {
-    font-size: 8rem;
-    text-transform: uppercase;
-    
+    font-size: 8rem;    
 }
 
 h1 span {
@@ -113,6 +119,10 @@ h2 {
     font-size: 3.5rem;
 }
 
+h2 span {
+    display: block;
+}
+
 .subtitle {
     display: flex;
     max-width: 325px;
@@ -120,34 +130,39 @@ h2 {
     align-items:top;
     font-size: 1.5rem;
     font-weight: 600;
+    padding-left: 6px;
 }
 
 .subtitle span {
-    display: block;
     margin-top: 5px;
+}
+
+.subtitle p {
+    margin-left: 10px;;
 }
 
 .headerStyle {
     height: 2px;
-    width: 126px;
+    width: 55%;
     background-color: black;
-    margin-top: 2px;
+    margin-top: 2px
 }
 
 .year {
     font-style: italic;
     font-size: 1.3rem;
     color: slategray;
+    display: block;
 }
 
 /* ABOUT ME SECTION */
 
 .aboutSection {
-    width: 70%;
+    width: 75%;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: space-between;
+    grid-template-columns: 1fr 2fr;
+    grid-column-gap: 5%;
 }
 
 .styledHeadings {
@@ -163,9 +178,16 @@ h2 {
     background-color: black;
 }
 
+
 .lineTwo {
-    height: 200px;
+    height: 175px;
     margin-top: 72px;
+    margin-bottom: 20px;
+}
+
+.lineThree {
+    height: 125px;
+    margin-top: 20px;
 }
 
 .aboutMe {
@@ -182,7 +204,6 @@ left: 28.5%;
 }
 
 .aboutMe h2 span {
-    display: block;
     margin-left: 60px;
 }
 
@@ -193,6 +214,10 @@ left: 28.5%;
 
 .aboutText p {
     margin-bottom: 10px;
+}
+
+.aboutText li {
+    list-style-type: disc;
 }
 
 .tagBio {
@@ -207,7 +232,7 @@ left: 28.5%;
 .bio {
     font-size: 1.5rem;
     font-weight: 600;
-    margin-top: 50px;
+    margin-top: 25px;
 }
 
 .bioTag {
@@ -219,5 +244,133 @@ left: 28.5%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 30px;
-    margin-top: 60px;
+    margin-top: 17%;
+}
+
+.projectContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 5%;
+    margin: 0 auto;
+}
+
+.projectLeft,
+.projectRight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.projectLeft {
+    order: 1;
+}
+
+.projectRight {
+    order: 2;
+}
+
+h3 {
+    font-size: 4rem;
+
+}
+
+h3 span {
+    display: block;
+}
+
+.project {
+    position: relative;
+}
+
+.hipster {
+    margin-bottom: 325px;
+}
+
+.projectText,
+.pTitleText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.projectText {
+    position: absolute;
+    bottom: -165px;
+    left: 10%;
+}
+
+.pTitleText {
+    margin-bottom: 150px;
+}
+
+.pTextContainer {
+    display: flex;
+    line-height: 2rem;
+}
+
+.styleLineP {
+    height: 2px;
+    width: 100px;
+    background-color: black;
+    margin: 4px 20px 0 0;
+}
+
+.projects {
+    padding-bottom: 125px;
+}
+
+/* TECHNICAL SKILLS SECTION */ 
+.skillContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.skillContainer h2 {
+    margin: 0;
+}
+
+.horizontal {
+    height: 2px;
+    width: 200px;
+}
+
+.skillIcons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-gap: 50px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.icons img {
+    width: 37px;
+    height: 37px;
+}
+
+.skillIcons i,
+.iconify {
+    font-size: 4rem;
+}
+
+/* CONTACT */
+.contact .styleLine {
+    height: 2px;
+    width: 80px;
+    margin: 0 20px;
+    margin-top: 3px;
+}
+
+.contactContainer {
+    display: flex;
+    line-height: 2rem;
+}
+
+.name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 30px;
 }

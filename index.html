@@ -10,6 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css">
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
     <title>harryDarwinPortfolio</title>
 </head>
 <body>
@@ -56,7 +59,7 @@
                         <h2>About <span>Me</span></h2>
                     </div>
                     <div class="styleLine lineTwo"></div>
-                    <h2>Team Player</h2>
+                    <h2>Team <span>Player</span></h2>
                     <div class="styleLine lineThree"></div>
                 </div>
                 <div class="aboutInfo">
@@ -66,11 +69,20 @@
                             <p class="bio" >I am a highly-versatile operations manager turned developer with a wealth of experience in concept development and project management in the Retail and Food&Beverage industry. I bring experience developing responsive web applications using Javascript, React, HTML, CSS</p>
                             <p class="bio bioTag" >Whether through physical or digital space, my goal is always to turn good ideas into beautiful user experiences that people want to share.</p>
                         </div>
-                        <p>Previously my work has been both client facing and largely data-based. I wanted to bring my
-                        skills into a field where I could apply them as well as bring some larger scale creativity
-                        and useability to my work. I believe web development provides an opportunity to connect with
-                        more people in a more meaningful way</p>
-                        <p>Since 2010 I have assisted in opening over 10 restaurants and 1 retail operation. Some of these have been close to home or in the United States and, others as far away as Saudi Arabia and Kuwait. As a learning addict, I transitioned to work with a Toronto e-commerce startup in 2019 and had an excellent run opening their first large scale, long term, pop-up, retail location (which has since been torn down for condo construction). I left that role in 2020 after the pop-up was finished, and took some time to consider my next move. I kept busy by completing a course in SQL, courses in basic HMTL, CSS and Javascript as well as completing a certificates for scrum agile methodologies (scrum master certification) and a Lean Six Sigma Green Belt certification (process improvement).</p>
+                        <p>A few other accomplishments:</p>
+                        <ul>
+                            <li>Opened restaurants all over the world (over 10)</li>
+                            <li>Opened retail location for Toronto e-commerce start-up</li>
+                            <li>Courses & certificates in 2020</li>
+                                <ul>
+                                    <li>Web Development Bootcamp - Juno College</li>
+                                    <li>Web Developement & Javascript 101 - Juno College</li>
+                                    <li>SQL Bootcamp - Udemy</li>
+                                    <li>Agile Methodologies/Project Delivery Course - Udemy</li>
+                                    <li>Scrum Master Course & Certificate - Scrum.org</li>
+                                    <li>Lean Six Sigma Green Belt (process improvement) - McGill University</li>
+                                </ul>
+                        </ul>
                         <p>Whatever I decide to do, I do with drive and I take it upon myself to learn everything I can along the way.</p>
                     </div>
                     <div class="photoGrid">
@@ -87,51 +99,115 @@
     </section>
     <section id="projects" class="projects">
         <div class="wrapper">
-            <div class="projectText">
-                <h2>Projects I've Built</h2>
-                <div class="styleLine"></div>
-                <p>Each of the displayed projects was created in less than one week while studying full time and should give you an idea of what I can do, and how quickly I employ new techniques and strategies</p>
-            </div>
-            <div class="project">
-                <img src="https://www.placecage.com/805/574" alt="">
-                <h3>Hipster Profiler</h3>
-                <p>A fun web application that takes user input and creates one of thousands of possible hipster profile combinations (all written by me)</p>
-                <p><span>Built With: </span>Jquery / Sass / HTML / CSS</p>
-            </div>
-            <div class="project">
-                <img src="https://www.placecage.com/805/726" alt="">
-                <h3>College Navigator</h3>
-                <p>Allows a user to pan for their future studies with the ability to search for post-secondary schools by type and location, while saving favourite schools and adding notes.</p>
-                <p><span>Built With: </span>React / Rest API / Firebase / Javascript / HTML / CSS</p>
-            </div>
-            <div class="project">
-                <img src="https://www.placecage.com/805/574" alt="">
-                <h3>Let's Argue</h3>
-                <p>An open forum debating app where users can go to share and defend their opinions or select an open argument to join in on.</p>
-                <p><span>Built With: </span>React / Firebase / Javascript / HTML / CSS</p>
+            <div class="projectContainer">
+                <div class="projectRight">
+                    <div class="pTitleText">
+                        <h2>My Projects</h2>
+                        <div class="pTextContainer">
+                            <div class="styleLineP"></div>
+                            <p>Each of the displayed projects was created in less than one week while studying full time and should give you an idea of what I can do, and how quickly I employ new techniques and strategies</p>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <img src="https://www.placecage.com/805/726" alt="">
+                        <div class="projectText">
+                            <h3>College <span>Navigator</span></h3>
+                            <div class="pTextContainer">
+                                <div class="styleLineP"></div>
+                                <div>
+                                    <p>Allows a user to pan for their future studies with the ability to search for post-secondary schools by type and
+                                        location, while saving favourite schools and adding notes.</p>
+                                    <p><span>Built With: </span>React / Rest API / Firebase / Javascript / HTML / CSS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="projecLeft">
+                    <div class="project hipster">
+                        <img src="https://www.placecage.com/805/574" alt="">
+                        <div class="projectText">
+                            <h3>Hipster <span>Profiler</span></h3>
+                            <div class="pTextContainer">
+                                <div class="styleLineP"></div>
+                                <div>
+                                    <p>A fun web application that takes user input and creates one of thousands of possible hipster profile combinations (all written by me)</p>
+                                    <p><span>Built With: </span>Jquery / Sass / HTML / CSS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project">
+                        <img src="https://www.placecage.com/805/574" alt="">
+                        <div class="projectText">
+                            <h3>Let's <span>Argue</span></h3>
+                            <div class="pTextContainer">
+                                <div class="styleLineP"></div>
+                                <div>
+                                    <p>An open forum debating app where users can go to share and defend their opinions or select an open argument to join in on.</p>
+                                    <p><span>Built With: </span>React / Firebase / Javascript / HTML / CSS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     <section id="skills" class="skills">
         <div class="wrapper">
-            <div class="styleLine"></div>
-                <h3>Technical Skills</h3>
-            <div class="styleLine"></div>
-            <div class="skillIcons">
-                <img src="./assets/Orange_and_Gray_Bordered_Infographic_Resume-removebg-preview.png" alt="Icons for HTML5, CSS3, Javascript, Github, Accessibility, React, Firebase, Sass,  jQuery, SQL, Responsive Design and Rest APIs">
+            <div class="skillContainer">
+                <div class="styleLine"></div>
+                    <h2>Technical Skills</h2>
+                <div class="styleLine horizontal"></div>
+                <div class="skillIcons">
+                    <div class="icons"><i class="devicon-html5-plain"></i><p>HTML5</p></div>
+                    <div class="icons"><i class="devicon-css3-plain"></i><p>CSS3</p></div>
+                    <div class="icons"><i class="devicon-javascript-plain"></i><p>Javascript</p></div>
+                    <div class="icons"><i class="devicon-git-plain"></i><p>Git/GitHub</p></div>
+                    <div class="icons"><i class="devicon-jquery-plain"></i><p>jQuery</p></div>
+                    <div class="icons"><i class="devicon-react-original"></i><p>React</p></div>
+                    <div class="icons"><i class="devicon-sass-original"></i><p>Sass</p></div>
+                    <div class="icons"><span class="iconify" data-icon="simple-icons:firebase" data-inline="false"></span><p>Firebase</p></div>
+                    <div class="icons"><span class="iconify" data-icon="mdi:responsive" data-inline="false"></span><p>Responsive Design</p></div>
+                    <div class="icons"><span class="iconify" data-icon="dashicons:rest-api" data-inline="false"></span><p>Rest APIs</p></div>
+                    <div class="icons"><i class="devicon-bootstrap-plain"></i><p>Bootstrap</p></div>
+                    <div class="icons"><i class="fas fa-universal-access"></i><p>Accessibility</p></div>
+                    <div class="icons"><i class="devicon-mysql-plain"></i><p>MySQL</p></div>
+                    <div class="icons"><img src="./assets/scrum.png" alt="scrum master icon"><p>Scrum</p></div>
+                    <div class="icons"><img src="./assets/sixSigma.png" alt="Six Sigma icon"><p>Lean Six Sigma</p></div>
+                    <div class="icons"><i class="fas fa-terminal"></i><p>Terminal</p></div>
+                </div>
             </div>
         </div>
     </section>
     <section id="contact" class="contact">
         <div class="wrapper">
-            <h3>Get In Touch</h3>
-            <div class="styleLine"></div>
-            <p>Toronto, Ontario, CA</p>
-            <p>647-688-6267</p>
-            <p>harryguloien</p>
-
-            <h4>Book A Meeting</h4>
-            <a href="https://calendly.com/harrydarwin/15min">Check Current Availability</a>
+            <div class="contactBox">
+                <h3>Get In Touch <span>With Me</span></h3>
+                <div class="contactContainer">
+                    <div class="styleLine"></div>
+                    <div>
+                        <p class="name">Harry Darwin Guloien</p>
+                        <p>Toronto, Ontario, CA</p>
+                        <p>647-688-6267</p>
+                        <p>harryguloien@gmail.com</p>
+                    </div>
+                </div>
+                
+                <h4>Book A Meeting</h4>
+                <a href="https://calendly.com/harrydarwin/15min">Check Current Availability</a>
+            </div>
+            <form method=”post” name=”contact_form” action=”contact-form-handler.php”>
+                <label for="name">Your Name:</label>
+                <input type=”text” name=”name”>
+                <label for="email">Your Email:</label>
+                <input type=”text” name=”email”>
+                <label for="message">Message:</label>
+                <textarea name=”message”></textarea>
+                <input type=”submit” value=”Submit”>
+            </form>
         </div>
     </section>
     <footer>
@@ -143,5 +219,7 @@
             <a href="https://twitter.com/DarwinCodes"><i class="fab fa-twitter"></i></a>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
