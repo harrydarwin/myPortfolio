@@ -60,10 +60,8 @@
                 <div class="styledHeadings">
                     <div class="styleLine lineOne line"></div>
                     <div data-aos="fade-up" class="aboutMe">
-                        <div class="fadeIn">
+                        <div class="imageContainer">
                             <img class="headShot" src="./assets/me1.jpeg" alt="Harry wearing a suit">
-                            <img src="./assets/me2.jpeg" alt="">
-                            <img src="./assets/me3.png" alt="">
                         </div>
                         <h2>About <span>Me</span></h2>
                     </div>
@@ -95,12 +93,12 @@
                         <p>Whatever I decide to do, I do with drive and I take it upon myself to learn everything I can along the way.</p>
                     </div>
                     <div data-aos="fade-up" class="photoGrid">
+                        <!-- <img src="https://www.placecage.com/200/200" alt="">
                         <img src="https://www.placecage.com/200/200" alt="">
                         <img src="https://www.placecage.com/200/200" alt="">
                         <img src="https://www.placecage.com/200/200" alt="">
                         <img src="https://www.placecage.com/200/200" alt="">
-                        <img src="https://www.placecage.com/200/200" alt="">
-                        <img src="https://www.placecage.com/200/200" alt="">
+                        <img src="https://www.placecage.com/200/200" alt=""> -->
                     </div>
                 </div>
             </div>
@@ -219,6 +217,17 @@
                             <div class="underline line"></div>
                             <h4>Book A Meeting</h4>
                             <a class="meeting" href="https://calendly.com/harrydarwin/15min">Let's Chat<i class="far fa-calendar-alt"></i></a>
+                        </div>
+                        <div class="emailBox">
+                            <form action="https://formspree.io/f/xyybnaob" method="POST">
+                                <label for="name" class="srOnly">Enter your name</label>
+                                <input class="emailMe" type="text" name="name" placeholder="Your Name" required>
+                                <label for="_replyto" class="srOnly">Enter your email address</label>
+                                <input class="emailMe" type="email" name="_replyto" placeholder="Your Email" required>
+                                <label for="mesage" class="srOnly">Enter a message</label>
+                                <textarea class="emailMe" name="message" id="message" placeholder="Message" required></textarea>
+                                <button class="meeting" type="submit" value="Send">Send <i class="far fa-envelope"></i></button>
+                            </form>
                         </div>
                     </div>
                 </div>

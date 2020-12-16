@@ -3,6 +3,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 *, *:before, *:after { box-sizing: inherit; }
+.srOnly { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
 
 html {
@@ -15,6 +16,22 @@ html {
 body {
     font-family: 'Playfair Display', serif;
     font-size: 1.3rem;
+}
+
+input, textarea {
+    background: none;
+    border: none;
+    margin: 10px 0;
+}
+
+button {
+    background: none;
+    border: none;
+}
+
+textarea {
+    resize: none;
+    height: 63px;
 }
 
 img {
@@ -68,7 +85,7 @@ li {
 }
 
 .active {
-    background-color: black;
+    background-color: #4D6FC1;
 }
 
 .dotNav a:hover,
@@ -226,6 +243,11 @@ h3 span {
 .lineThree {
     height: 125px;
     margin-top: 20px;
+}
+
+.headShot:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 42px 10px rgba(77, 111, 193,0.79);
 }
 
 .aboutMe {
@@ -435,7 +457,7 @@ left: 28.5%;
 
 /* CONTACT */
 .contact {
-    padding: 60px 0;
+    padding: 90px 0;
 }
 
 .contact h3 {
@@ -496,6 +518,10 @@ left: 28.5%;
     transition: all .5s;
 }
 
+.meeting:hover {
+    cursor: pointer;
+}
+
 .meeting:hover,
 .meeting:focus {
     background: black;
@@ -509,6 +535,33 @@ left: 28.5%;
 .meeting span {
     font-size: 2rem;
 }
+
+.emailBox {
+    align-self: flex-end;
+    height: 100%;
+    margin-right: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-end;
+    height: 100%;
+    align-items: space-between;
+}
+
+.emailMe {
+    border-bottom: 2px solid black 
+}
+
+
+button {
+    font-family: 'Playfair Display', serif;
+    height: 48px;
+    width: 120px;
+    margin: 5.5px;
+}
+
 
 /* FOOTER */
 footer {
@@ -564,6 +617,23 @@ footer {
 .lightSwitch {
     cursor: pointer;
 }
+
+.emailLight {
+    border-color: white;
+    color: white;
+}
+
+.lightButton {
+    border-color: white;
+    color: white;
+}
+
+.lightButton:hover {
+    background: white;
+    color: black;
+}
+
+
 
 @keyframes pulse {
  0% {
