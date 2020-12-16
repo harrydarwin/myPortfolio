@@ -136,6 +136,16 @@ li {
     color: black;
 }
 
+/* HAMBURGER MENU  */
+.burg {
+    display: none;
+}
+
+input#menu {
+    display: none;
+}
+
+/* HEADER */
 header {
     background: url(./assets/headerShot.jpeg);
     background-size: cover;
@@ -665,5 +675,78 @@ footer {
     100% {
         transform: translateX(0);
     }
+    
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 1024px) {
+    /* fix header NAME h1 */
+    /* FIX header background image */
+}
+
+@media (max-width: 940px) {
+    /* make hamburger menu */
+    .burgerContent {
+        position: absolute;
+        right: 0;
+        left: 0;
+        z-index: 2;
+        max-width: 0;
+        overflow: hidden;
+        transition: all 1s;
+    }
+
+    input#menu {
+        display: block;
+        position: absolute;
+        right: 25px;
+        top: 20px;
+        z-index:4;
+        height: 50px;
+        width: 50px;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .burg {
+        display: block;
+        position: absolute;
+        right: 25px;
+        top: 25px;
+        z-index: 3;
+        background: #2c2c2c;
+        height: 5px;
+        width: 50px;
+        border-radius: 5px;
+        transition: transform .5s;
+    }
+
+    .burg2 {
+        top: 40px;
+    }
+
+    .burg3 {
+        top: 55px;
+    }
+
+    input#menu:checked ~ div.burg1 {
+        transform: translateY(15px) rotate(45deg);
+    }
+
+    input#menu:checked ~ div.burg2 {
+        visibility: hidden;
+        transform: rotate(360deg);
+    }
+
+    input#menu:checked ~ div.burg3 {
+        transform: translateY(-15px) rotate(-45deg);
+    }
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 480px) {
     
 }
