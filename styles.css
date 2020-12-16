@@ -315,6 +315,7 @@ left: 28.5%;
 .project img {
     border: 1px solid #4D6FC1;
     padding: 10px;
+    border-radius: 15%;
 }
 
 .viewIt {
