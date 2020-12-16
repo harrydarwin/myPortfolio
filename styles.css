@@ -699,7 +699,7 @@ footer {
     input#menu {
         display: block;
         position: absolute;
-        right: 25px;
+        right: 55px;
         top: 20px;
         z-index:4;
         height: 50px;
@@ -711,8 +711,8 @@ footer {
     .burg {
         display: block;
         position: absolute;
-        right: 25px;
-        top: 25px;
+        right: 55px;
+        top: 35px;
         z-index: 3;
         background: #2c2c2c;
         height: 5px;
@@ -722,11 +722,11 @@ footer {
     }
 
     .burg2 {
-        top: 40px;
+        top: 50px;
     }
 
     .burg3 {
-        top: 55px;
+        top: 65px;
     }
 
     input#menu:checked ~ div.burg1 {
