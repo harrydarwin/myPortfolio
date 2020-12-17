@@ -32,6 +32,7 @@ button {
 textarea {
     resize: none;
     height: 63px;
+    margin-bottom: 15.5px;
 }
 
 img {
@@ -162,7 +163,8 @@ header {
 }
 
 h1 {
-    font-size: 8rem;    
+    font-size: 8rem;   
+    margin-bottom: 30px; 
 }
 
 h1 span {
@@ -522,7 +524,7 @@ left: 28.5%;
 }
 
 .meeting {
-    padding: 10px 5px;
+    padding: 5px 5px;
     border: 2px solid black;
     font-size: 1.8rem;
     transition: all .5s;
@@ -542,10 +544,6 @@ left: 28.5%;
     margin-left: 10px;
 }
 
-.meeting span {
-    font-size: 2rem;
-}
-
 .emailBox {
     align-self: flex-end;
     height: 100%;
@@ -561,13 +559,14 @@ form {
 }
 
 .emailMe {
-    border-bottom: 2px solid black 
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
 }
 
 
 button {
     font-family: 'Playfair Display', serif;
-    height: 48px;
+    height: 38px;
     width: 120px;
     margin: 5.5px;
 }
@@ -628,6 +627,7 @@ footer {
     cursor: pointer;
 }
 
+
 .emailLight {
     border-color: white;
     color: white;
@@ -682,18 +682,58 @@ footer {
 @media (max-width: 1024px) {
     /* fix header NAME h1 */
     /* FIX header background image */
+    .dotNav {
+        display: none;
+    }
+
+    header {
+        height: 60vh;
+    }
+
+    .headerText {
+    top: 40%;
+    left: 0;
+    }
+
+    .subtitle {
+        padding: 0;
+    }
 }
 
 @media (max-width: 940px) {
     /* make hamburger menu */
     .burgerContent {
         position: absolute;
-        right: 0;
-        left: 0;
+        right: 5%;
+        top: 23px;
         z-index: 2;
-        max-width: 0;
+        max-height: 0;
         overflow: hidden;
         transition: all 1s;
+    }
+
+    input#menu:checked ~ .burgerContent{
+        max-height: 250px;
+    }
+
+    .topNav {
+        flex-direction: column;
+        padding: 12px 0 5px 0;
+        margin: 0;
+        width: 125px;
+        background: rgba(255, 255, 255, .6);
+    }
+
+    .darkBackground {
+        background: rgba(0, 0, 0, .6);
+    }
+
+    .topNav li {
+        margin: 10px 0;
+    }
+
+    .lightSwitch {
+        text-align: center;
     }
 
     input#menu {
@@ -720,6 +760,7 @@ footer {
         border-radius: 5px;
         transition: transform .5s;
     }
+
 
     .burg2 {
         top: 50px;

@@ -70,6 +70,10 @@ myApp.init = () => {
         $('input').toggleClass('emailLight');
         $('textarea').toggleClass('emailLight');
         $('.meeting').toggleClass('lightButton');
+
+        if ($(window).width() <= 940) {
+            $('.topNav').toggleClass('darkBackground');
+        }
     })
 
  
