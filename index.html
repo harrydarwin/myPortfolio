@@ -66,20 +66,21 @@
             <div class="aboutSection">
                 <div class="styledHeadings">
                     <div class="styleLine lineOne line"></div>
-                    <div data-aos="fade-up" class="aboutMe">
+                    <p class="tagLine mobile">A unique background creates a unique perspective</p>
+                    <div data-aos="fade-up" id="aboutMe" class="aboutMe">
                         <div class="imageContainer">
                             <img class="headShot" src="./assets/me1.jpeg" alt="Harry wearing a suit">
                         </div>
                         <h2>About <span>Me</span></h2>
                     </div>
-                    <div data-aos="fade-up" class="styleLine line lineTwo"></div>
-                    <h2 data-aos="fade-up">Team <span>Player</span></h2>
+                    <div data-aos="fade-up" class="styleLine line lineTwo desktop"></div>
+                    <h2 class="team desktop" data-aos="fade-up">Team <span>Player</span></h2>
                     <div  data-aos="fade-up" class="styleLine line lineThree"></div>
                 </div>
                 <div class="aboutInfo">
                     <div  data-aos="fade-up" class="aboutText">
                         <div class="tagBio">
-                            <p class="tagLine">A unique background creates a unique perspective</p>
+                            <p class="tagLine desktop">A unique background creates a unique perspective</p>
                             <p class="bio" >I am a highly-versatile operations manager turned developer with a wealth of experience in concept development and project management in the Retail and Food&Beverage industry. I bring experience developing responsive web applications using Javascript, React, HTML, CSS</p>
                             <p class="bio bioTag" >Whether through physical or digital space, my goal is always to turn good ideas into beautiful user experiences that people want to share.</p>
                         </div>
@@ -87,25 +88,31 @@
                         <ul>
                             <li>Opened restaurants all over the world (over 10)</li>
                             <li>Opened retail location for Toronto e-commerce start-up</li>
-                            <li>Courses & certificates in 2020</li>
-                                <ul>
-                                    <li>Web Development Bootcamp - Juno College</li>
-                                    <li>Web Developement & Javascript 101 - Juno College</li>
-                                    <li>SQL Bootcamp - Udemy</li>
-                                    <li>Agile Methodologies/Project Delivery Course - Udemy</li>
-                                    <li>Scrum Master Course & Certificate - Scrum.org</li>
-                                    <li>Lean Six Sigma Green Belt (process improvement) - McGill University</li>
-                                </ul>
+                            <li class="courses">Courses & certificates in 2020</li>
+                            <div class="summary">
+                                    <ul>
+                                        <li>Web Development Bootcamp - Juno College</li>
+                                        <li>Web Developement & Javascript 101 - Juno College</li>
+                                        <li>SQL Bootcamp - Udemy</li>
+                                        <li>Agile Methodologies/Project Delivery Course - Udemy</li>
+                                        <li>Scrum Master Course & Certificate - Scrum.org</li>
+                                        <li>Lean Six Sigma Green Belt (process improvement) - McGill University</li>
+                                    </ul>
+                                </div>
                         </ul>
                         <p>Whatever I decide to do, I do with drive and I take it upon myself to learn everything I can along the way.</p>
                     </div>
+                    <div class="mobileTeam mobile">
+                        <div data-aos="fade-up" class="styleLine line lineThree"></div>
+                        <h2 class="team" data-aos="fade-up">Team Player</h2>
+                    </div>
                     <div data-aos="fade-up" class="photoGrid">
-                        <!-- <img src="https://www.placecage.com/200/200" alt="">
-                        <img src="https://www.placecage.com/200/200" alt="">
-                        <img src="https://www.placecage.com/200/200" alt="">
-                        <img src="https://www.placecage.com/200/200" alt="">
-                        <img src="https://www.placecage.com/200/200" alt="">
-                        <img src="https://www.placecage.com/200/200" alt=""> -->
+                        <img src="./assets/inkTeam.jpeg" alt="Inkbox opening team around a large table">
+                        <img src="./assets/delilah.jpeg" alt="Harry with some of the Hotel Delilah starting team">
+                        <img src="./assets/cocktail.jpeg" alt="Harry showing others how to pour a cocktail expertly behind a bar">
+                        <img src="./assets/district.jpeg" alt="Harry and some of the District Eatery team">
+                        <img src="./assets/hockey.jpeg" alt="People playing road hockey on King Street, Toronto">
+                        <img src="./assets/bsb.jpeg" alt="Large team at a restaurant in Saudi Arabia with Harry in the back">
                     </div>
                 </div>
             </div>
@@ -124,7 +131,8 @@
                     </div>
                     <div class="project">
                         <div data-aos="fade-up" class="image">
-                            <img src="./assets/collegeNavigator.jpg" alt="Screen shot of college navigator app">
+                            <img class="collegeNav" src="./assets/collegeNavigator.jpg" alt="Screen shot of college navigator app">
+                            <img class="collegeNav darkSetting" src="./assets/collegeNavigatorDark.jpg" alt="Screen shot of college navigator app">
                         </div>
                         <div  data-aos="fade-up" class="projectText">
                             <h3>College <span>Navigator</span></h3>
@@ -143,7 +151,8 @@
                 <div class="projecLeft">
                     <div class="project hipster">
                         <div data-aos="fade-up" class="image">
-                            <img src="./assets/hipsterApp.jpg" alt="Screen shot of hipster profiler app">
+                            <img class="hipsterApp" src="./assets/hipApp.jpg" alt="Screen shot of hipster profiler app">
+                            <img class="hipsterApp darkSetting" src="./assets/hipAppDark.jpg" alt="Screen shot of hipster profiler app">
                         </div>
                         <div  data-aos="fade-up" class="projectText hipText">
                             <h3>Hipster <span>Profiler</span></h3>
@@ -162,7 +171,7 @@
                     
                     <div class="project">
                         <div data-aos="fade-up" class="image">
-                            <img src="./assets/beerOmatic.jpg" alt="Screen shot of beer o'matic app">
+                            <img class="beero" src="./assets/beerOmatic.jpg" alt="Screen shot of beer o'matic app">
                         </div>
                         <div data-aos="fade-up" class="projectText">
                             <h3>Beer <span>O'Matic</span></h3>
@@ -215,15 +224,17 @@
                 <div class="contactText">
                     <h3>Get In Touch <span>With Me</span></h3>
                     <div class="contactContainer">
+                        <div class="flexContact">
                         <div class="styleLine line"></div>
-                        <div>
-                            <h4 class="name">Harry Darwin Guloien</h4>
-                            <p>Toronto, Ontario, CA</p>
-                            <p>647-688-6267</p>
-                            <a class="email" href="mailto:harryguloien@gmail.com">harryguloien@gmail.com</a>
-                            <div class="underline line"></div>
-                            <h4>Book A Meeting</h4>
-                            <a class="meeting" href="https://calendly.com/harrydarwin/15min">Let's Chat<i class="far fa-calendar-alt"></i></a>
+                            <div>
+                                <h4 class="name">Harry Darwin <span>Guloien</span></h4>
+                                <p>Toronto, Ontario, CA</p>
+                                <p>647-688-6267</p>
+                                <a class="email" href="mailto:harryguloien@gmail.com">harryguloien@gmail.com</a>
+                                <div class="underline line"></div>
+                                <h4 class="book">Book A Meeting</h4>
+                                <a class="meeting" href="https://calendly.com/harrydarwin/15min">Let's Chat<i class="far fa-calendar-alt"></i></a>
+                            </div>
                         </div>
                         <div class="emailBox">
                             <form action="https://formspree.io/f/xyybnaob" method="POST">
@@ -238,7 +249,9 @@
                         </div>
                     </div>
                 </div>
-                <div data-aos="fade-up" class="placeholder"></div>
+                <div data-aos="fade-up" class="placeholder">
+                    <img src="./assets/contact.jpeg" alt="Harry smiling while leaning on a brick wall">
+                </div>
                 
             </div>
         </div>
