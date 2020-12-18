@@ -251,7 +251,7 @@ h3 span {
 
 
 .lineTwo {
-    height: 175px;
+    height: 150px;
     margin-top: 110px;
     margin-bottom: 20px;
 }
@@ -377,7 +377,7 @@ left: 28.5%;
 }
 
 .hipster {
-    margin-bottom: 50px;
+    margin-bottom: 60px;
 }
 
 .projectText,
@@ -490,7 +490,7 @@ left: 28.5%;
 
 .contactText {
     margin: 50px 0;
-    width: 50%;
+    width: 70%;
 }
 
 .contact .styleLine {
@@ -503,7 +503,7 @@ left: 28.5%;
 .contactContainer {
     display: flex;
     line-height: 2rem;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .flexContact {
@@ -564,6 +564,7 @@ left: 28.5%;
     align-self: flex-end;
     height: 100%;
     margin-right: 10px;
+    width: 40%;
 }
 
 .contact button {
@@ -576,7 +577,7 @@ left: 28.5%;
 
 form input,
 form textarea {
-    width: 200px;
+    width: 100%;
 }
 
 form {
@@ -961,11 +962,19 @@ footer {
 }
 
 @media (max-width: 480px) {
+    header {
+        height: 90vh;
+    }
+
     form {
         display: none;
     }
 
     h1 {
         font-size: 6rem;
+    }
+
+    .aboutSection {
+        width: 100%;
     }
 }
