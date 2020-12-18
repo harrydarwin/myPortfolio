@@ -840,7 +840,7 @@ footer {
     input#menu {
         display: block;
         position: absolute;
-        right: 55px;
+        right: 6%;
         top: 20px;
         z-index:4;
         height: 50px;
@@ -852,7 +852,7 @@ footer {
     .burg {
         display: block;
         position: absolute;
-        right: 55px;
+        right: 6%;
         top: 35px;
         z-index: 3;
         background: #2c2c2c;
@@ -1013,6 +1013,24 @@ footer {
 }
 
 @media (max-width: 480px) {
+    input#menu:checked ~ .burgerContent{
+        max-height: 100%;
+    }
+
+    .topNav {
+        height: 100vh;
+        flex-direction: column;
+        padding: 50px 0 5px 0;
+        margin: 0;
+        width: 110px;
+        background: rgba(255, 255, 255, .6);
+    }
+
+    .topNav li {
+        margin: 40px 0;
+    }
+
+
     header {
         height: 90vh;
     }
