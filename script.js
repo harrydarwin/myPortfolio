@@ -121,6 +121,7 @@ myApp.darkMode = () => {
     }
 }
 
+
 //initialize function containing everything I need to run functionality on the page
 myApp.init = () => {
     // scroll down fade up plugin from https://michalsnik.github.io/aos/
@@ -138,8 +139,6 @@ myApp.init = () => {
     $('.lightSwitch').on('click', function() {
         myApp.darkMode(); 
     })
-
- 
 }
 
 //doc ready baby 

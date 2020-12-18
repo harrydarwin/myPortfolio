@@ -344,7 +344,6 @@ left: 28.5%;
     right: 0;
     background-color: rgba(0,0,0,.5);
     color: white;
-    cursor: pointer;
     font-family: 'Montserrat', sans-serif;
     display: flex;
     justify-content: center;
@@ -359,6 +358,10 @@ left: 28.5%;
 
 
 /* PROJECTS SECTION */
+.projects {
+    padding-top: 30px;
+}
+
 .projectContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -611,6 +614,16 @@ form textarea {
     width: 100%;
 }
 
+.formActive {
+    background: black; 
+    color: white;
+}
+
+.formActiveDark {
+    background: white;
+    color: black;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -751,6 +764,14 @@ footer {
 }
 
 /* MEDIA QUERIES */
+@media (min-width: 1800px) {
+    .dot {
+  width: 15px;
+  height: 15px;
+  margin: 40px 0;
+}
+}
+
 @media (max-width: 1024px) {
 
     .dotNav {
