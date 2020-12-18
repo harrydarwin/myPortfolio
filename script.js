@@ -26,10 +26,6 @@ myApp.shortenText = () => {
     }
 }
 
-// myApp.rearrange = () => {
-
-//     document.getElementById('aboutMe').insertAdjacentHTML('beforebegin', '<p>Hello</p>');
-// }
 
 myApp.imageShift = () => {
     const imageOne = `./assets/me1.jpeg`;
@@ -49,29 +45,36 @@ myApp.imageShift = () => {
     })
 }
 
+myApp.calcSectionBottom = (id) => {
+    const top = document.getElementById(id).offsetTop;
+    const height = document.getElementById(id).offsetHeight;
+    return top + height;
+}
+
 myApp.scrollBar = () => {
     window.addEventListener('scroll', function() {
-        const about = document.getElementById('about').offsetTop;
-        const projects = document.getElementById('projects').offsetTop;
-        const skills = document.getElementById('skills').offsetTop;
-        const contact = document.getElementById('contact').offsetTop;
+        const homeBot = myApp.calcSectionBottom('home');
+        const aboutBot = myApp.calcSectionBottom('about');
+        const projectsBot = myApp.calcSectionBottom('projects');
+        const skillsBot = myApp.calcSectionBottom('skills');
+
         if (window.scrollY >= 0) {
             myApp.noneActive();
             $('a[data-page=home]').addClass('active');
         }
-        if (window.scrollY >= about) {
+        if (window.scrollY >= homeBot - 100) {
             myApp.noneActive();
             $('a[data-page=about]').addClass('active');
         }
-        if (window.scrollY >= projects) {
+        if (window.scrollY >= aboutBot - 100) {
             myApp.noneActive();
             $('a[data-page=projects]').addClass('active');
         }
-        if (window.scrollY >= skills) {
+        if (window.scrollY >= projectsBot - 100) {
             myApp.noneActive();
             $('a[data-page=skills]').addClass('active');
         }
-        if (window.scrollY >= contact) {
+        if (window.scrollY >= skillsBot - 100) {
             myApp.noneActive();
             $('a[data-page=contact]').addClass('active');
         }
