@@ -520,6 +520,7 @@ left: 28.5%;
 .contactBox {
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 
 .contactText {
@@ -569,8 +570,14 @@ left: 28.5%;
     display: block;
 }
 
+.placeholder {
+    /* position: absolute; */
+    margin-top: 60px;
+}
+
 .placeholder img {
  max-height: 400px;
+ max-width: 381px;
 }
 
 .meeting {
@@ -612,16 +619,6 @@ left: 28.5%;
 form input,
 form textarea {
     width: 100%;
-}
-
-.formActive {
-    background: black; 
-    color: white;
-}
-
-.formActiveDark {
-    background: white;
-    color: black;
 }
 
 form {
