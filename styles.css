@@ -752,8 +752,7 @@ footer {
 
 /* MEDIA QUERIES */
 @media (max-width: 1024px) {
-    /* fix header NAME h1 */
-    /* FIX header background image */
+
     .dotNav {
         display: none;
     }

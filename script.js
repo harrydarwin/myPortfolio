@@ -1,10 +1,11 @@
 const myApp = {}
 
-
+//removes active class from all sideNav dots 
 myApp.noneActive = () => {
     $('.dot').removeClass('active');
 }
 
+//Change courses & certs list into a summary element on page load with a width of 940 or lower to save space and keep layout optimal
 myApp.shortenText = () => {
     if ($(window).width() <= 940) {
         $('.summary').empty();
@@ -26,7 +27,7 @@ myApp.shortenText = () => {
     }
 }
 
-
+//click about me image and iterate through 3 pictures in an array
 myApp.imageShift = () => {
     const imageOne = `./assets/me1.jpeg`;
     const imageTwo = `./assets/me2.jpeg`;
@@ -45,12 +46,14 @@ myApp.imageShift = () => {
     })
 }
 
+//calculates the bottom point of the input element ID in this case for each section
 myApp.calcSectionBottom = (id) => {
     const top = document.getElementById(id).offsetTop;
     const height = document.getElementById(id).offsetHeight;
     return top + height;
 }
 
+//use above function to calculate bottom of each section and have the side dotNav change the active class to the correct section with 100px of safety net to ensure proper changeover 
 myApp.scrollBar = () => {
     window.addEventListener('scroll', function() {
         const homeBot = myApp.calcSectionBottom('home');
@@ -81,12 +84,15 @@ myApp.scrollBar = () => {
         
     })
 }
+
+//setup boolean for darkmode 
 myApp.isDarkMode = false;
 
+//darkmode function to change body background to black and all text etc white 
 myApp.darkMode = () => {
+    //change boolean when function is run
     myApp.isDarkMode = !myApp.isDarkMode;
-    console.log(myApp.isDarkMode);
-
+    //toggle darkmode class for dark backing and light elements
     $('body').toggleClass('darkMode');
     $('div.line').toggleClass('darkLine');
     $('input').toggleClass('emailLight');
@@ -94,7 +100,7 @@ myApp.darkMode = () => {
     $('.meeting').toggleClass('lightButton');
 
 
-    
+    //conditional on darkmode boolean to change the image elements to darkmode versions with dark background and light image and vise versa for light mode
     if (myApp.isDarkMode === true) {
         $(".scrum").attr("src", "./assets/scrumLight.png");
         $(".sigma").attr("src", "./assets/sixSigmaLight.png");
@@ -109,15 +115,15 @@ myApp.darkMode = () => {
         $(".beero").attr("src", "./assets/beerOmatic.jpg");
     }
 
-
+    //when burger menu is present, change its background to fit darkmode also 
     if ($(window).width() <= 940) {
         $('.topNav').toggleClass('darkBackground');
     }
 }
 
-
+//initialize function containing everything I need to run functionality on the page
 myApp.init = () => {
-    // scroll down fade up plugin
+    // scroll down fade up plugin from https://michalsnik.github.io/aos/
     AOS.init({
         easing: 'ease-in-quad',
     });
@@ -128,7 +134,7 @@ myApp.init = () => {
 
     myApp.imageShift();
     
-
+    //on darkode button click, activate darkmode function
     $('.lightSwitch').on('click', function() {
         myApp.darkMode(); 
     })
@@ -136,7 +142,7 @@ myApp.init = () => {
  
 }
 
-
+//doc ready baby 
   $(document).ready(function() {
     myApp.init();
   });
