@@ -35,7 +35,7 @@ myApp.imageShift = () => {
     const images = [imageOne, imageTwo, imageThree];
     const display = $('.headShot');
     let i = 0;
-    display.on('click', function() {
+    display.on('mouseover', function() {
         if (i === images.length - 1) {
             i = 0
         }
