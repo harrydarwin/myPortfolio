@@ -64,6 +64,7 @@ myApp.scrollBar = () => {
         if (window.scrollY >= 0) {
             myApp.noneActive();
             $('a[data-page=home]').addClass('active');
+            $('.topNav').toggleClass('navBack');
         }
         if (window.scrollY >= homeBot - 100) {
             myApp.noneActive();

@@ -463,6 +463,11 @@ left: 28.5%;
     margin: 4px 20px 0 0;
 }
 
+.discript span:first-of-type,
+.discript span:nth-of-type(2) {
+    font-weight: 600;
+}
+
 .project p {
     margin-bottom: 10px;
 }
@@ -829,7 +834,7 @@ footer {
     /* make hamburger menu */
     .burgerContent {
         position: absolute;
-        right: 5%;
+        width: 100%;
         top: 23px;
         z-index: 2;
         max-height: 0;
@@ -843,9 +848,9 @@ footer {
 
     .topNav {
         flex-direction: column;
-        padding: 12px 0 5px 0;
+        padding: 0;
+        width: 90%;
         margin: 0;
-        width: 125px;
         background: rgba(255, 255, 255, .6);
     }
 
@@ -853,8 +858,12 @@ footer {
         background: rgba(0, 0, 0, .6);
     }
 
+    nav {
+        width: 100%;
+    }
+
     .topNav li {
-        margin: 10px 0;
+        margin: 10px auto;
     }
 
     .lightSwitch {
@@ -1043,9 +1052,7 @@ footer {
 
     .topNav {
         flex-direction: column;
-        padding: 50px 0 5px 0;
         margin: 0;
-        width: 115px;
         background: rgba(255, 255, 255, .6);
     }
 
