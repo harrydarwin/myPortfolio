@@ -78,7 +78,7 @@ myApp.scrollBar = () => {
             myApp.noneActive();
             $('a[data-page=skills]').addClass('active');
         }
-        if (window.scrollY >= skillsBot - 100) {
+        if (window.scrollY >= skillsBot - 500) {
             myApp.noneActive();
             $('a[data-page=contact]').addClass('active');
         }
