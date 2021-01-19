@@ -61,6 +61,13 @@ myApp.scrollBar = () => {
         const projectsBot = myApp.calcSectionBottom('projects');
         const skillsBot = myApp.calcSectionBottom('skills');
 
+        let bottomScroll;
+        if ($(window).width() <= 1400) {
+            bottomScroll = 100;
+        } else {
+            bottomScroll = 400;
+        }
+
         if (window.scrollY >= 0) {
             myApp.noneActive();
             $('a[data-page=home]').addClass('active');
@@ -78,7 +85,7 @@ myApp.scrollBar = () => {
             myApp.noneActive();
             $('a[data-page=skills]').addClass('active');
         }
-        if (window.scrollY >= skillsBot - 500) {
+        if (window.scrollY >= skillsBot - bottomScroll) {
             myApp.noneActive();
             $('a[data-page=contact]').addClass('active');
         }
