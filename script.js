@@ -28,23 +28,23 @@ myApp.shortenText = () => {
 }
 
 //click about me image and iterate through 3 pictures in an array
-myApp.imageShift = () => {
-    const imageOne = `./assets/me1.jpeg`;
-    const imageTwo = `./assets/me2.jpeg`;
-    const imageThree = `./assets/me3.jpeg`;
-    const images = [imageOne, imageTwo, imageThree];
-    const display = $('.headShot');
-    let i = 0;
-    display.on('mouseover', function() {
-        if (i === images.length - 1) {
-            i = 0
-        }
-        else {
-            i = i + 1;
-        }
-        display.attr("src", images[i]);
-    })
-}
+// myApp.imageShift = () => {
+//     const imageOne = `./assets/me1.jpeg`;
+//     const imageTwo = `./assets/me2.jpeg`;
+//     const imageThree = `./assets/me3.jpeg`;
+//     const images = [imageOne, imageTwo, imageThree];
+//     const display = $('.headShot');
+//     let i = 0;
+//     display.on('mouseover', function() {
+//         if (i === images.length - 1) {
+//             i = 0
+//         }
+//         else {
+//             i = i + 1;
+//         }
+//         display.attr("src", images[i]);
+//     })
+// }
 
 //calculates the bottom point of the input element ID in this case for each section
 myApp.calcSectionBottom = (id) => {
@@ -141,7 +141,7 @@ myApp.init = () => {
 
     myApp.shortenText();
 
-    myApp.imageShift();
+    // myApp.imageShift();
     
     //on darkode button click, activate darkmode function
     $('.lightSwitch').on('click', function() {
