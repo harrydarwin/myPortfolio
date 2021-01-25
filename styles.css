@@ -1193,7 +1193,8 @@ footer {
         right: 6%;
         top: 35px;
         z-index: 3;
-        background: #2c2c2c;
+        background: var(--white);
+        opacity: 0.8;
         height: 5px;
         width: 50px;
         border-radius: 5px;
