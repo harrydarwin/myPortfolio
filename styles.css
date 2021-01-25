@@ -1063,7 +1063,7 @@ footer {
 
 @media (max-width: 1700px) {
     header {
-        font-size: 6rem !important;
+        font-size: 6rem;
         letter-spacing: 0.1em;
     }
 
@@ -1106,7 +1106,7 @@ footer {
 
     header {
         height: 60vh;
-        font-size: 6rem !important;
+        font-size: 6rem;
         letter-spacing: 0.1em;
     }
 
@@ -1224,7 +1224,12 @@ footer {
     }
 
     header {
-        font-size: 6rem;
+        font-size: 5rem;
+    }
+
+    .headImg {
+        width: 200px;
+        bottom: -10px;
     }
 
     .photoGrid {
@@ -1266,6 +1271,14 @@ footer {
 }
 
 @media (max-width: 768px) {
+    header {
+        font-size: 4rem;
+    }
+
+    .headImg {
+        width: 150px;
+        bottom: -8px;
+    }
 
     .mobile {
         display: initial;
@@ -1360,6 +1373,10 @@ footer {
         max-height: 275px;
     }
 
+    .header {
+        font-size: 3rem !important;
+    }
+
     .topNav {
         flex-direction: column;
         margin: 0;
@@ -1372,10 +1389,6 @@ footer {
 
     form {
         display: none;
-    }
-
-    header {
-        font-size: 6rem;
     }
 
     .aboutSection {
