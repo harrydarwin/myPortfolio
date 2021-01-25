@@ -560,6 +560,7 @@ left: 30%;
 .tagLine {
     font-size: 3rem;
     font-weight: 600;
+    line-height: 3.5rem
 }
 
 .bio {
@@ -1071,6 +1072,30 @@ footer {
         bottom: -10px;
         
     }
+
+    .aboutText {
+        font-size: 1.5rem;
+    }
+
+    .bio {
+        margin-top: 10px;
+        font-size: 1.5rem;
+    }
+
+    .aboutText p {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 1200px) {
+    .aboutText {
+        font-size: 1.5rem;
+    }
+
+    .bio {
+        margin-top: 10px;
+        
+    }
 }
 
 @media (max-width: 1024px) {
@@ -1089,7 +1114,7 @@ footer {
         bottom:0;   
     }
 
-    }
+    
 
     .headerText {
     top: 40%;
