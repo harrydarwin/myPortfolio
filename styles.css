@@ -164,7 +164,7 @@ header {
     height: 80vh;
     position: relative;
 
-     font-size: 11rem;
+    font-size: 11rem;
     background-color: black;
     color: var(--white);
     letter-spacing: 0.2em;
@@ -1060,6 +1060,19 @@ footer {
 }
 }
 
+@media (max-width: 1700px) {
+    header {
+        font-size: 6rem !important;
+        letter-spacing: 0.1em;
+    }
+
+    .headImg {
+        width: 300px;
+        bottom: -10px;
+        
+    }
+}
+
 @media (max-width: 1024px) {
 
     .dotNav {
@@ -1068,6 +1081,14 @@ footer {
 
     header {
         height: 60vh;
+        font-size: 6rem !important;
+        letter-spacing: 0.1em;
+    }
+
+    .headImg {
+        bottom:0;   
+    }
+
     }
 
     .headerText {
@@ -1174,6 +1195,10 @@ footer {
 
     input#menu:checked ~ div.burg3 {
         transform: translateY(-15px) rotate(-45deg);
+    }
+
+    header {
+        font-size: 6rem;
     }
 
     .photoGrid {
@@ -1323,7 +1348,7 @@ footer {
         display: none;
     }
 
-    h1 {
+    header {
         font-size: 6rem;
     }
 
