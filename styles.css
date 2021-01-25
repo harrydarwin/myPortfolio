@@ -276,8 +276,8 @@ h3 span {
 
 .aboutMe h2 {
 position: absolute;
-bottom: -110px;
-left: 28.5%;
+bottom: -172px;
+left: 30%;
 }
 
 .aboutMe h2 span {
@@ -604,12 +604,16 @@ textarea {
 }
 
 .placeholder {
-    margin-top: 60px;
+    margin: 60px auto 0;
+
 }
 
 .placeholder img {
  max-height: 400px;
  max-width: 381px;
+ border: 2px solid black;
+ box-shadow: rgba(77,111,193, 0.4) -5px 5px, rgba(77,111,193, 0.3) -10px 10px, rgba(77,111,193, 0.2) -15px 15px, rgba(77,111,193, 0.1) -20px 20px, rgba(77,111,193, 0.05) -25px 25px;
+
 }
 
 .meeting {
