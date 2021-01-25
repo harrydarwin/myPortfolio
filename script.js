@@ -6,26 +6,26 @@ myApp.noneActive = () => {
 }
 
 //Change courses & certs list into a summary element on page load with a width of 940 or lower to save space and keep layout optimal
-myApp.shortenText = () => {
-    if ($(window).width() <= 940) {
-        $('.summary').empty();
+// myApp.shortenText = () => {
+//     if ($(window).width() <= 940) {
+//         $('.summary').empty();
 
-        const summaryList = `
-        <details>
-            <summary>Click for details</summary>
-            <ul>
-                <li>Web Development Bootcamp - Juno College</li>
-                <li>Web Developement & Javascript 101 - Juno College</li>
-                <li>SQL Bootcamp - Udemy</li>
-                <li>Agile Methodologies/Project Delivery Course - Udemy</li>
-                <li>Scrum Master Course & Certificate - Scrum.org</li>
-                <li>Lean Six Sigma Green Belt (process improvement) - McGill University</li>
-            </ul>
-        </details>
-        `
-        $('.summary').append(summaryList);
-    }
-}
+//         const summaryList = `
+//         <details>
+//             <summary>Click for details</summary>
+//             <ul>
+//                 <li>Web Development Bootcamp - Juno College</li>
+//                 <li>Web Developement & Javascript 101 - Juno College</li>
+//                 <li>SQL Bootcamp - Udemy</li>
+//                 <li>Agile Methodologies/Project Delivery Course - Udemy</li>
+//                 <li>Scrum Master Course & Certificate - Scrum.org</li>
+//                 <li>Lean Six Sigma Green Belt (process improvement) - McGill University</li>
+//             </ul>
+//         </details>
+//         `
+//         $('.summary').append(summaryList);
+//     }
+// }
 
 //click about me image and iterate through 3 pictures in an array
 // myApp.imageShift = () => {
@@ -139,7 +139,7 @@ myApp.init = () => {
 
     myApp.scrollBar();
 
-    myApp.shortenText();
+    // myApp.shortenText();
 
     // myApp.imageShift();
     
