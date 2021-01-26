@@ -503,8 +503,8 @@ h3 span {
 
 
 .lineTwo {
-    height: 210px;
-    margin-top: 190px;
+    height: 160px;
+    margin-top: 150px;
     margin-bottom: 20px;
 }
 
@@ -554,13 +554,16 @@ left: 30%;
 }
 
 .tagBio {
-    margin: 20px 0;
+    margin-top: 20px;
+    margin-bottom: 150px;
+    padding-top: 90px;
 }
 
 .tagLine {
     font-size: 3rem;
     font-weight: 600;
-    line-height: 3.5rem
+    line-height: 3.5rem;
+   
 }
 
 .bio {
