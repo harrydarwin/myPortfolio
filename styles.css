@@ -1397,4 +1397,31 @@ footer {
     .aboutSection {
         width: 100%;
     }
+
+    .lineTwo {
+    margin-top: 175px;
+    margin-bottom: 0;
+}
+
+    .lineThree {
+        margin-top: 200px;
+    }
+
+    .tagBio {
+        padding-top: 0;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .tagBio p {
+        margin-left: auto;
+        margin-right:auto;
+    }
+
+    .skills h2 {
+        text-align: center;
+    }
+
+    .skillLine {
+        margin-top: 30px;
+    };
 }
