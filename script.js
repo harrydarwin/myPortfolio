@@ -1,6 +1,6 @@
 const myApp = {}
 
-//removes active class from all sideNav dots 
+//removes active class from all sideNav dots
 myApp.noneActive = () => {
     $('.dot').removeClass('active');
 }
@@ -53,7 +53,7 @@ myApp.calcSectionBottom = (id) => {
     return top + height;
 }
 
-//use above function to calculate bottom of each section and have the side dotNav change the active class to the correct section with 100px of safety net to ensure proper changeover 
+//use above function to calculate bottom of each section and have the side dotNav change the active class to the correct section with 100px of safety net to ensure proper changeover
 myApp.scrollBar = () => {
     window.addEventListener('scroll', function() {
         const homeBot = myApp.calcSectionBottom('home');
@@ -89,14 +89,14 @@ myApp.scrollBar = () => {
             myApp.noneActive();
             $('a[data-page=contact]').addClass('active');
         }
-        
+
     })
 }
 
-//setup boolean for darkmode 
+//setup boolean for darkmode
 myApp.isDarkMode = false;
 
-//darkmode function to change body background to black and all text etc white 
+//darkmode function to change body background to black and all text etc white
 myApp.darkMode = () => {
     //change boolean when function is run
     myApp.isDarkMode = !myApp.isDarkMode;
@@ -110,20 +110,24 @@ myApp.darkMode = () => {
 
     //conditional on darkmode boolean to change the image elements to darkmode versions with dark background and light image and vise versa for light mode
     if (myApp.isDarkMode === true) {
-        $(".scrum").attr("src", "./assets/scrumLight.png");
-        $(".sigma").attr("src", "./assets/sixSigmaLight.png");
-        $(".hipsterApp").attr("src", "./assets/hipAppDark.jpg");
-        $(".collegeNav").attr("src", "./assets/collegeNavigatorDark.jpg");
-        $(".beero").attr("src", "./assets/beerOmaticDark.jpg");
+        // $(".scrum").attr("src", "./assets/scrumLight.png");
+        // $(".sigma").attr("src", "./assets/sixSigmaLight.png");
+        // $(".hipsterApp").attr("src", "./assets/hipAppDark.jpg");
+        // $(".collegeNav").attr("src", "./assets/collegeNavigatorDark.jpg");
+        // $(".beero").attr("src", "./assets/beerOmaticDark.jpg");
+        $('.darkSetting').show();
+        $('.lightSetting').hide();
     } else {
-        $(".scrum").attr("src", "./assets/scrum.png");
-        $(".sigma").attr("src", "./assets/sixSigma.png");
-        $(".hipsterApp").attr("src", "./assets/hipApp.jpg");
-        $(".collegeNav").attr("src", "./assets/collegeNavigator.jpg");
-        $(".beero").attr("src", "./assets/beerOmatic.jpg");
+        // $(".scrum").attr("src", "./assets/scrum.png");
+        // $(".sigma").attr("src", "./assets/sixSigma.png");
+        // $(".hipsterApp").attr("src", "./assets/hipApp.jpg");
+        // $(".collegeNav").attr("src", "./assets/collegeNavigator.jpg");
+        // $(".beero").attr("src", "./assets/beerOmatic.jpg");
+        $('.darkSetting').hide();
+        $('.lightSetting').show();
     }
 
-    //when burger menu is present, change its background to fit darkmode also 
+    //when burger menu is present, change its background to fit darkmode also
     if ($(window).width() <= 940) {
         $('.topNav').toggleClass('darkBackground');
     }
@@ -132,6 +136,7 @@ myApp.darkMode = () => {
 
 //initialize function containing everything I need to run functionality on the page
 myApp.init = () => {
+    // myApp.darkMode();
     // scroll down fade up plugin from https://michalsnik.github.io/aos/
     AOS.init({
         easing: 'ease-in-quad',
@@ -142,14 +147,14 @@ myApp.init = () => {
     // myApp.shortenText();
 
     // myApp.imageShift();
-    
+
     //on darkode button click, activate darkmode function
     $('.lightSwitch').on('click', function() {
-        myApp.darkMode(); 
+        myApp.darkMode();
     })
 }
 
-//doc ready baby 
+//doc ready baby
   $(document).ready(function() {
     myApp.init();
   });
