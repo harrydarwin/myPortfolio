@@ -1568,6 +1568,11 @@ body.darkMode .darkSetting {
         font-size: 4rem;
     }
 
+
+    .aboutMe h2 {
+        left: 50%;
+    }
+
     .headImg {
         width: 150px;
         bottom: -8px;
