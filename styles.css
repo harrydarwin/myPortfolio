@@ -66,6 +66,16 @@ summary:hover {
     cursor: pointer;
 }
 
+.chaos-btn {
+    height: 20px;
+    display: block;
+    margin-top: -13px;
+}
+
+.chaos-btn img {
+    max-width: 35px;
+}
+
 .wrapper {
     max-width: 1800px;
     width: 90%;

@@ -46,6 +46,36 @@ myApp.noneActive = () => {
 //     })
 // }
 
+myApp.animateElements = () => {
+    const chaosInterval = setInterval(() => {
+        if($('.chaos-mode').length > 0){
+            const $elements = document.querySelectorAll('body .chs, body p, body h2, body h3, body icons, body .styleLine');
+            const audio = new Audio('https://music.apple.com/ca/album/detroit-rock-city/1440779755?i=1440780344');
+            audio.play();
+            $elements.forEach(element => {
+                element.style.position = "absolute";
+                element.style.transition = "all 1s";
+
+                const w = element.offsetWidth;
+                const h = element.offsetHeight;
+              const x = Math.floor(Math.random() * (window.innerWidth - w));
+              const y = Math.floor(Math.random() * (window.innerHeight - h));
+              element.style.top = `${y}px`;
+              element.style.left = `${x}px`;
+            });
+        } else {
+            clearInterval(chaosInterval);
+            location.reload();
+        }
+    }, 1000);
+}
+
+myApp.chaos = () => {
+    $('body').toggleClass('chaos-mode');
+    myApp.animateElements();
+
+}
+
 //calculates the bottom point of the input element ID in this case for each section
 myApp.calcSectionBottom = (id) => {
     const top = document.getElementById(id).offsetTop;
@@ -110,16 +140,16 @@ myApp.darkMode = () => {
 
     //conditional on darkmode boolean to change the image elements to darkmode versions with dark background and light image and vise versa for light mode
     if (myApp.isDarkMode === true) {
-        // $(".scrum").attr("src", "./assets/scrumLight.png");
-        // $(".sigma").attr("src", "./assets/sixSigmaLight.png");
+        $(".scrum").attr("src", "./assets/scrumLight.png");
+        $(".sigma").attr("src", "./assets/sixSigmaLight.png");
         // $(".hipsterApp").attr("src", "./assets/hipAppDark.jpg");
         // $(".collegeNav").attr("src", "./assets/collegeNavigatorDark.jpg");
         // $(".beero").attr("src", "./assets/beerOmaticDark.jpg");
         $('.darkSetting').show();
         $('.lightSetting').hide();
     } else {
-        // $(".scrum").attr("src", "./assets/scrum.png");
-        // $(".sigma").attr("src", "./assets/sixSigma.png");
+        $(".scrum").attr("src", "./assets/scrum.png");
+        $(".sigma").attr("src", "./assets/sixSigma.png");
         // $(".hipsterApp").attr("src", "./assets/hipApp.jpg");
         // $(".collegeNav").attr("src", "./assets/collegeNavigator.jpg");
         // $(".beero").attr("src", "./assets/beerOmatic.jpg");
@@ -152,6 +182,7 @@ myApp.init = () => {
     $('.lightSwitch').on('click', function() {
         myApp.darkMode();
     })
+
 }
 
 //doc ready baby
