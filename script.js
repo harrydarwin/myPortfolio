@@ -50,11 +50,11 @@ myApp.animateElements = () => {
     const chaosInterval = setInterval(() => {
         if($('.chaos-mode').length > 0){
             const $elements = document.querySelectorAll('body .chs, body p, body h2, body h3, body icons, body .styleLine');
-            const audio = new Audio('https://music.apple.com/ca/album/detroit-rock-city/1440779755?i=1440780344');
+            const audio = document.getElementById('my-audio')
             audio.play();
             $elements.forEach(element => {
                 element.style.position = "absolute";
-                element.style.transition = "all 1s";
+                element.style.transition = "all 0.5s";
 
                 const w = element.offsetWidth;
                 const h = element.offsetHeight;
@@ -63,11 +63,12 @@ myApp.animateElements = () => {
               element.style.top = `${y}px`;
               element.style.left = `${x}px`;
             });
+
         } else {
             clearInterval(chaosInterval);
             location.reload();
         }
-    }, 1000);
+    }, 500);
 }
 
 myApp.chaos = () => {
@@ -142,17 +143,13 @@ myApp.darkMode = () => {
     if (myApp.isDarkMode === true) {
         $(".scrum").attr("src", "./assets/scrumLight.png");
         $(".sigma").attr("src", "./assets/sixSigmaLight.png");
-        // $(".hipsterApp").attr("src", "./assets/hipAppDark.jpg");
-        // $(".collegeNav").attr("src", "./assets/collegeNavigatorDark.jpg");
-        // $(".beero").attr("src", "./assets/beerOmaticDark.jpg");
+
         $('.darkSetting').show();
         $('.lightSetting').hide();
     } else {
         $(".scrum").attr("src", "./assets/scrum.png");
         $(".sigma").attr("src", "./assets/sixSigma.png");
-        // $(".hipsterApp").attr("src", "./assets/hipApp.jpg");
-        // $(".collegeNav").attr("src", "./assets/collegeNavigator.jpg");
-        // $(".beero").attr("src", "./assets/beerOmatic.jpg");
+
         $('.darkSetting').hide();
         $('.lightSetting').show();
     }
@@ -166,7 +163,7 @@ myApp.darkMode = () => {
 
 //initialize function containing everything I need to run functionality on the page
 myApp.init = () => {
-    // myApp.darkMode();
+    myApp.darkMode();
     // scroll down fade up plugin from https://michalsnik.github.io/aos/
     AOS.init({
         easing: 'ease-in-quad',

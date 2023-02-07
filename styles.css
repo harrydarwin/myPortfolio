@@ -1578,6 +1578,10 @@ body.darkMode .darkSetting {
         font-size: 4rem;
     }
 
+    .chaos-btn {
+        height: unset;
+    }
+
 
     .aboutMe h2 {
         left: 50%;
