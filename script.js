@@ -46,6 +46,22 @@ myApp.noneActive = () => {
 //     })
 // }
 
+myApp.encode = (str) => {
+    let coded = '';
+    for (let i = 0; i < str.length; i++) {
+      coded += str.charCodeAt(i).toString(16);
+    }
+    return coded;
+}
+
+  myApp.decode = (coded) => {
+    let str = '';
+    for (let i = 0; i < coded.length; i += 2) {
+      str += String.fromCharCode(parseInt(coded.substr(i, 2), 16));
+    }
+    return str;
+}
+
 myApp.animateElements = () => {
     const chaosInterval = setInterval(() => {
         if($('.chaos-mode').length > 0){
@@ -164,7 +180,12 @@ myApp.initCVRequest = () => {
     $('#requestCVForm').on('submit', e => {
         e.preventDefault();
         const userInput = $('.request-cv').val();
-        console.log(userInput, process.env.CV_KEY)
+        if(userInput == myApp.decode('49276d20676f696e6720746f2068697265207468697320677579')){
+            var pdfDocument = "./assets/HarryGuloienCV2023.pdf";
+            var newTab = window.open(pdfDocument, '_blank');
+            newTab.location;
+        }
+        $('.request-cv').val('');
     })
 }
 
