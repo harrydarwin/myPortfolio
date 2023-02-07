@@ -160,6 +160,13 @@ myApp.darkMode = () => {
     }
 }
 
+myApp.initCVRequest = () => {
+    $('#requestCVForm').on('submit', e => {
+        e.preventDefault();
+        const userInput = $('.request-cv').val();
+        console.log(userInput)
+    })
+}
 
 //initialize function containing everything I need to run functionality on the page
 myApp.init = () => {
@@ -168,7 +175,7 @@ myApp.init = () => {
     AOS.init({
         easing: 'ease-in-quad',
     });
-
+    myApp.initCVRequest();
     myApp.scrollBar();
 
     // myApp.shortenText();

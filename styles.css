@@ -67,6 +67,34 @@ summary:hover {
     cursor: pointer;
 }
 
+input.request-cv {
+    margin:0;
+    padding-left: 15px;
+    width: 0;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+    transition: all .5s;
+}
+.darkMode input.request-cv {
+    border-bottom: 2px solid #fff;
+    border-left: 2px solid #fff;
+}
+input:focus-visible {
+    outline: none;
+}
+.cv-btn:hover > form input.request-cv,
+.cv-btn input.request-cv:focus {
+    width: 185px;
+
+}
+
+.dl-icon {
+    z-index: 5;
+    position: absolute;
+    margin-top: 2px;
+    margin-left: 5px;
+}
+
 .chaos-btn {
     height: 20px;
     display: block;
