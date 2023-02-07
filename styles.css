@@ -1830,9 +1830,12 @@ body.darkMode .darkSetting {
     }
 
     .chaos-btn {
-        height: unset;
+        height: auto;
     }
 
+    .drip-wrapper {
+        display: none;
+    }
 
     .aboutMe h2 {
         left: 50%;
