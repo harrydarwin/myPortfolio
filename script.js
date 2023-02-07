@@ -180,7 +180,7 @@ myApp.initCVRequest = () => {
     $('#requestCVForm').on('submit', e => {
         e.preventDefault();
         const userInput = $('.request-cv').val();
-        if(userInput == myApp.decode('49276d20676f696e6720746f2068697265207468697320677579')){
+        if(userInput == myApp.decode('68697265206861727279')){
             var pdfDocument = "./assets/HarryGuloienCV2023.pdf";
             var newTab = window.open(pdfDocument, '_blank');
             newTab.location;
