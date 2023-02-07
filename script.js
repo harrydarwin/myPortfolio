@@ -164,7 +164,7 @@ myApp.initCVRequest = () => {
     $('#requestCVForm').on('submit', e => {
         e.preventDefault();
         const userInput = $('.request-cv').val();
-        console.log(userInput)
+        console.log(userInput, process.env.CV_KEY)
     })
 }
 
