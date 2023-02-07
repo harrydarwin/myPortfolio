@@ -5,6 +5,7 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 *, *:before, *:after { box-sizing: inherit; }
 .srOnly { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
+/*yellow drip  #ffc217 */
 
 html {
     font-size: 62.5%;
@@ -203,7 +204,7 @@ header {
 
 .headImg {
     position: absolute;
-    bottom: -20px;
+    bottom: -24px;
     right: 10%;
 }
 
@@ -552,6 +553,256 @@ h3 span {
 .imageContainer.hover-bg:hover {
     background-image: url(assets/less-serial.JPG);
 } */
+
+/* DRIPS BROO */
+
+/* *,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: #090a0f;
+  background: radial-gradient(ellipse at bottom, #1b2735, #090a0f);
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background:transparent;
+} */
+
+.color {
+      animation: colorchange 50s; /* animation-name followed by duration in seconds*/
+         /* you could also use milliseconds (ms) or something like 2.5s */
+      -webkit-animation: colorchange 50s; /* Chrome and Safari */
+
+}
+
+
+
+.drip-wrapper {
+  border: 0px solid #000;
+  filter: url("#goo");
+  height: 100VH;
+  /* overflow: hidden; */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+  width: 25%;
+  z-index:-1;
+}
+.drip-wrapper .drip-top {
+  border-radius: 30%;
+  height: 50px;
+  position: absolute;
+  width: 100%;
+  top: -30px;
+  background: #000;
+}
+.drip-wrapper .drip-bottom {
+  border-radius: 10%;
+  height: 50px;
+  position: absolute;
+  width: 100%;
+  bottom: -30px;
+  background: #000;
+  display: none;
+}
+.drip-wrapper .drip {
+  border-radius: 50%;
+  height: 100px;
+  position: absolute;
+  width: 75px;
+  background: #000;
+  transform: translate(0, 0) scale(2);
+  animation: drip-1 cubic-bezier(0.66, 0.1, 0.97, 0.36) 3s infinite;
+
+}
+.drip-wrapper .drip:nth-child(1) {
+  animation-name: drip-1;
+  animation-delay: 1.25s;
+  left: 5%;
+  top: -29%;
+}
+.drip-wrapper .drip:nth-child(2) {
+  animation-name: drip-2;
+  animation-delay: 0.5s;
+  left: 10%;
+  top: -20%;
+}
+.drip-wrapper .drip:nth-child(3) {
+  animation-name: drip-3;
+  animation-delay: 2s;
+  left: 20%;
+  top: -25%;
+}
+.drip-wrapper .drip:nth-child(4) {
+  animation-name: drip-4;
+  animation-delay: 1s;
+  left: 30%;
+  top: -25%;
+}
+.drip-wrapper .drip:nth-child(5) {
+  animation-name: drip-5;
+  animation-delay: 1.75s;
+  left: 50%;
+  height: 75px;
+  width: 50px;
+  top: -20%;
+}
+.drip-wrapper .drip:nth-child(6) {
+  animation-name: drip-1;
+  animation-delay: 2.25s;
+  left: 60%;
+  top: -20%;
+}
+.drip-wrapper .drip:nth-child(7) {
+  animation-name: drip-2;
+  animation-delay: 1.5s;
+  left: 75%;
+  top: -20%;
+  height: 50px;
+  width: 30px;
+}
+.drip-wrapper .drip:nth-child(8) {
+  animation-name: drip-3;
+  animation-delay: 1s;
+  left: 90%;
+  top: -25%;
+}
+.drip-wrapper .drip:nth-child(9) {
+  animation-name: drip-4;
+  animation-delay: 0.75s;
+  left: 100%;
+  top: -25%;
+}
+.drip-wrapper .drip:nth-child(10) {
+  animation-name: drip-5;
+  animation-delay: 2.5s;
+  left: 50%;
+  top: -20%;
+  height: 50px;
+  width: 40px;
+}
+.drip-wrapper .drip:nth-child(11) {
+  animation-name: drip-5;
+  animation-delay: 0.25s;
+  left: -20%;
+  top: -20%;
+}
+@keyframes drip-1 {
+  to {
+    transform: translateY(500px) scale(0);
+  }
+}
+@keyframes drip-2 {
+  to {
+    transform: translateY(800px) scale(0);
+  }
+}
+@keyframes drip-3 {
+  to {
+    transform: translateY(600px) scale(0);
+  }
+}
+@keyframes drip-4 {
+  to {
+    transform: translateY(500px) scale(0.4);
+  }
+}
+@keyframes drip-5 {
+  to {
+    transform: translateY(400px) scale(0.2);
+  }
+}
+@keyframes colorchange {
+  0% {
+    background: #e8630a;
+  }
+  10% {
+    background: #EA3281;
+  }
+  20% {
+    background: #E71669;
+  }
+  30% {
+    background: #661BAC;
+  }
+  40% {
+    background: #FDC600;
+  }
+  50% {
+    background: #75AC25;
+  }
+  60% {
+    background: #3283B5;
+  }
+  70% {
+    background: #0A5D9A;
+  }
+  80% {
+    background: #232F37;
+  }
+  90% {
+    background: #1B2735;
+  }
+  100% {
+    background: #090a0f;
+  }
+}
+@-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */ {
+  0% {
+    background: #e8630a;
+  }
+  10% {
+    background: #EA3281;
+  }
+  20% {
+    background: #E71669;
+  }
+  30% {
+    background: #661BAC;
+  }
+  40% {
+    background: #FDC600;
+  }
+  50% {
+    background: #75AC25;
+  }
+  60% {
+    background: #3283B5;
+  }
+  70% {
+    background: #0A5D9A;
+  }
+  80% {
+    background: #232F37;
+  }
+  90% {
+    background: #1B2735;
+  }
+  100% {
+    background: #090a0f;
+  }
+}
+
+
+.darkMode .drip-wrapper {
+    border: 0px solid #fff;
+}
+
+.darkMode .drip-wrapper .drip-top,
+.darkMode .drip-wrapper .drip-bottom,
+.darkMode .drip-wrapper .drip {
+    background: #fff;
+}
+
+/* DRIPS END  */
 
 /* COFFEE MACHINE BROOOOO */
 
@@ -1372,7 +1623,7 @@ body.darkMode .darkSetting {
 
     .headImg {
         width: 300px;
-        bottom: -10px;
+        bottom: -13px;
 
     }
 
