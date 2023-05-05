@@ -46,6 +46,11 @@ myApp.noneActive = () => {
 //     })
 // }
 
+myApp.getDate = () => {
+    const currentYear = new Date().getFullYear();
+    $('#curYear').text(currentYear);
+}
+
 myApp.encode = (str) => {
     let coded = '';
     for (let i = 0; i < str.length; i++) {
@@ -159,12 +164,14 @@ myApp.darkMode = () => {
     if (myApp.isDarkMode === true) {
         $(".scrum").attr("src", "./assets/scrumLight.png");
         $(".sigma").attr("src", "./assets/sixSigmaLight.png");
+        $('.mapbox').attr("src", "./assets/mapbox-logo-light.png");
 
         $('.darkSetting').show();
         $('.lightSetting').hide();
     } else {
         $(".scrum").attr("src", "./assets/scrum.png");
         $(".sigma").attr("src", "./assets/sixSigma.png");
+        $('.mapbox').attr("src", "./assets/mapbox-logo.png");
 
         $('.darkSetting').hide();
         $('.lightSetting').show();
@@ -198,7 +205,7 @@ myApp.init = () => {
     });
     myApp.initCVRequest();
     myApp.scrollBar();
-
+    myApp.getDate();
     // myApp.shortenText();
 
     // myApp.imageShift();
