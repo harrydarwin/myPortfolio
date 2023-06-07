@@ -1,3 +1,4 @@
+require('dotenv').config()
 const crypto = require('crypto');
 
 exports.handler = async function (event, context) {
