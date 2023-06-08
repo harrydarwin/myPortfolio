@@ -10,6 +10,11 @@ exports.handler = async function (event, context) {
   console.log('HEADERs', event.headers);
   console.log('Body', requestBody);
 
+  // Only accept ROBS payloads + only transcript end events
+  if(requestBody.event !== 'recording.transcript_completed' || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
+    return;
+  }
+
   const message = `v0:${event.headers['x-zm-request-timestamp']}:${JSON.stringify(requestBody)}`;
 
   const hashForVerify = crypto.createHmac('sha256', process.env.ZOOM_WEBHOOK_SECRET_TOKEN).update(message).digest('hex');
@@ -39,9 +44,18 @@ exports.handler = async function (event, context) {
 
       console.log('Response:', response.body);
 
-      const thing = await processZoomInput(response);
+      const thing = await processZoomInput(requestBody);
+      const recordingFiles = requestBody.payload.object.recording_files
 
+      if(Array.isArray(recordingFiles)){
+        recordingFiles.forEach((file, i) => {
+          console.log(`Recording file #${i}: `, file);
+        })
+      } else {
+        console.log('RECORDING FILE: ', recordingFiles)
+      }
       console.log(thing);
+
       // business logic here, example make API request to Zoom or 3rd party
     }
   } else {
