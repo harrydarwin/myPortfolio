@@ -2,18 +2,18 @@ require('dotenv').config()
 const crypto = require('crypto');
 
 exports.handler = async function (event, context) {
-  console.log('EVENT BABY:', event);
 
   let response = {};
   const requestBody = event.body ? JSON.parse(event.body) : '';
-
-  console.log('HEADERs', event.headers);
-  console.log('Body', requestBody);
-
   // Only accept ROBS payloads + only transcript end events
   if(requestBody.event !== 'recording.transcript_completed' || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
     return;
   }
+  console.log('EVENT BABY:', event);
+
+  console.log('HEADERs', event.headers);
+  console.log('Body', requestBody);
+
 
   const message = `v0:${event.headers['x-zm-request-timestamp']}:${JSON.stringify(requestBody)}`;
 
