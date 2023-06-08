@@ -2,7 +2,7 @@ require('dotenv').config()
 const crypto = require('crypto');
 
 exports.handler = async function (event, context) {
-
+  console.log('Payload recieved!')
   let response = {};
   const requestBody = event.body ? JSON.parse(event.body) : '';
   // Only accept ROBS payloads + only transcript end events
