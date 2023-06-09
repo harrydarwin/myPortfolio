@@ -14,7 +14,6 @@ const summaryPromptArray = [
 ];
 
 const customPrompt = promptsArray[3];
-console.log(process.env.ZOOM_WEBHOOK_SECRET_TOKEN)
 
 exports.handler = async function (event, context) {
   console.log('Payload recieved!')
