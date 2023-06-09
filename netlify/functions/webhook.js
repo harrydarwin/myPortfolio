@@ -1,12 +1,31 @@
 require('dotenv').config()
 const crypto = require('crypto');
-import { promptsArray, summaryPromptArray } from '../../prompts.js';
+
+const promptsArray = [
+  'Give me a full chronological sequence of the call and highlight the main talking points in a list format',
+  'Based on the following conversation, build me a client profile broken down into categories',
+  'Based on the following conversation, as a sales expert, build a client profile broken down into categories',
+  'Based on the following conversation, as a sales expert, build a client profile broken down into bullet point style with headings  including, Demographic, Psychographic, Goals, Challenges, Pain Points, Potential Solutions and actionables.'
+];
+
+const summaryPromptArray = [
+  'As a business and sales specialist, summarize the following client profile information into a neat comprehensive client profile that Rob can use to understand his client completely at a glance: ',
+  'As a business development and sales specialist, summarize these profile iterations the into a complete client profile while maintaining the original profile headings, please format it nicely and remove any repetition.'
+];
+
 const customPrompt = promptsArray[3];
+console.log(process.env.ZOOM_WEBHOOK_SECRET_TOKEN)
 
 exports.handler = async function (event, context) {
   console.log('Payload recieved!')
   let response = {};
-  const requestBody = event.body ? JSON.parse(event.body) : '';
+  const requestBody = event.body ? JSON.parse(event.body) : null;
+if (!requestBody) {
+  return {
+    statusCode: 400,
+    body: JSON.stringify({ message: 'Invalid request body.' })
+  };
+}
   // Only accept ROBS payloads + only transcript end events
   if(requestBody.event !== 'recording.transcript_completed' || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
     return;
@@ -91,7 +110,7 @@ exports.handler = async function (event, context) {
 };
 
 async function processZoomInput(input) {
-  return input;
+  return JSON.stringify(input);
 }
 
 
@@ -272,11 +291,14 @@ async function aiAnalyze(textInput, prompt) {
               clientProfile = output;
               // callback(clientProfile);
               console.log('<---------CLIENT PROFILE:', clientProfile);
+
+              return clientProfile;
           })
           .catch((error) => {
               clientProfile = "Error loading your clients profile: " + error;
               // callback(clientProfile);
               console.log('<---------ERROR CLIENT PROFILE:', clientProfile);
+              throw new Error(clientProfile);
           });
 
   }
