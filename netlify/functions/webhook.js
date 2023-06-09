@@ -1,6 +1,6 @@
 require('dotenv').config()
 const crypto = require('crypto');
-import { promptsArray, summaryPromptArray } from './prompts.js';
+import { promptsArray, summaryPromptArray } from '../../prompts.js';
 const customPrompt = promptsArray[3];
 
 exports.handler = async function (event, context) {
