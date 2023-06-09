@@ -1,5 +1,5 @@
 // require('dotenv').config()
-const fetch = require('node-fetch');
+import fetch from 'isomorphic-fetch';
 const crypto = require('crypto');
 
 const promptsArray = [
