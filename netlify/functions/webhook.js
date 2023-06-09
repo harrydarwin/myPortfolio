@@ -1,5 +1,7 @@
 require('dotenv').config()
 const crypto = require('crypto');
+import { promptsArray, summaryPromptArray } from './prompts.js';
+const customPrompt = promptsArray[3];
 
 exports.handler = async function (event, context) {
   console.log('Payload recieved!')
@@ -49,7 +51,25 @@ exports.handler = async function (event, context) {
 
       if(Array.isArray(recordingFiles)){
         recordingFiles.forEach((file, i) => {
-          console.log(`Recording file #${i}: `, file);
+          if(file.file_extension === 'VTT') {
+            console.log(`Recording file #${i}: `, file);
+
+            const stringConvoParts = [];
+            let rawConversationString;
+            const selectedFile = `${file.download_url}?access_token=${requestBody.download_token}`;
+
+            fetch(selectedFile)
+              .then(response => response.text())
+              .then(text => {
+                rawConversationString = text;
+                const convoParts = extractNamesAndDialogues(rawConversationString);
+                console.log(convoParts);
+                aiAnalyze(convoParts, customPrompt);
+              })
+              .catch(error => {
+                console.log('Error fetching file:', error);
+              });
+          }
         })
       } else {
         console.log('RECORDING FILE: ', recordingFiles)
@@ -72,4 +92,194 @@ exports.handler = async function (event, context) {
 
 async function processZoomInput(input) {
   return input;
+}
+
+
+// clean up text chat by removing excess clutter (date times and response numbers)
+// Takes full convo -string- ATM
+// Returns aray of objects
+function extractNamesAndDialogues(conversation) {
+  const nameRegex = /^[A-Za-z ]+:/;
+  const lines = conversation.split('\n');
+  const result = [];
+  let convoParts = [];
+
+  for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      const nameMatch = line.match(nameRegex);
+
+      if (nameMatch) {
+          const name = nameMatch[0].slice(0, -1);
+          const dialogue = line.slice(name.length + 1).trim();
+          result.push({ name, dialogue });
+      }
+  }
+  // const fullConvoString = convertObjectToValuesArray(result).join("\n");
+  // format massive array of objects into 1 array of strings
+  const fullConvoArray = convertObjectToValuesArray(result);
+
+  // split array into equal parts less then 8000 chars (token limit)
+  convoParts = groupStrings(fullConvoArray);
+  // convoParts = divideArrayIntoPieces(fullConvoArray, 3)
+  console.log(convoParts);
+  return convoParts;
+}
+
+function convertObjectToValuesArray(objArray) {
+  // Create an empty array to store the result
+  const result = [];
+
+  // Iterate over the input array
+  objArray.forEach(obj => {
+    // Get an array of the values of the current object
+    const valuesArray = Object.values(obj);
+
+    // Add the values array to the result
+    result.push(valuesArray.join(': '));
+  });
+
+  // Return the final result
+  return result;
+}
+
+
+
+
+function groupStrings(strings) {
+  const maxLength = 8000;
+  const groups = [];
+  let currentGroup = "";
+
+  for (let i = 0; i < strings.length; i++) {
+    const string = strings[i];
+
+    if (currentGroup.length + string.length > maxLength) {
+      groups.push(currentGroup);
+      currentGroup = "";
+    }
+
+    currentGroup += string;
+  }
+
+  if (currentGroup.length > 0) {
+    groups.push(currentGroup);
+  }
+
+  const targetLength = Math.ceil(groups.reduce((total, group) => total + group.length, 0) / groups.length);
+
+  let currentLength = 0;
+  let currentStrings = [];
+  const result = [];
+
+  for (let i = 0; i < groups.length; i++) {
+    const group = groups[i];
+
+    if (currentLength + group.length > targetLength) {
+      result.push(currentStrings);
+      currentStrings = [];
+      currentLength = 0;
+    }
+
+    currentStrings.push(group);
+    currentLength += group.length;
+  }
+
+  if (currentStrings.length > 0) {
+    result.push(currentStrings);
+  }
+
+  const outcomeArray = result.map((strings) => strings.join(""));
+  if(outcomeArray[0] === ''){outcomeArray.shift()}
+  return outcomeArray;
+}
+
+
+// Sends text through the api and spits out the analyzed result
+async function aiAnalyze(textInput, prompt) {
+  console.log(currentTextInputs)
+  console.log(textInput);
+  if(Array.isArray(textInput)){
+      currentTextInputs = textInput
+
+      let api_key, headers, response, response_json;
+      api_key = process.env.REACT_APP_API_KEY;
+      headers = {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${api_key}`
+      };
+      let prevResponseMessages = null;
+      const compareGrowth = [];
+
+      for(let i = 0; i < textInput.length; i++){
+          prompt = i > 0 ? "Using the following piece of the conversation, continue building the client profile, while maintaining the original headings, only adding things that help give a more accurate profile" : prompt;
+          let data1 = {
+              max_tokens: 597,
+              model: 'gpt-3.5-turbo',
+              "messages": [
+                  { "role": "user", "content": `${prompt}: ${textInput[i]}` }
+              ]
+          };
+          if(prevResponseMessages !== null){data1.messages.unshift(prevResponseMessages)}
+          const response = await fetch('https://api.openai.com/v1/chat/completions', {
+              method: "POST",
+              headers: headers,
+              body: JSON.stringify(data1)
+          })
+
+          const myResult = await response.json();
+          console.log(myResult)
+          console.log((i+1) + '/' + textInput.length);
+          prevResponseMessages = myResult.choices[0].message;
+          // console.log(prompt, textInput[i], prevResponseMessages, data1.messages, myResult);
+          compareGrowth.push(myResult.choices[0].message.content)
+      }
+      console.log('LETS FUCKING GO-- ', compareGrowth)
+      let combinedOutputs ='';
+      compareGrowth.forEach(output => {
+          combinedOutputs += output + " \n\n";
+      })
+       console.log(combinedOutputs);
+       aiAnalyze(combinedOutputs, summaryPromptArray[1]);
+  } else {
+      console.log('Compiling profile data...');
+      let clientProfile = '';
+      let api_key, headers, response, response_json;
+      api_key = process.env.REACT_APP_API_KEY;
+      headers = {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${api_key}`
+      };
+
+      const data = {
+          max_tokens: 597,
+          model: 'gpt-3.5-turbo',
+          "messages": [
+              { "role": "user", "content": `${prompt}: ${textInput}` }
+      ]
+      };
+
+      // if it exists, add the previous output here
+      // if(previousMessage != null){data.messages.unshift(previousMessage)}
+      // console.log(data.messages)
+      fetch('https://api.openai.com/v1/chat/completions', {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(data)
+      })
+          .then((response) => response.json())
+          .then((responseJson) => {
+              let output = responseJson.choices[0].message.content;
+              clientProfile = output;
+              // callback(clientProfile);
+              console.log('<---------CLIENT PROFILE:', clientProfile);
+          })
+          .catch((error) => {
+              clientProfile = "Error loading your clients profile: " + error;
+              // callback(clientProfile);
+              console.log('<---------ERROR CLIENT PROFILE:', clientProfile);
+          });
+
+  }
+
+
 }
