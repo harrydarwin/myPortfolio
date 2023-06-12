@@ -1,5 +1,5 @@
 // require('dotenv').config()
-import fetch from 'isomorphic-fetch';
+const axios = require('axios');
 const crypto = require('crypto');
 
 const promptsArray = [
@@ -75,18 +75,20 @@ if (!requestBody) {
 
             const stringConvoParts = [];
             let rawConversationString;
-            const selectedFile = `${file.download_url}?access_token=${requestBody.download_token}`;
+            const selectedFileURL = `${file.download_url}?access_token=${requestBody.download_token}`;
 
-            fetch(selectedFile)
-              .then(response => response.text())
-              .then(text => {
-                rawConversationString = text;
+            getVTTFileText(selectedFileURL)
+              .then((vttText) => {
+                // Process the VTT file text
+                console.log(vttText);
+                rawConversationString = vttText;
                 const convoParts = extractNamesAndDialogues(rawConversationString);
                 console.log(convoParts);
                 aiAnalyze(convoParts, customPrompt);
               })
-              .catch(error => {
-                console.log('Error fetching file:', error);
+              .catch((error) => {
+                // Handle the error
+                console.error('Error:', error);
               });
           }
         })
@@ -113,6 +115,15 @@ async function processZoomInput(input) {
   return JSON.stringify(input);
 }
 
+async function getVTTFileText(url) {
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching VTT file:', error);
+    throw error;
+  }
+}
 
 // clean up text chat by removing excess clutter (date times and response numbers)
 // Takes full convo -string- ATM
