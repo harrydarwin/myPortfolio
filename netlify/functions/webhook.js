@@ -67,7 +67,7 @@ if (!requestBody) {
 
       const thing = await processZoomInput(requestBody);
       const recordingFiles = requestBody.payload.object.recording_files
-
+      let selectedFileURL;
       if(Array.isArray(recordingFiles)){
         recordingFiles.forEach((file, i) => {
           if(file.file_extension === 'VTT') {
@@ -75,9 +75,16 @@ if (!requestBody) {
 
             const stringConvoParts = [];
             let rawConversationString;
-            const selectedFileURL = `${file.download_url}?access_token=${requestBody.download_token}`;
+            selectedFileURL = `${file.download_url}?access_token=${requestBody.download_token}`;
 
-            getVTTFileText(selectedFileURL)
+
+          }
+        })
+      } else {
+        console.log('RECORDING FILE: ', recordingFiles)
+      }
+      console.log(thing);
+        getVTTFileText(selectedFileURL)
               .then((vttText) => {
                 // Process the VTT file text
                 console.log(vttText);
@@ -90,13 +97,6 @@ if (!requestBody) {
                 // Handle the error
                 console.error('Error:', error);
               });
-          }
-        })
-      } else {
-        console.log('RECORDING FILE: ', recordingFiles)
-      }
-      console.log(thing);
-
       // business logic here, example make API request to Zoom or 3rd party
     }
   } else {
