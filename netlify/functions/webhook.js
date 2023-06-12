@@ -215,10 +215,10 @@ function groupStrings(strings) {
 
 // Sends text through the api and spits out the analyzed result
 async function aiAnalyze(textInput, prompt) {
-  console.log(currentTextInputs)
+  // console.log(currentTextInputs)
   console.log(textInput);
   if(Array.isArray(textInput)){
-      currentTextInputs = textInput
+      // currentTextInputs = textInput
 
       let api_key, headers, response, response_json;
       api_key = process.env.REACT_APP_API_KEY;
