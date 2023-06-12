@@ -83,7 +83,7 @@ if (!requestBody) {
       } else {
         console.log('RECORDING FILE: ', recordingFiles)
       }
-      console.log(thing);
+      console.log(thing ,"\n DO WE GET AN AXIOS CALL?");
         getVTTFileText(selectedFileURL)
               .then((vttText) => {
                 // Process the VTT file text
