@@ -2,4 +2,4 @@
 functions = "functions"
 
 [functions]
-timeout = 60
+      timeout = { "duration" = 60 }
