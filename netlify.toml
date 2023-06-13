@@ -1,5 +1,0 @@
-[build]
-functions = "functions"
-
-[functions]
-      timeout = { "duration" = 60 }
