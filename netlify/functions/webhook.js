@@ -71,12 +71,12 @@ if (!requestBody) {
       if(Array.isArray(recordingFiles)){
         // recordingFiles.forEach((file, i) => {
           for(let i = 0; i < recordingFiles.length; ++i)
-            if(file[i] && file[i].file_extension === 'VTT') {
-              console.log(`Recording file #${i}: `, file[i]);
+            if(recordingFiles[i] && recordingFiles[i].file_extension === 'VTT') {
+              console.log(`Recording file #${i}: `, recordingFiles[i]);
 
               const stringConvoParts = [];
               let rawConversationString;
-              const selectedFileURL = `${file[i].download_url}?access_token=${requestBody.download_token}`;
+              const selectedFileURL = `${recordingFiles[i].download_url}?access_token=${requestBody.download_token}`;
 
               getVTTFileText(selectedFileURL)
                 .then((vttText) => {
