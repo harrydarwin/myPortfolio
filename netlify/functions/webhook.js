@@ -1,6 +1,7 @@
 // require('dotenv').config()
 const axios = require('axios');
 const crypto = require('crypto');
+const fetch = require('isomorphic-fetch');
 
 const promptsArray = [
   'Give me a full chronological sequence of the call and highlight the main talking points in a list format',
