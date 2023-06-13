@@ -77,20 +77,24 @@ if (!requestBody) {
               const stringConvoParts = [];
               let rawConversationString;
               const selectedFileURL = `${recordingFiles[i].download_url}?access_token=${requestBody.download_token}`;
-
-              getVTTFileText(selectedFileURL)
-                .then((vttText) => {
-                  // Process the VTT file text
-                  console.log(vttText);
-                  rawConversationString = vttText;
-                  const convoParts = extractNamesAndDialogues(rawConversationString);
-                  console.log(convoParts);
-                  aiAnalyze(convoParts, customPrompt);
-                })
-                .catch((error) => {
-                  // Handle the error
-                  console.error('Error:', error);
-                });
+              console.log(selectedFileURL);
+              try {
+                const vttText = await getVTTFileText(selectedFileURL);
+                // Process the VTT file text
+                console.log(vttText);
+                rawConversationString = vttText;
+                const convoParts = extractNamesAndDialogues(rawConversationString);
+                console.log(convoParts);
+                aiAnalyze(convoParts, customPrompt);
+              } catch (error) {
+                // Handle the error
+                console.error('Error:', error);
+                // Optionally, return an error response to the client
+                return {
+                  statusCode: 500,
+                  body: JSON.stringify({ message: 'Internal server error.' })
+                };
+              }
             }
         // })
       } else {
