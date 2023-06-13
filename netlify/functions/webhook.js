@@ -69,30 +69,30 @@ if (!requestBody) {
       const recordingFiles = requestBody.payload.object.recording_files
 
       if(Array.isArray(recordingFiles)){
-        recordingFiles.forEach((file, i) => {
+        // recordingFiles.forEach((file, i) => {
           for(let i = 0; i < recordingFiles.length; ++i)
-          if(file[i].file_extension === 'VTT') {
-            console.log(`Recording file #${i}: `, file);
+            if(file[i] && file[i].file_extension === 'VTT') {
+              console.log(`Recording file #${i}: `, file[i]);
 
-            const stringConvoParts = [];
-            let rawConversationString;
-            const selectedFileURL = `${file[i].download_url}?access_token=${requestBody.download_token}`;
+              const stringConvoParts = [];
+              let rawConversationString;
+              const selectedFileURL = `${file[i].download_url}?access_token=${requestBody.download_token}`;
 
-            getVTTFileText(selectedFileURL)
-              .then((vttText) => {
-                // Process the VTT file text
-                console.log(vttText);
-                rawConversationString = vttText;
-                const convoParts = extractNamesAndDialogues(rawConversationString);
-                console.log(convoParts);
-                aiAnalyze(convoParts, customPrompt);
-              })
-              .catch((error) => {
-                // Handle the error
-                console.error('Error:', error);
-              });
-          }
-        })
+              getVTTFileText(selectedFileURL)
+                .then((vttText) => {
+                  // Process the VTT file text
+                  console.log(vttText);
+                  rawConversationString = vttText;
+                  const convoParts = extractNamesAndDialogues(rawConversationString);
+                  console.log(convoParts);
+                  aiAnalyze(convoParts, customPrompt);
+                })
+                .catch((error) => {
+                  // Handle the error
+                  console.error('Error:', error);
+                });
+            }
+        // })
       } else {
         console.log('RECORDING FILE: ', recordingFiles)
       }
