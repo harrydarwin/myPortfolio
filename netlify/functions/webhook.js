@@ -119,6 +119,7 @@ async function processZoomInput(input) {
 async function getVTTFileText(url) {
   try {
     const response = await axios.get(url);
+    console.log(response)
     return response.data;
   } catch (error) {
     console.error('Error fetching VTT file:', error);
