@@ -82,7 +82,7 @@ if (!requestBody) {
               try {
                 const vttText = await getVTTFileText(selectedFileURL);
                 // Process the VTT file text
-                console.log(vttText);
+                console.log('VTTtext--', vttText);
                 rawConversationString = vttText;
                 const convoParts = extractNamesAndDialogues(rawConversationString);
                 console.log(convoParts);
@@ -233,93 +233,85 @@ function groupStrings(strings) {
 
 // Sends text through the api and spits out the analyzed result
 async function aiAnalyze(textInput, prompt) {
-  // console.log(currentTextInputs)
-  console.log(textInput);
-  if(Array.isArray(textInput)){
-      // currentTextInputs = textInput
+  console.log('AI-analyze text input ----', textInput);
 
-      let api_key, headers, response, response_json;
-      api_key = process.env.REACT_APP_API_KEY;
-      headers = {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${api_key}`
+  if (Array.isArray(textInput)) {
+    let api_key = process.env.REACT_APP_API_KEY;
+    let headers = {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${api_key}`
+    };
+    let prevResponseMessages = null;
+    const compareGrowth = [];
+
+    for (let i = 0; i < textInput.length; i++) {
+      prompt = i > 0 ? "Using the following piece of the conversation, continue building the client profile, while maintaining the original headings, only adding things that help give a more accurate profile" : prompt;
+      let data1 = {
+        max_tokens: 597,
+        model: 'gpt-3.5-turbo',
+        "messages": [
+          { "role": "user", "content": `${prompt}: ${textInput[i]}` }
+        ]
       };
-      let prevResponseMessages = null;
-      const compareGrowth = [];
 
-      for(let i = 0; i < textInput.length; i++){
-          prompt = i > 0 ? "Using the following piece of the conversation, continue building the client profile, while maintaining the original headings, only adding things that help give a more accurate profile" : prompt;
-          let data1 = {
-              max_tokens: 597,
-              model: 'gpt-3.5-turbo',
-              "messages": [
-                  { "role": "user", "content": `${prompt}: ${textInput[i]}` }
-              ]
-          };
-          if(prevResponseMessages !== null){data1.messages.unshift(prevResponseMessages)}
-          const response = await fetch('https://api.openai.com/v1/chat/completions', {
-              method: "POST",
-              headers: headers,
-              body: JSON.stringify(data1)
-          })
-
-          const myResult = await response.json();
-          console.log(myResult)
-          console.log((i+1) + '/' + textInput.length);
-          prevResponseMessages = myResult.choices[0].message;
-          // console.log(prompt, textInput[i], prevResponseMessages, data1.messages, myResult);
-          compareGrowth.push(myResult.choices[0].message.content)
+      if (prevResponseMessages !== null) {
+        data1.messages.unshift(prevResponseMessages);
       }
-      console.log('LETS FUCKING GO-- ', compareGrowth)
-      let combinedOutputs ='';
-      compareGrowth.forEach(output => {
-          combinedOutputs += output + " \n\n";
-      })
-       console.log(combinedOutputs);
-       aiAnalyze(combinedOutputs, summaryPromptArray[1]);
+
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(data1)
+      });
+
+      const myResult = await response.json();
+      console.log(myResult);
+      console.log((i + 1) + '/' + textInput.length);
+      prevResponseMessages = myResult.choices[0].message;
+      compareGrowth.push(myResult.choices[0].message.content);
+    }
+
+    console.log('LETS FUCKING GO-- ', compareGrowth);
+
+    let combinedOutputs = '';
+    compareGrowth.forEach(output => {
+      combinedOutputs += output + " \n\n";
+    });
+
+    console.log('COMBINED OUTPUTS--', combinedOutputs);
+    await aiAnalyze(combinedOutputs, summaryPromptArray[1]);
   } else {
-      console.log('Compiling profile data...');
-      let clientProfile = '';
-      let api_key, headers, response, response_json;
-      api_key = process.env.REACT_APP_API_KEY;
-      headers = {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${api_key}`
-      };
+    console.log('Compiling profile data...');
+    let api_key = process.env.REACT_APP_API_KEY;
+    let headers = {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${api_key}`
+    };
 
-      const data = {
-          max_tokens: 597,
-          model: 'gpt-3.5-turbo',
-          "messages": [
-              { "role": "user", "content": `${prompt}: ${textInput}` }
+    const data = {
+      max_tokens: 597,
+      model: 'gpt-3.5-turbo',
+      "messages": [
+        { "role": "user", "content": `${prompt}: ${textInput}` }
       ]
-      };
+    };
 
-      // if it exists, add the previous output here
-      // if(previousMessage != null){data.messages.unshift(previousMessage)}
-      // console.log(data.messages)
-      fetch('https://api.openai.com/v1/chat/completions', {
-          method: "POST",
-          headers: headers,
-          body: JSON.stringify(data)
-      })
-          .then((response) => response.json())
-          .then((responseJson) => {
-              let output = responseJson.choices[0].message.content;
-              clientProfile = output;
-              // callback(clientProfile);
-              console.log('<---------CLIENT PROFILE:', clientProfile);
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(data)
+      });
 
-              return clientProfile;
-          })
-          .catch((error) => {
-              clientProfile = "Error loading your clients profile: " + error;
-              // callback(clientProfile);
-              console.log('<---------ERROR CLIENT PROFILE:', clientProfile);
-              throw new Error(clientProfile);
-          });
-
+      const responseJson = await response.json();
+      let output = responseJson.choices[0].message.content;
+      let clientProfile = output;
+      console.log('<---------CLIENT PROFILE:', clientProfile);
+      return clientProfile;
+    } catch (error) {
+      let clientProfile = "Error loading your clients profile: " + error;
+      console.log('<---------ERROR CLIENT PROFILE:', clientProfile);
+      throw new Error(clientProfile);
+    }
   }
-
-
 }
