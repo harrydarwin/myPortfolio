@@ -89,7 +89,8 @@ exports.handler = async function (event, context) {
                 rawConversationString = vttText;
                 const convoParts = extractNamesAndDialogues(rawConversationString);
                 console.log('convo-part---->', convoParts);
-                aiAnalyze(convoParts, customPrompt);
+                const newClientProfile = await aiAnalyze(convoParts, customPrompt);
+                console.log('--------NEW CLIENT PROFILE----->', newClientProfile);
               } catch (error) {
                 // Handle the error
                 console.error('Error:', error);
@@ -239,7 +240,8 @@ async function aiAnalyze(textInput, prompt) {
   console.log('AI-analyze text input ----', textInput);
 
   if (Array.isArray(textInput)) {
-    let api_key = process.env.REACT_APP_API_KEY;
+    console.log('RUNNING ARRAY LOGIC ----->')
+    let api_key = process.env.GPT_API_KEY;
     let headers = {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${api_key}`
@@ -285,7 +287,7 @@ async function aiAnalyze(textInput, prompt) {
     await aiAnalyze(combinedOutputs, summaryPromptArray[1]);
   } else {
     console.log('Compiling profile data...');
-    let api_key = process.env.REACT_APP_API_KEY;
+    let api_key = process.env.GPT_API_KEY;
     let headers = {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${api_key}`
