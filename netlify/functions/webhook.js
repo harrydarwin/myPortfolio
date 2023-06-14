@@ -66,7 +66,7 @@ exports.handler = async function (event, context) {
 
       console.log('Response:', response.body);
 
-      const thing = await processZoomInput(requestBody);
+      // const thing = await processZoomInput(requestBody);
       const recordingFiles = requestBody.payload.object.recording_files
 
       if(Array.isArray(recordingFiles)){
@@ -101,7 +101,7 @@ exports.handler = async function (event, context) {
       } else {
         console.log('RECORDING FILE: ', recordingFiles)
       }
-      console.log(thing);
+      // console.log(thing);
 
       // business logic here, example make API request to Zoom or 3rd party
     // }
