@@ -28,10 +28,7 @@ exports.handler = async function (event, context) {
     };
   }
   // Only accept ROBS payloads + only transcript end events
-  // if(requestBody.event !== 'recording.transcript_completed' || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
-  //   return;
-  // }
-  if(requestBody.event !== 'recording.transcript_completed' || requestBody.payload.object.host_id !== 'TEST-BRO'){
+  if(requestBody.event !== 'recording.transcript_completed' || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
     return;
   }
   console.log('EVENT BABY:', event);
@@ -40,28 +37,28 @@ exports.handler = async function (event, context) {
   console.log('Body', requestBody);
 
 
-  // const message = `v0:${event.headers['x-zm-request-timestamp']}:${JSON.stringify(requestBody)}`;
+  const message = `v0:${event.headers['x-zm-request-timestamp']}:${JSON.stringify(requestBody)}`;
 
-  // const hashForVerify = crypto.createHmac('sha256', process.env.ZOOM_WEBHOOK_SECRET_TOKEN).update(message).digest('hex');
+  const hashForVerify = crypto.createHmac('sha256', process.env.ZOOM_WEBHOOK_SECRET_TOKEN).update(message).digest('hex');
 
-  // const signature = `v0=${hashForVerify}`;
+  const signature = `v0=${hashForVerify}`;
 
-  // if (event.headers['x-zm-signature'] === signature) {
-  //   console.log("HEADER THING MATCHED");
+  if (event.headers['x-zm-signature'] === signature) {
+    console.log("HEADER THING MATCHED");
 
-    // if (requestBody.event === 'endpoint.url_validation') {
-    //   const hashForValidate = crypto.createHmac('sha256', process.env.ZOOM_WEBHOOK_SECRET_TOKEN).update(requestBody.payload.plainToken).digest('hex');
+    if (requestBody.event === 'endpoint.url_validation') {
+      const hashForValidate = crypto.createHmac('sha256', process.env.ZOOM_WEBHOOK_SECRET_TOKEN).update(requestBody.payload.plainToken).digest('hex');
 
-    //   response = {
-    //     statusCode: 200,
-    //     body: JSON.stringify({
-    //       plainToken: requestBody.payload.plainToken,
-    //       encryptedToken: hashForValidate
-    //     })
-    //   };
+      response = {
+        statusCode: 200,
+        body: JSON.stringify({
+          plainToken: requestBody.payload.plainToken,
+          encryptedToken: hashForValidate
+        })
+      };
 
-    //   console.log(response.body);
-    // } else {
+      console.log(response.body);
+    } else {
       response = {
         statusCode: 200,
         body: JSON.stringify({ message: 'Authorized request to Zoom Webhook sample.' })
@@ -72,7 +69,7 @@ exports.handler = async function (event, context) {
       // const thing = await processZoomInput(requestBody);
       const recordingFiles = requestBody.payload.object.recording_files
       console.log(recordingFiles[0], `${recordingFiles[0].download_url}?access_token=${requestBody.download_token}`)
-      // if(Array.isArray(recordingFiles)){
+      if(Array.isArray(recordingFiles)){
         // recordingFiles.forEach((file, i) => {
           for(let i = 0; i < recordingFiles.length; ++i)
             if(recordingFiles[i] && recordingFiles[i].file_extension === 'VTT') {
@@ -102,21 +99,21 @@ exports.handler = async function (event, context) {
               }
             }
         // })
-      // } else {
-      //   console.log('RECORDING FILE: ', recordingFiles)
-      // }
+      } else {
+        console.log('RECORDING FILE: ', recordingFiles)
+      }
       // console.log(thing);
 
       // business logic here, example make API request to Zoom or 3rd party
-    // }
-  // } else {
-  //   response = {
-  //     statusCode: 401,
-  //     body: JSON.stringify({ message: 'Unauthorized request to Zoom Webhook sample.' })
-  //   };
+    }
+  } else {
+    response = {
+      statusCode: 401,
+      body: JSON.stringify({ message: 'Unauthorized request to Zoom Webhook sample.' })
+    };
 
-  //   console.log(response.body);
-  // }
+    console.log(response.body);
+  }
 
   return response;
 };
