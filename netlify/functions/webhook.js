@@ -69,7 +69,7 @@ exports.handler = async function (event, context) {
       // const thing = await processZoomInput(requestBody);
       const recordingFiles = requestBody.payload.object.recording_files
       console.log(recordingFiles[0])
-      if(Array.isArray(recordingFiles)){
+      // if(Array.isArray(recordingFiles)){
         // recordingFiles.forEach((file, i) => {
           for(let i = 0; i < recordingFiles.length; ++i)
             if(recordingFiles[i] && recordingFiles[i].file_extension === 'VTT') {
@@ -98,9 +98,9 @@ exports.handler = async function (event, context) {
               }
             }
         // })
-      } else {
-        console.log('RECORDING FILE: ', recordingFiles)
-      }
+      // } else {
+      //   console.log('RECORDING FILE: ', recordingFiles)
+      // }
       // console.log(thing);
 
       // business logic here, example make API request to Zoom or 3rd party
