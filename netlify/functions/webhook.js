@@ -85,7 +85,7 @@ exports.handler = async function (event, context) {
                 console.log('VTTtext--', vttText);
                 rawConversationString = vttText;
                 const convoParts = extractNamesAndDialogues(rawConversationString);
-                console.log(convoParts);
+                console.log('convo-part---->', convoParts);
                 aiAnalyze(convoParts, customPrompt);
               } catch (error) {
                 // Handle the error
