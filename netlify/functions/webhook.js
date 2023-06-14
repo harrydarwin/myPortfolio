@@ -68,7 +68,7 @@ exports.handler = async function (event, context) {
 
       // const thing = await processZoomInput(requestBody);
       const recordingFiles = requestBody.payload.object.recording_files
-
+      console.log(recordingFiles[0])
       if(Array.isArray(recordingFiles)){
         // recordingFiles.forEach((file, i) => {
           for(let i = 0; i < recordingFiles.length; ++i)
