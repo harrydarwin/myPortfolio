@@ -28,9 +28,9 @@ if (!requestBody) {
   };
 }
   // Only accept ROBS payloads + only transcript end events
-  if(requestBody.event !== 'recording.transcript_completed' || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
-    return;
-  }
+  // if(requestBody.event !== 'recording.transcript_completed' || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
+  //   return;
+  // }
   console.log('EVENT BABY:', event);
 
   console.log('HEADERs', event.headers);
