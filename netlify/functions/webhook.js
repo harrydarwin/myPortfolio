@@ -31,6 +31,9 @@ exports.handler = async function (event, context) {
   // if(requestBody.event !== 'recording.transcript_completed' || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
   //   return;
   // }
+  if(requestBody.event !== 'recording.transcript_completed' || requestBody.payload.object.host_id !== 'TEST-BRO'){
+    return;
+  }
   console.log('EVENT BABY:', event);
 
   console.log('HEADERs', event.headers);
