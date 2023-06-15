@@ -41,7 +41,7 @@ exports.handler = async function (event, context) {
 
   const message = `v0:${event.headers['x-zm-request-timestamp']}:${JSON.stringify(requestBody)}`;
 
-  const hashForVerify = crypto.createHmac('sha256', process.env.ZOOM_WEBHOOK_SECRET_TOKEN).update(message).digest('hex');
+  const hashForVerify = crypto.createHmac('sha256', process.env.TEST_WEBHOOK_SECRET_TOKEN).update(message).digest('hex');
 
   const signature = `v0=${hashForVerify}`;
 console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signature, process.env.ZOOM_WEBHOOK_SECRET_TOKEN)
@@ -49,7 +49,7 @@ console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signat
     console.log("HEADER THING MATCHED");
 
     if (requestBody.event === 'endpoint.url_validation') {
-      const hashForValidate = crypto.createHmac('sha256', process.env.ZOOM_WEBHOOK_SECRET_TOKEN).update(requestBody.payload.plainToken).digest('hex');
+      const hashForValidate = crypto.createHmac('sha256', process.env.TEST_WEBHOOK_SECRET_TOKEN).update(requestBody.payload.plainToken).digest('hex');
 
       response = {
         statusCode: 200,
