@@ -44,7 +44,7 @@ exports.handler = async function (event, context) {
   const hashForVerify = crypto.createHmac('sha256', process.env.ZOOM_WEBHOOK_SECRET_TOKEN).update(message).digest('hex');
 
   const signature = `v0=${hashForVerify}`;
-console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signature)
+console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signature, process.env.ZOOM_WEBHOOK_SECRET_TOKEN)
   if (event.headers['x-zm-signature'] === signature) {
     console.log("HEADER THING MATCHED");
 
