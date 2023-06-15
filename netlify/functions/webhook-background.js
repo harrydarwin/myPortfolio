@@ -61,7 +61,7 @@ console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signat
 
       console.log(response.body);
       // send valdiation repsonse back to get validated
-      return reponse;
+      return response;
 
     } else {
       response = {
