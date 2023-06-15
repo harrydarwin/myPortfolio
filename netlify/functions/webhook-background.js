@@ -59,9 +59,9 @@ console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signat
         })
       };
 
-      return response;
       console.log(response.body);
       // send valdiation repsonse back to get validated
+      return response;
 
     } else {
       response = {
