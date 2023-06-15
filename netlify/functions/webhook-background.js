@@ -18,7 +18,7 @@ const summaryPromptArray = [
 const customPrompt = promptsArray[3];
 
 exports.handler = async function (event, context) {
-  console.log('Payload recieved!')
+  console.log('Payload recieved!!!')
   let response = {};
   const requestBody = event.body ? JSON.parse(event.body) : null;
   if (!requestBody) {
