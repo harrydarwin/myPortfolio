@@ -33,7 +33,7 @@ exports.handler = async function (event, context) {
   //   return;
   // }
   console.log('EVENT BABY:', event);
-  console.log(requestBody.payload.object.host_id)
+  // console.log(requestBody.payload.object.host_id)
 
   console.log('HEADERs', event.headers);
   console.log('Body', requestBody);
