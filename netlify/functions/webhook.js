@@ -20,31 +20,6 @@ const customPrompt = promptsArray[3];
 exports.handler = async function (event, context) {
   console.log('Payload recieved!!!')
 
-
-  const payload = event; // Assign the event object to the payload variable
-
-  try {
-    // Make an HTTP POST request to the /webhook-background endpoint
-    const response = await axios.post('https://www.harrydarwin.com/.netlify/functions/webhook-background', payload);
-
-    // Process the response or perform any necessary actions
-    console.log('Response from /webhook-background:', response.data);
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ message: 'Payload sent to /webhook-background successfully.' })
-    };
-  } catch (error) {
-    // Handle any errors that occurred during the request
-    console.error('Error sending payload to /webhook-background:', error);
-
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ message: 'Error sending payload to /webhook-background.' })
-    };
-  }
-
-
   let response = {};
   const requestBody = event.body ? JSON.parse(event.body) : null;
   if (!requestBody) {
@@ -92,10 +67,34 @@ console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signat
     } else {
       response = {
         statusCode: 200,
-        body: JSON.stringify({ message: 'Authorized request to Zoom Webhook sample.' })
+        body: JSON.stringify({ message: 'Authorized request to Zoom Webhook sample.' }),
+        data: requestBody
       };
 
       console.log('Response:', response.body);
+
+      const payload = requestBody; // Assign the event object to the payload variable
+
+      try {
+        // Make an HTTP POST request to the /webhook-background endpoint
+        const response = await axios.post('https://www.harrydarwin.com/.netlify/functions/webhook-background', payload);
+
+        // Process the response or perform any necessary actions
+        console.log('Response from /webhook-background:', response.data);
+
+        return {
+          statusCode: 200,
+          body: JSON.stringify({ message: 'Payload sent to /webhook-background successfully.' })
+        };
+      } catch (error) {
+        // Handle any errors that occurred during the request
+        console.error('Error sending payload to /webhook-background:', error);
+
+        return {
+          statusCode: 500,
+          body: JSON.stringify({ message: 'Error sending payload to /webhook-background.' })
+        };
+      }
 
       // const thing = await processZoomInput(requestBody);
       const recordingFiles = requestBody.payload.object.recording_files

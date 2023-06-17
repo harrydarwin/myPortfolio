@@ -19,6 +19,7 @@ const customPrompt = promptsArray[3];
 
 exports.handler = async function (event, context) {
   console.log('Payload recieved!!!')
+  console.log('EVENT: ', event)
   let response = {};
   const requestBody = event.body ? JSON.parse(event.body) : null;
   if (!requestBody) {
@@ -39,31 +40,31 @@ exports.handler = async function (event, context) {
   console.log('Body', requestBody);
 
 
-  const message = `v0:${event.headers['x-zm-request-timestamp']}:${JSON.stringify(requestBody)}`;
+    //   const message = `v0:${event.headers['x-zm-request-timestamp']}:${JSON.stringify(requestBody)}`;
 
-  const hashForVerify = crypto.createHmac('sha256', 'NpNopfsLT5iCE7YLX9w6ug').update(message).digest('hex');
+    //   const hashForVerify = crypto.createHmac('sha256', 'NpNopfsLT5iCE7YLX9w6ug').update(message).digest('hex');
 
-  const signature = `v0=${hashForVerify}`;
-console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signature, process.env.ZOOM_WEBHOOK_SECRET_TOKEN)
-  if (event.headers['x-zm-signature'] === signature) {
-    console.log("HEADER THING MATCHED");
+    //   const signature = `v0=${hashForVerify}`;
+    //     console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signature, process.env.ZOOM_WEBHOOK_SECRET_TOKEN)
+    // //   if (event.headers['x-zm-signature'] === signature) {
+    //     console.log("HEADER THING MATCHED");
 
-    if (requestBody.event === 'endpoint.url_validation') {
-      const hashForValidate = crypto.createHmac('sha256', 'NpNopfsLT5iCE7YLX9w6ug').update(requestBody.payload.plainToken).digest('hex');
+        // if (requestBody.event === 'endpoint.url_validation') {
+        //   const hashForValidate = crypto.createHmac('sha256', 'NpNopfsLT5iCE7YLX9w6ug').update(requestBody.payload.plainToken).digest('hex');
 
-      response = {
-        statusCode: 200,
-        body: JSON.stringify({
-          plainToken: requestBody.payload.plainToken,
-          encryptedToken: hashForValidate
-        })
-      };
+        //   response = {
+        //     statusCode: 200,
+        //     body: JSON.stringify({
+        //       plainToken: requestBody.payload.plainToken,
+        //       encryptedToken: hashForValidate
+        //     })
+        //   };
 
-      console.log(response.body);
-      // send valdiation repsonse back to get validated
-      return response;
+        //   console.log(response.body);
+        //   // send valdiation repsonse back to get validated
+        //   return response;
 
-    } else {
+        // } else {
       response = {
         statusCode: 200,
         body: JSON.stringify({ message: 'Authorized request to Zoom Webhook sample.' })
@@ -110,15 +111,15 @@ console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signat
       // console.log(thing);
 
       // business logic here, example make API request to Zoom or 3rd party
-    }
-  } else {
-    response = {
-      statusCode: 401,
-      body: JSON.stringify({ message: 'Unauthorized request to Zoom Webhook sample.' })
-    };
+    // }
+//   } else {
+//     response = {
+//       statusCode: 401,
+//       body: JSON.stringify({ message: 'Unauthorized request to Zoom Webhook sample.' })
+//     };
 
-    console.log(response.body);
-  }
+//     console.log(response.body);
+//   }
 
   return response;
 };
