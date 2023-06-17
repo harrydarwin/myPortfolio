@@ -80,7 +80,7 @@ console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signat
         const response = await axios.post('https://www.harrydarwin.com/.netlify/functions/webhook-background', payload);
 
         // Process the response or perform any necessary actions
-        console.log('Response from /webhook-background:', response);
+        console.log('Response from /webhook-background:', response.data);
 
         return {
           statusCode: 200,
