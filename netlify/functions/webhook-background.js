@@ -82,7 +82,8 @@ async function processInBackground(requestBody) {
       }
     }
   } else {
-    console.log('RECORDING FILE: ', recordingFiles);
+
+    console.log("Recording files not found. \n RECORDING FILE: ", recordingFiles);
   }
 };
 
