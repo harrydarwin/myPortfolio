@@ -40,88 +40,50 @@ exports.handler = async function (event, context) {
   console.log('Body', requestBody);
 
 
-    //   const message = `v0:${event.headers['x-zm-request-timestamp']}:${JSON.stringify(requestBody)}`;
 
-    //   const hashForVerify = crypto.createHmac('sha256', 'NpNopfsLT5iCE7YLX9w6ug').update(message).digest('hex');
+  // Send an initial response indicating that the request has been received
+  const initialResponse = {
+    statusCode: 200,
+    body: JSON.stringify({ message: 'Request received. Processing in progress.' })
+  };
 
-    //   const signature = `v0=${hashForVerify}`;
-    //     console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signature, process.env.ZOOM_WEBHOOK_SECRET_TOKEN)
-    // //   if (event.headers['x-zm-signature'] === signature) {
-    //     console.log("HEADER THING MATCHED");
+  // Perform any necessary asynchronous processing in the background
+  processInBackground(requestBody);
 
-        // if (requestBody.event === 'endpoint.url_validation') {
-        //   const hashForValidate = crypto.createHmac('sha256', 'NpNopfsLT5iCE7YLX9w6ug').update(requestBody.payload.plainToken).digest('hex');
+  return initialResponse;
+};
 
-        //   response = {
-        //     statusCode: 200,
-        //     body: JSON.stringify({
-        //       plainToken: requestBody.payload.plainToken,
-        //       encryptedToken: hashForValidate
-        //     })
-        //   };
+async function processInBackground(requestBody) {
+  const recordingFiles = requestBody.payload.object.recording_files;
+  if (Array.isArray(recordingFiles)) {
+    console.log(recordingFiles[0], `${recordingFiles[0].download_url}?access_token=${requestBody.download_token}`);
+    for (let i = 0; i < recordingFiles.length; ++i) {
+      if (recordingFiles[i] && recordingFiles[i].file_extension === 'VTT') {
+        console.log(`Recording file #${i}: `, recordingFiles[i]);
 
-        //   console.log(response.body);
-        //   // send valdiation repsonse back to get validated
-        //   return response;
-
-        // } else {
-      response = {
-        statusCode: 200,
-        body: JSON.stringify({ message: 'Authorized request to Zoom Webhook sample.' })
-      };
-
-      console.log('Response:', response.body);
-
-      // const thing = await processZoomInput(requestBody);
-      const recordingFiles = requestBody.payload.object.recording_files
-      if(Array.isArray(recordingFiles)){
-          console.log(recordingFiles[0], `${recordingFiles[0].download_url}?access_token=${requestBody.download_token}`)
-        // recordingFiles.forEach((file, i) => {
-          for(let i = 0; i < recordingFiles.length; ++i)
-            if(recordingFiles[i] && recordingFiles[i].file_extension === 'VTT') {
-              console.log(`Recording file #${i}: `, recordingFiles[i]);
-
-              const stringConvoParts = [];
-              let rawConversationString;
-              const selectedFileURL = `${recordingFiles[i].download_url}?access_token=${requestBody.download_token}`;
-              console.log(selectedFileURL);
-              try {
-                const vttText = await getVTTFileText(selectedFileURL);
-                // Process the VTT file text
-                console.log('VTTtext--', vttText);
-                rawConversationString = vttText;
-                const convoParts = extractNamesAndDialogues(rawConversationString);
-                console.log('convo-part---->', convoParts);
-                const newClientProfile = await aiAnalyze(convoParts, customPrompt);
-                console.log('--------NEW CLIENT PROFILE----->', newClientProfile);
-              } catch (error) {
-                // Handle the error
-                console.error('Error:', error);
-                // Optionally, return an error response to the client
-                return {
-                  statusCode: 500,
-                  body: JSON.stringify({ message: 'Internal server error.' })
-                };
-              }
-            }
-        // })
-      } else {
-        console.log('RECORDING FILE: ', recordingFiles)
+        const stringConvoParts = [];
+        let rawConversationString;
+        const selectedFileURL = `${recordingFiles[i].download_url}?access_token=${requestBody.download_token}`;
+        console.log(selectedFileURL);
+        try {
+          const vttText = await getVTTFileText(selectedFileURL);
+          // Process the VTT file text
+          console.log('VTTtext--', vttText);
+          rawConversationString = vttText;
+          const convoParts = extractNamesAndDialogues(rawConversationString);
+          console.log('convo-part---->', convoParts);
+          const newClientProfile = await aiAnalyze(convoParts, customPrompt);
+          console.log('--------NEW CLIENT PROFILE----->', newClientProfile);
+        } catch (error) {
+          // Handle the error
+          console.error('Error:', error);
+          // Optionally, log the error or perform error handling
+        }
       }
-      // console.log(thing);
-
-      // business logic here, example make API request to Zoom or 3rd party
-    // }
-//   } else {
-//     response = {
-//       statusCode: 401,
-//       body: JSON.stringify({ message: 'Unauthorized request to Zoom Webhook sample.' })
-//     };
-
-//     console.log(response.body);
-//   }
-
-  return response;
+    }
+  } else {
+    console.log('RECORDING FILE: ', recordingFiles);
+  }
 };
 
 async function processZoomInput(input) {
