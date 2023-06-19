@@ -66,6 +66,7 @@ async function processInBackground(requestBody) {
         const selectedFileURL = `${recordingFiles[i].download_url}?access_token=${requestBody.download_token}`;
         console.log(selectedFileURL);
         try {
+            console.log('Fetching file...')
           const vttText = await getVTTFileText(selectedFileURL);
           // Process the VTT file text
           console.log('VTTtext--', vttText);
@@ -92,6 +93,7 @@ async function processZoomInput(input) {
 }
 
 async function getVTTFileText(url) {
+    console.log('GRABBBBING', url)
   try {
     const response = await axios.get(url);
     console.log(response)
