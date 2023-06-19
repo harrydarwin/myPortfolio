@@ -68,7 +68,6 @@ console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signat
       response = {
         statusCode: 200,
         body: JSON.stringify({ message: 'Authorized request to Zoom Webhook sample.' }),
-        data: requestBody
       };
 
       console.log('Response:', response.body);
