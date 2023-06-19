@@ -2,7 +2,7 @@
 const axios = require('axios');
 const crypto = require('crypto');
 const fetch = require('isomorphic-fetch');
-const testURL = 'https://us06web.zoom.us/rec/webhook_download/vyNW-DSmNzaO3dAnXsVbZhsXTOdKA5J9RXS5lFkiD8NqkboDYU0eBql0oYnP-SEooS14x5rAvoy21jxc.QaOXZMWKzacyrTvX/v_fg8O6WZJ32SiYA2SOvmfymNE4Y_YA13mT5_06MHrEL3Xba7e_co6pHOURqgIYlR4gEQom6.0c3XGGWIwJEqVg3o?access_token=eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJodHRwczovL2V2ZW50Lnpvb20udXMiLCJhY2NvdW50SWQiOiJFbXZITURVT1R3YUVSeG1DTkdEdE5nIiwiYXVkIjoiaHR0cHM6Ly9vYXV0aC56b29tLnVzIiwibWlkIjoiQkFnd3V1QVpSVitiVXRWMmQxQ0NhQT09IiwiZXhwIjoxNjg3MjgxMjkzLCJ1c2VySWQiOiJpNTBjUHF4M1IyMnhuVVMwSTZaVk93In0.Rp06iL810XRSqD6XZn-ugA9E-CRblshrL1w-lj0WPLTFdkhAc5FZE0k_e9AijFwQOR3802m9ypp7UNB_CmYfnA';
+
 const promptsArray = [
   'Give me a full chronological sequence of the call and highlight the main talking points in a list format',
   'Based on the following conversation, build me a client profile broken down into categories',
@@ -19,21 +19,6 @@ const customPrompt = promptsArray[3];
 
 exports.handler = async function (event, context) {
   console.log('Payload recieved!!!')
-  try {
-    console.log('Fetching file...')
-  const vttText = await getVTTFileText(testURL);
-  // Process the VTT file text
-  console.log('VTTtext--', vttText);
-  rawConversationString = vttText;
-  const convoParts = extractNamesAndDialogues(rawConversationString);
-  console.log('convo-part---->', convoParts);
-  const newClientProfile = await aiAnalyze(convoParts, customPrompt);
-  console.log('--------NEW CLIENT PROFILE----->', newClientProfile);
-} catch (error) {
-  // Handle the error
-  console.error('Error:', error);
-  // Optionally, log the error or perform error handling
-}
   console.log('EVENT: ', event)
   let response = {};
   const requestBody = event.body ? JSON.parse(event.body) : null;
@@ -72,13 +57,13 @@ async function processInBackground(requestBody) {
   const recordingFiles = requestBody.payload.object.recording_files;
   if (Array.isArray(recordingFiles)) {
     console.log(recordingFiles[0], `${recordingFiles[0].download_url}?access_token=${requestBody.download_token}`);
-    for (let i = 0; i < recordingFiles.length; ++i) {
-      if (recordingFiles[i] && recordingFiles[i].file_extension === 'VTT') {
-        console.log(`Recording file #${i}: `, recordingFiles[i]);
+    // for (let i = 0; i < recordingFiles.length; ++i) {
+      if (recordingFiles[0] && recordingFiles[0].file_extension === 'VTT') {
+        console.log(`Recording file: `, recordingFiles[0]);
 
         const stringConvoParts = [];
         let rawConversationString;
-        const selectedFileURL = `${recordingFiles[i].download_url}?access_token=${requestBody.download_token}`;
+        const selectedFileURL = `${recordingFiles[0].download_url}?access_token=${requestBody.download_token}`;
         console.log(selectedFileURL);
         try {
             console.log('Fetching file...')
@@ -96,7 +81,7 @@ async function processInBackground(requestBody) {
           // Optionally, log the error or perform error handling
         }
       }
-    }
+    // }
   } else {
 
     console.log("Recording files not found. \n RECORDING FILE: ", recordingFiles);
