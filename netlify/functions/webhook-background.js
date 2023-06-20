@@ -48,7 +48,7 @@ exports.handler = async function (event, context) {
   };
 
   // Perform any necessary asynchronous processing in the background
-  processInBackground(requestBody);
+  await processInBackground(requestBody);
 
   return initialResponse;
 };
