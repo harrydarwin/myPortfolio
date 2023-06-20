@@ -2,6 +2,8 @@
 const axios = require('axios');
 const crypto = require('crypto');
 const fetch = require('isomorphic-fetch');
+const fs = require('fs').promises;
+const path = require('path');
 
 const promptsArray = [
   'Give me a full chronological sequence of the call and highlight the main talking points in a list format',
@@ -69,7 +71,36 @@ async function processInBackground(requestBody) {
         const convoParts = extractNamesAndDialogues(rawConversationString);
         console.log('convo-part---->', convoParts);
         const newClientProfile = await aiAnalyze(convoParts, customPrompt);
-        // console.log('--------NEW CLIENT PROFILE----->', newClientProfile);
+
+        // grab client name from conversation strings
+        const getNames = extractNamesWithoutRob(convoParts);
+        const clientName = getNames.join();
+        const formattedClient = slugify(clientName);
+
+        // grab and format date to the second
+        const currentDate = new Date();
+        const options = {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour12: true,
+            hour: 'numeric',
+            minute: '2-digit',
+            second: '2-digit',
+        };
+
+        const formattedDate = currentDate.toLocaleString('en-US', options).replace(/[/:\s,]/g, '-');
+        console.log(formattedDate);
+
+            // Save the newClientProfile in a text file
+        const folderPath = path.resolve(__dirname, '..', '..', 'client-profiles'); // Replace with the desired folder path
+        const fileName = `${formattedDate}_${formattedClient}_profile.txt`; // Replace with the desired file name
+        const filePath = path.join(folderPath, fileName);
+
+        await fs.writeFile(filePath, newClientProfile);
+
+        console.log('newClientProfile saved successfully.');
+
         return newClientProfile
     } catch (error) {
         // Handle the error
@@ -78,6 +109,27 @@ async function processInBackground(requestBody) {
         return error
     }
 };
+
+function slugify(str) {
+    return str
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '') // Remove non-word characters except spaces and hyphens
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .replace(/--+/g, '-') // Replace consecutive hyphens with a single hyphen
+      .trim(); // Trim leading/trailing whitespace
+}
+
+// Janky function to grab Client name - only works with ROB as host as the name implies
+function extractNamesWithoutRob(strings) {
+    const names = strings.map((str) => {
+      const match = str.match(/^(.*?):/);
+      return match ? match[1].trim() : null;
+    });
+
+    const filteredNames = names.filter((name) => name && !name.includes('Rob'));
+
+    return filteredNames;
+}
 
 async function processZoomInput(input) {
   return JSON.stringify(input);
