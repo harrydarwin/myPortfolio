@@ -59,10 +59,10 @@ async function processInBackground(requestBody) {
     console.log('REQ BODY -in func ----->', requestBody)
     const stringConvoParts = [];
     let rawConversationString;
-    console.log(selectedFileURL);
+    console.log(requestBody);
     try {
         console.log('Fetching file...')
-        const vttText = await getVTTFileText(selectedFileURL);
+        const vttText = await getVTTFileText(requestBody);
         // Process the VTT file text
         console.log('VTTtext--', vttText);
         rawConversationString = vttText;
