@@ -78,7 +78,7 @@ console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signat
         console.log(recordingFiles[0], `${recordingFiles[0].download_url}?access_token=${requestBody.download_token}`)
         // recordingFiles.forEach((file, i) => {
           // for(let i = 0; i < recordingFiles.length; ++i){
-            if(recordingFiles[i] && recordingFiles[0].file_extension === 'VTT') {
+            if(recordingFiles[0] && recordingFiles[0].file_extension === 'VTT') {
               console.log(`Recording file #${0}: `, recordingFiles[0]);
 
               // const stringConvoParts = [];
