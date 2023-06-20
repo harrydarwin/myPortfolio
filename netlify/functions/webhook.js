@@ -72,42 +72,43 @@ console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signat
 
       console.log('Response:', response.body);
 
-      const payload = requestBody; // Assign the event object to the payload variable
-
-      try {
-        // Make an HTTP POST request to the /webhook-background endpoint
-        const response = await axios.post('https://www.harrydarwin.com/.netlify/functions/webhook-background', payload);
-
-        // Process the response or perform any necessary actions
-        console.log('Response from /webhook-background:', response.data);
-
-        return {
-          statusCode: 200,
-          body: JSON.stringify({ message: 'Payload sent to /webhook-background successfully.' })
-        };
-      } catch (error) {
-        // Handle any errors that occurred during the request
-        console.error('Error sending payload to /webhook-background:', error);
-
-        return {
-          statusCode: 500,
-          body: JSON.stringify({ message: 'Error sending payload to /webhook-background.' })
-        };
-      }
-
       // const thing = await processZoomInput(requestBody);
       const recordingFiles = requestBody.payload.object.recording_files
       if(Array.isArray(recordingFiles)){
         console.log(recordingFiles[0], `${recordingFiles[0].download_url}?access_token=${requestBody.download_token}`)
         // recordingFiles.forEach((file, i) => {
-          for(let i = 0; i < recordingFiles.length; ++i)
-            if(recordingFiles[i] && recordingFiles[i].file_extension === 'VTT') {
-              console.log(`Recording file #${i}: `, recordingFiles[i]);
+          // for(let i = 0; i < recordingFiles.length; ++i){
+            if(recordingFiles[i] && recordingFiles[0].file_extension === 'VTT') {
+              console.log(`Recording file #${0}: `, recordingFiles[0]);
 
-              const stringConvoParts = [];
-              let rawConversationString;
-              const selectedFileURL = `${recordingFiles[i].download_url}?access_token=${requestBody.download_token}`;
+              // const stringConvoParts = [];
+              // let rawConversationString;
+              const selectedFileURL = `${recordingFiles[0].download_url}?access_token=${requestBody.download_token}`;
               console.log(selectedFileURL);
+
+              const payload = selectedFileURL; // Assign the event object to the payload variable
+
+              // MOVE THIS BELOW, GRAB THE FILE URL HERE AND PASS THAT TO THE NEXT HOOK TO BE INSERTED DIRECTLY TO THE GETVTT FUNCTION
+              try {
+                // Make an HTTP POST request to the /webhook-background endpoint
+                const response = await axios.post('https://www.harrydarwin.com/.netlify/functions/webhook-background', payload);
+
+                // Process the response or perform any necessary actions
+                console.log('Response from /webhook-background:', response.data);
+
+                return {
+                  statusCode: 200,
+                  body: JSON.stringify({ message: 'Payload sent to /webhook-background successfully.' })
+                };
+              } catch (error) {
+                // Handle any errors that occurred during the request
+                console.error('Error sending payload to /webhook-background:', error);
+
+                return {
+                  statusCode: 500,
+                  body: JSON.stringify({ message: 'Error sending payload to /webhook-background.' })
+                };
+              }
               try {
                 const vttText = await getVTTFileText(selectedFileURL);
                 // Process the VTT file text
@@ -127,7 +128,7 @@ console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signat
                 };
               }
             }
-        // })
+            // }
       } else {
         console.log('RECORDING FILE: ', recordingFiles)
       }

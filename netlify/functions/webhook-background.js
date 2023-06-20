@@ -28,16 +28,16 @@ exports.handler = async function (event, context) {
       body: JSON.stringify({ message: 'Invalid request body.' })
     };
   }
-  console.log('event TYPE: ', requestBody.event)
+//   console.log('event TYPE: ', requestBody.event)
   // Only accept ROBS payloads + only transcript end events
   // if(requestBody.event !== 'recording.transcript_completed'){
   //   return;
   // }
-  console.log('EVENT BABY:', event);
+//   console.log('EVENT BABY:', event);
   // console.log(requestBody.payload.object.host_id)
 
-  console.log('HEADERs', event.headers);
-  console.log('Body', requestBody);
+//   console.log('HEADERs', event.headers);
+  console.log('Body ----->', requestBody);
 
 
 
@@ -54,38 +54,29 @@ exports.handler = async function (event, context) {
 };
 
 async function processInBackground(requestBody) {
-  const recordingFiles = requestBody.payload.object.recording_files;
-  if (Array.isArray(recordingFiles)) {
-    console.log(recordingFiles[0], `${recordingFiles[0].download_url}?access_token=${requestBody.download_token}`);
-    // for (let i = 0; i < recordingFiles.length; ++i) {
-      if (recordingFiles[0] && recordingFiles[0].file_extension === 'VTT') {
-        console.log(`Recording file: `, recordingFiles[0]);
 
-        const stringConvoParts = [];
-        let rawConversationString;
-        const selectedFileURL = `${recordingFiles[0].download_url}?access_token=${requestBody.download_token}`;
-        console.log(selectedFileURL);
-        try {
-            console.log('Fetching file...')
-          const vttText = await getVTTFileText(selectedFileURL);
-          // Process the VTT file text
-          console.log('VTTtext--', vttText);
-          rawConversationString = vttText;
-          const convoParts = extractNamesAndDialogues(rawConversationString);
-          console.log('convo-part---->', convoParts);
-          const newClientProfile = await aiAnalyze(convoParts, customPrompt);
-          console.log('--------NEW CLIENT PROFILE----->', newClientProfile);
-        } catch (error) {
-          // Handle the error
-          console.error('Error:', error);
-          // Optionally, log the error or perform error handling
-        }
-      }
-    // }
-  } else {
-
-    console.log("Recording files not found. \n RECORDING FILE: ", recordingFiles);
-  }
+    // const recordingFiles = requestBody.payload.object.recording_files;
+    console.log('REQ BODY -in func ----->', requestBody)
+    const stringConvoParts = [];
+    let rawConversationString;
+    console.log(selectedFileURL);
+    try {
+        console.log('Fetching file...')
+        const vttText = await getVTTFileText(selectedFileURL);
+        // Process the VTT file text
+        console.log('VTTtext--', vttText);
+        rawConversationString = vttText;
+        const convoParts = extractNamesAndDialogues(rawConversationString);
+        console.log('convo-part---->', convoParts);
+        const newClientProfile = await aiAnalyze(convoParts, customPrompt);
+        // console.log('--------NEW CLIENT PROFILE----->', newClientProfile);
+        return newClientProfile
+    } catch (error) {
+        // Handle the error
+        console.error('Error:', error);
+        // Optionally, log the error or perform error handling
+        return error
+    }
 };
 
 async function processZoomInput(input) {
