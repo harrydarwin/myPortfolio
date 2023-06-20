@@ -21,7 +21,7 @@ exports.handler = async function (event, context) {
   console.log('Payload recieved!!!')
   console.log('EVENT: ', event)
   let response = {};
-  const requestBody = event.body ? JSON.parse(event.body) : null;
+  const requestBody = event.body ? event.body : null;
   if (!requestBody) {
     return {
       statusCode: 400,
