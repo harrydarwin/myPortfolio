@@ -19,6 +19,8 @@ const summaryPromptArray = [
 
 const customPrompt = promptsArray[3];
 
+let formattedClient = '';
+
 exports.handler = async function (event, context) {
   console.log('Payload recieved!!!')
   console.log('EVENT: ', event)
@@ -75,31 +77,8 @@ async function processInBackground(requestBody) {
         // grab client name from conversation strings
         const getNames = extractNamesWithoutRob(convoParts);
         const clientName = getNames.join();
-        const formattedClient = slugify(clientName);
+        formattedClient = slugify(clientName);
 
-        // grab and format date to the second
-        const currentDate = new Date();
-        const options = {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour12: true,
-            hour: 'numeric',
-            minute: '2-digit',
-            second: '2-digit',
-        };
-
-        const formattedDate = currentDate.toLocaleString('en-US', options).replace(/[/:\s,]/g, '-');
-        console.log(formattedDate);
-
-            // Save the newClientProfile in a text file
-        const folderPath = path.resolve(__dirname, '..', '..', 'client-profiles'); // Replace with the desired folder path
-        const fileName = `${formattedDate}_${formattedClient}_profile.txt`; // Replace with the desired file name
-        const filePath = path.join(folderPath, fileName);
-
-        await fs.writeFile(filePath, newClientProfile);
-
-        console.log('newClientProfile saved successfully.');
 
         return newClientProfile
     } catch (error) {
@@ -323,6 +302,37 @@ async function aiAnalyze(textInput, prompt) {
       let output = responseJson.choices[0].message.content;
       let clientProfile = output;
       console.log('<---------CLIENT PROFILE:', clientProfile);
+
+      //   WRITE FILE
+    // grab and format date to the second
+    const currentDate = new Date();
+    const options = {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour12: true,
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
+    };
+
+    const formattedDate = currentDate.toLocaleString('en-US', options).replace(/[/:\s,]/g, '-');
+    console.log(formattedDate);
+
+        // Save the newClientProfile in a text file
+    const folderPath = path.resolve(__dirname, '..', '..', 'client-profiles'); // Replace with the desired folder path
+    const fileName = `${formattedDate}_${formattedClient}_profile.txt`; // Replace with the desired file name
+    const filePath = path.join(folderPath, fileName);
+    console.log(typeof newClientProfile);
+    fs.writeFile(filePath, newClientProfile, (error) => {
+        if (error) {
+        console.error('Error writing file:', error);
+        } else {
+        console.log('File has been written successfully.');
+        }
+    });
+    // End write file
+
       return clientProfile;
     } catch (error) {
       let clientProfile = "Error loading your clients profile: " + error;
