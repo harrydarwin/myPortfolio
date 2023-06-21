@@ -230,114 +230,114 @@ async function aiAnalyze(textInput, prompt) {
   console.log('AI-analyze text input ----', textInput);
 
   if (Array.isArray(textInput)) {
-    console.log('RUNNING ARRAY LOGIC ----->')
-    let api_key = process.env.GPT_API_KEY;
-    let headers = {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${api_key}`
-    };
-    let prevResponseMessages = null;
-    const compareGrowth = [];
+        console.log('RUNNING ARRAY LOGIC ----->')
+        let api_key = process.env.GPT_API_KEY;
+        let headers = {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${api_key}`
+        };
+        let prevResponseMessages = null;
+        const compareGrowth = [];
 
-    for (let i = 0; i < textInput.length; i++) {
-      prompt = i > 0 ? "Using the following piece of the conversation, continue building the client profile, while maintaining the original headings, only adding things that help give a more accurate profile" : prompt;
-      let data1 = {
+        for (let i = 0; i < textInput.length; i++) {
+        prompt = i > 0 ? "Using the following piece of the conversation, continue building the client profile, while maintaining the original headings, only adding things that help give a more accurate profile" : prompt;
+        let data1 = {
+            max_tokens: 597,
+            model: 'gpt-3.5-turbo',
+            "messages": [
+            { "role": "user", "content": `${prompt}: ${textInput[i]}` }
+            ]
+        };
+
+        if (prevResponseMessages !== null) {
+            data1.messages.unshift(prevResponseMessages);
+        }
+
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(data1)
+        });
+
+        const myResult = await response.json();
+        console.log(myResult);
+        console.log((i + 1) + '/' + textInput.length);
+        prevResponseMessages = myResult.choices[0].message;
+        compareGrowth.push(myResult.choices[0].message.content);
+        }
+
+        console.log('LETS FUCKING GO-- ', compareGrowth);
+
+        let combinedOutputs = '';
+        compareGrowth.forEach(output => {
+        combinedOutputs += output + " \n\n";
+        });
+
+        console.log('COMBINED OUTPUTS--', combinedOutputs);
+        await aiAnalyze(combinedOutputs, summaryPromptArray[1]);
+    } else {
+        console.log('Compiling profile data...');
+        let api_key = process.env.GPT_API_KEY;
+        let headers = {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${api_key}`
+        };
+
+        const data = {
         max_tokens: 597,
         model: 'gpt-3.5-turbo',
         "messages": [
-          { "role": "user", "content": `${prompt}: ${textInput[i]}` }
+            { "role": "user", "content": `${prompt}: ${textInput}` }
         ]
-      };
+        };
 
-      if (prevResponseMessages !== null) {
-        data1.messages.unshift(prevResponseMessages);
-      }
+        try {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(data)
+        });
 
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(data1)
-      });
+        const responseJson = await response.json();
+        let output = responseJson.choices[0].message.content;
+        let clientProfile = output;
+        console.log('<---------CLIENT PROFILE:', clientProfile);
 
-      const myResult = await response.json();
-      console.log(myResult);
-      console.log((i + 1) + '/' + textInput.length);
-      prevResponseMessages = myResult.choices[0].message;
-      compareGrowth.push(myResult.choices[0].message.content);
-    }
+        //   WRITE FILE
+        // grab and format date to the second
+        const currentDate = new Date();
+        const options = {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour12: true,
+            hour: 'numeric',
+            minute: '2-digit',
+            second: '2-digit',
+        };
 
-    console.log('LETS FUCKING GO-- ', compareGrowth);
+        const formattedDate = currentDate.toLocaleString('en-US', options).replace(/[/:\s,]/g, '-');
+        console.log(formattedDate);
 
-    let combinedOutputs = '';
-    compareGrowth.forEach(output => {
-      combinedOutputs += output + " \n\n";
-    });
+            // Save the newClientProfile in a text file
+        const folderPath = path.resolve(__dirname, '..', '..', 'client-profiles'); // Replace with the desired folder path
+        const fileName = `${formattedDate}_${formattedClient}_profile.txt`; // Replace with the desired file name
+        const filePath = path.join(folderPath, fileName);
+        console.log(typeof clientProfile);
+        fs.writeFile(filePath, clientProfile, (error) => {
+            if (error) {
+            console.error('Error writing file:', error);
+            } else {
+            console.log('File has been written successfully.');
+            }
+        });
+        // End write file
 
-    console.log('COMBINED OUTPUTS--', combinedOutputs);
-    await aiAnalyze(combinedOutputs, summaryPromptArray[1]);
-  } else {
-    console.log('Compiling profile data...');
-    let api_key = process.env.GPT_API_KEY;
-    let headers = {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${api_key}`
-    };
-
-    const data = {
-      max_tokens: 597,
-      model: 'gpt-3.5-turbo',
-      "messages": [
-        { "role": "user", "content": `${prompt}: ${textInput}` }
-      ]
-    };
-
-    try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(data)
-      });
-
-      const responseJson = await response.json();
-      let output = responseJson.choices[0].message.content;
-      let clientProfile = output;
-      console.log('<---------CLIENT PROFILE:', clientProfile);
-
-      //   WRITE FILE
-    // grab and format date to the second
-    const currentDate = new Date();
-    const options = {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour12: true,
-        hour: 'numeric',
-        minute: '2-digit',
-        second: '2-digit',
-    };
-
-    const formattedDate = currentDate.toLocaleString('en-US', options).replace(/[/:\s,]/g, '-');
-    console.log(formattedDate);
-
-        // Save the newClientProfile in a text file
-    const folderPath = path.resolve(__dirname, '..', '..', 'client-profiles'); // Replace with the desired folder path
-    const fileName = `${formattedDate}_${formattedClient}_profile.txt`; // Replace with the desired file name
-    const filePath = path.join(folderPath, fileName);
-    console.log(typeof newClientProfile);
-    fs.writeFile(filePath, newClientProfile, (error) => {
-        if (error) {
-        console.error('Error writing file:', error);
-        } else {
-        console.log('File has been written successfully.');
+        return clientProfile;
+        } catch (error) {
+        let clientProfile = "Error loading your clients profile: " + error;
+        console.log('<---------ERROR CLIENT PROFILE:', clientProfile);
+        throw new Error(clientProfile);
         }
-    });
-    // End write file
-
-      return clientProfile;
-    } catch (error) {
-      let clientProfile = "Error loading your clients profile: " + error;
-      console.log('<---------ERROR CLIENT PROFILE:', clientProfile);
-      throw new Error(clientProfile);
     }
-  }
 }
