@@ -324,13 +324,13 @@ async function aiAnalyze(textInput, prompt) {
         const fileName = `${formattedDate}_${formattedClient}_profile.txt`; // Replace with the desired file name
         const filePath = path.join(folderPath, fileName);
         console.log(typeof clientProfile);
-        fs.writeFile(filePath, clientProfile, (error) => {
-            if (error) {
-            console.error('Error writing file:', error);
-            } else {
+        // Write the file using async/await
+        try {
+            await fs.promises.writeFile(filePath, clientProfile);
             console.log('File has been written successfully.');
-            }
-        });
+        } catch (error) {
+            console.error('Error writing file:', error);
+        }
         // End write file
 
         return clientProfile;
