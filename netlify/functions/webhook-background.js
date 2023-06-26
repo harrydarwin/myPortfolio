@@ -1,7 +1,7 @@
 // require('dotenv').config()
 const crypto = require('crypto');
 const fetch = require('isomorphic-fetch');
-const fs = require('fs').promises;
+const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 
