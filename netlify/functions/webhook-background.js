@@ -321,7 +321,7 @@ async function aiAnalyze(textInput, prompt) {
 
             // Save the newClientProfile in a text file
         const fileName = `${formattedDate}_${formattedClient}_profile.txt`; // Replace with the desired file name
-        const folderPath = '/Users/harrydarwin/projects/portfolio/myPortfolio/client-profiles';// Replace with the desired folder path
+        const folderPath = 'client-profiles';// Replace with the desired folder path
         const filePath = path.join(folderPath, fileName);
         console.log(typeof clientProfile);
 
