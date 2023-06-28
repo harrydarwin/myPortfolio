@@ -21,17 +21,9 @@ const customPrompt = promptsArray[3];
 
 let formattedClient = '';
 
-function logFileStructure(folderPath) {
-    const files = fs.readdirSync(folderPath);
-    console.log('File structure:');
-    console.log(files);
-}
-
 exports.handler = async function (event, context) {
   console.log('Payload recieved!!!')
   console.log('EVENT: ', event)
-  const testPath = '/Users/harrydarwin/projects/portfolio/myPortfolio';
-  logFileStructure(testPath);
   let response = {};
   const requestBody = event.body ? event.body : null;
   if (!requestBody) {
@@ -307,8 +299,7 @@ async function aiAnalyze(textInput, prompt) {
         });
 
         const responseJson = await response.json();
-        let output = responseJson.choices[0].message.content;
-        let clientProfile = output;
+        const clientProfile = responseJson.choices[0].message.content;
         console.log('<---------CLIENT PROFILE:', clientProfile);
 
         //   WRITE FILE
@@ -329,7 +320,7 @@ async function aiAnalyze(textInput, prompt) {
 
             // Save the newClientProfile in a text file
         const fileName = `${formattedDate}_${formattedClient}_profile.txt`; // Replace with the desired file name
-        const folderPath = 'client-profiles';// Replace with the desired folder path
+        const folderPath = path.resolve(__dirname, '..', '..', 'client-profiles');;// Replace with the desired folder path
         const filePath = path.join(folderPath, fileName);
         console.log(typeof clientProfile);
 
