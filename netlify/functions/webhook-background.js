@@ -21,9 +21,17 @@ const customPrompt = promptsArray[3];
 
 let formattedClient = '';
 
+function logFileStructure(folderPath) {
+    const files = fs.readdirSync(folderPath);
+    console.log('File structure:');
+    console.log(files);
+}
+
 exports.handler = async function (event, context) {
   console.log('Payload recieved!!!')
   console.log('EVENT: ', event)
+  const testPath = '/Users/harrydarwin/projects/portfolio/myPortfolio';
+  logFileStructure(testPath);
   let response = {};
   const requestBody = event.body ? event.body : null;
   if (!requestBody) {
