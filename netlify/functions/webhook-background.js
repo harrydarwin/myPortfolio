@@ -121,7 +121,7 @@ async function getVTTFileText(url) {
     console.log(response)
     return response.data;
   } catch (error) {
-    console.error('Error fetching VTT file:', error);
+    console.error('Error fetching VTT file - URL:', url, 'Error:', error);
     throw error;
   }
 }
