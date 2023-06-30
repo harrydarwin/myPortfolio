@@ -19,8 +19,6 @@ const summaryPromptArray = [
 
 const customPrompt = promptsArray[3];
 
-let formattedClient = '';
-
 exports.handler = async function (event, context) {
   console.log('Payload recieved!!!')
   console.log('EVENT: ', event)
@@ -75,9 +73,9 @@ async function processInBackground(requestBody) {
         const newClientProfile = await aiAnalyze(convoParts, customPrompt);
 
         // grab client name from conversation strings
-        const getNames = extractNamesWithoutRob(convoParts);
-        const clientName = getNames.join();
-        formattedClient = slugify(clientName);
+        // const getNames = extractNamesWithoutRob(convoParts);
+        // const clientName = getNames.join();
+        // formattedClient = slugify(clientName);
 
 
         return newClientProfile
@@ -224,6 +222,16 @@ function groupStrings(strings) {
   return outcomeArray;
 }
 
+function extractNameFromString(inputString) {
+    const regex = /Name:\s*(.*?)\s*\n/i;
+    const match = inputString.match(regex);
+    if (match && match[1]) {
+      return match[1];
+    }
+    return 'NO_NAME';
+}
+
+
 
 // Sends text through the api and spits out the analyzed result
 async function aiAnalyze(textInput, prompt) {
@@ -314,7 +322,7 @@ async function aiAnalyze(textInput, prompt) {
             minute: '2-digit',
             second: '2-digit',
         };
-
+        const formattedClient = extractNameFromString(clientProfile);
         const formattedDate = currentDate.toLocaleString('en-US', options).replace(/[/:\s,]/g, '-');
         console.log(formattedDate);
 
