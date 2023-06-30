@@ -1,11 +1,31 @@
 // require('dotenv').config()
+// Firebase module imports
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
+// Node+ module imports
 const crypto = require('crypto');
 const fetch = require('isomorphic-fetch');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
+
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyA7qwhyKl9TjkEu6kIhJz-B7kduyPkHUzU",
+    authDomain: "zoom-profile-builder.firebaseapp.com",
+    projectId: "zoom-profile-builder",
+    storageBucket: "zoom-profile-builder.appspot.com",
+    messagingSenderId: "580713961006",
+    appId: "1:580713961006:web:0019645ad132e5389ef1bf",
+    measurementId: "G-TGC3L2ZFCX"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+//   initialize firestore database
+  const db = getFirestore(app);
 
 
 const promptsArray = [
@@ -331,26 +351,17 @@ async function aiAnalyze(textInput, prompt) {
         console.log(formattedDate);
 
             // Save the newClientProfile in a text file
-        const fileName = `${formattedDate}_${formattedClient}_profile.txt`; // Replace with the desired file name
-        const folderPath = path.resolve(__dirname, '..', '..', 'client-profiles');;// Replace with the desired folder path
-        const filePath = path.join(folderPath, fileName);
-        console.log(typeof clientProfile);
-
-        // Check if the folder exists, and create it if it doesn't
-        if (!fs.existsSync(folderPath)) {
-            fs.mkdirSync(folderPath, { recursive: true });
-        }
-
-
-      // Write the file using callback-based approach
-    fs.writeFile(filePath, clientProfile, (error) => {
-        if (error) {
-        console.error('Error writing file:', error);
-        } else {
-        console.log('File has been written successfully.');
-        }
-    });
-        // End write file
+        const fileName = `${formattedDate}_${formattedClient}`; // Replace with the desired file name
+        // Send profile to firebase for storage
+        try {
+            const docRef = await setDoc(doc(db, "clientProfiles", fileName), {
+                name: formattedClient,
+                profile: clientProfile
+              });
+            console.log("Document written with ID: ", docRef.id);
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }
 
         return clientProfile;
         } catch (error) {
