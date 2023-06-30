@@ -1,8 +1,8 @@
 // require('dotenv').config()
 // Firebase module imports
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { doc, setDoc } from "firebase/firestore";
+const { initializeApp } = require("firebase/app");
+const { getFirestore, doc, setDoc } = require("firebase/firestore");
+
 // Node+ module imports
 const crypto = require('crypto');
 const fetch = require('isomorphic-fetch');
