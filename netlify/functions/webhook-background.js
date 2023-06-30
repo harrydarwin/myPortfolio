@@ -1,9 +1,12 @@
 // require('dotenv').config()
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 const crypto = require('crypto');
 const fetch = require('isomorphic-fetch');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
+
 
 const promptsArray = [
   'Give me a full chronological sequence of the call and highlight the main talking points in a list format',
@@ -323,6 +326,7 @@ async function aiAnalyze(textInput, prompt) {
             second: '2-digit',
         };
         const formattedClient = extractNameFromString(clientProfile);
+        console.log(formattedClient)
         const formattedDate = currentDate.toLocaleString('en-US', options).replace(/[/:\s,]/g, '-');
         console.log(formattedDate);
 
