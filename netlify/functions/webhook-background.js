@@ -1,6 +1,6 @@
 // require('dotenv').config()
 // Firebase module imports
-const { initializeApp, getAnalytics } = require("firebase/app");
+const { initializeApp } = require("firebase/app");
 const { getFirestore, doc, setDoc } = require("firebase/firestore");
 
 // Node+ module imports
@@ -23,7 +23,7 @@ const firebaseConfig = {
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+
 //   initialize firestore database
   const db = getFirestore(app);
 
