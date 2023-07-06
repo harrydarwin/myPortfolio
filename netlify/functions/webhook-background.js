@@ -358,7 +358,7 @@ async function aiAnalyze(textInput, prompt) {
                 name: formattedClient,
                 profile: clientProfile
               });
-            console.log("Document written with ID: ", docRef.id);
+            // console.log("Document written with ID: ", docRef.id);
           } catch (e) {
             console.error("Error adding document: ", e);
           }
