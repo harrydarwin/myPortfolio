@@ -345,7 +345,8 @@ async function aiAnalyze(textInput, prompt) {
             minute: '2-digit',
             second: '2-digit',
         };
-        const formattedClient = extractNameFromString(clientProfile);
+        const clientName = extractNameFromString(clientProfile);
+        const formattedClient = slugify(clientName);
         console.log(formattedClient)
         const formattedDate = currentDate.toLocaleString('en-US', options).replace(/[/:\s,]/g, '-');
         console.log(formattedDate);
