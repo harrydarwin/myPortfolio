@@ -30,7 +30,7 @@ exports.handler = async function (event, context) {
   }
   console.log('event TYPE: ', requestBody.event)
   // Only accept ROBS payloads + only transcript end events
-  if(requestBody.event !== 'recording.transcript_completed'){
+  if(requestBody.event !== 'recording.transcript_completed' || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
     return;
   }
   console.log('EVENT BABY:', event);
