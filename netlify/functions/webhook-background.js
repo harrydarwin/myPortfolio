@@ -32,7 +32,17 @@ const promptsArray = [
   'Give me a full chronological sequence of the call and highlight the main talking points in a list format',
   'Based on the following conversation, build me a client profile broken down into categories',
   'Based on the following conversation, as a sales expert, build a client profile broken down into categories',
-  'Based on the following conversation, as a sales expert, build a client profile broken down into bullet point style with headings  including, Demographic, Psychographic, Goals, Challenges, Pain Points, Potential Solutions and actionables.'
+  'Based on the following conversation, as a sales expert, build a client profile broken down into bullet point style with headings  including, Demographic, Psychographic, Goals, Challenges, Pain Points, Potential Solutions and actionables.',
+  `Based on the information provided in the subsequent conversation, please assist in building a comprehensive client profile. Organize your response under the following headings:
+
+  Demographics: Basic information such as age, gender, occupation, location, etc.
+  Psychographics: Lifestyle, behavior, interests, values, and buying motivations.
+  Goals: Both short-term and long-term aspirations or targets the client wants to achieve.
+  Challenges: Specific issues or obstacles the client is currently facing or expects to face.
+  Pain Points: The specific problems or frustrations experienced by the client that our solution can potentially address.
+  Potential Solutions: Suggested solutions or products that would fit the client's needs or help solve their problems.
+  Actionables: Steps we can take immediately or in the near future to assist the client.
+  Finally, please provide a concise summary of the client profile, capturing the most critical points for quick reference.`
 ];
 
 const summaryPromptArray = [
@@ -40,7 +50,7 @@ const summaryPromptArray = [
   'As a business development and sales specialist, summarize these profile iterations the into a complete client profile while maintaining the original profile headings, please format it nicely and remove any repetition.'
 ];
 
-const customPrompt = promptsArray[3];
+const customPrompt = promptsArray[4];
 
 exports.handler = async function (event, context) {
   console.log('Payload recieved!!!')
