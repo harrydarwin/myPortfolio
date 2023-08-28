@@ -33,7 +33,7 @@ const promptsArray = [
   'Based on the following conversation, build me a client profile broken down into categories',
   'Based on the following conversation, as a sales expert, build a client profile broken down into categories',
   'Based on the following conversation, as a sales expert, build a client profile broken down into bullet point style with headings  including, Demographic, Psychographic, Goals, Challenges, Pain Points, Potential Solutions and actionables.',
-  `Based on the information provided in the subsequent conversation, please assist in building a comprehensive client profile. Organize your response under the following headings:
+  `Based on the following conversation, please assist in building a comprehensive client profile of the client, not the host of the meeting. Organize your response under the following headings:
 
   Demographics: Basic information such as age, gender, occupation, location, etc.
   Psychographics: Lifestyle, behavior, interests, values, and buying motivations.
@@ -51,6 +51,7 @@ const summaryPromptArray = [
 ];
 
 const customPrompt = promptsArray[4];
+let currentClientEmail;
 
 exports.handler = async function (event, context) {
   console.log('Payload recieved!!!')
