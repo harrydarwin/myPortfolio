@@ -70,7 +70,7 @@ console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signat
         body: JSON.stringify({ message: 'Authorized request to Zoom Webhook sample.' }),
       };
 
-      console.log('Response:', response.body);
+      console.log('Response:', response, response.body);
 
       // const thing = await processZoomInput(requestBody);
       const recordingFiles = requestBody.payload.object.recording_files
