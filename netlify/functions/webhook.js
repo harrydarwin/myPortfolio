@@ -38,6 +38,12 @@ exports.handler = async function (event, context) {
 
   console.log('HEADERs', event.headers);
   console.log('Body', requestBody);
+  const meetingTopic = requestBody?.payload?.object?.topic
+  let topicName = false;
+  if(meetingTopic && meetingTopic.includes(' :')){
+    topicName = meetingTopic.split(' : ')[0];
+    console.log(topicName)
+  }
 
 
   const message = `v0:${event.headers['x-zm-request-timestamp']}:${JSON.stringify(requestBody)}`;

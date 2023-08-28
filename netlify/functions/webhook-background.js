@@ -96,6 +96,13 @@ async function processInBackground(requestBody) {
     const stringConvoParts = [];
     let rawConversationString;
     console.log(requestBody);
+    const meetingTopic = requestBody?.payload?.object?.topic
+    let topicName = false;
+    if(meetingTopic && meetingTopic.includes(' :')){
+      topicName = meetingTopic.split(' : ')[0];
+      console.log(topicName)
+      // if this works, add the name to the porompt
+    }
     try {
         console.log('Fetching file...')
         const vttText = await getVTTFileText(requestBody);
