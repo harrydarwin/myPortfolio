@@ -15,6 +15,11 @@ const summaryPromptArray = [
   'As a business development and sales specialist, summarize these profile iterations the into a complete client profile while maintaining the original profile headings, please format it nicely and remove any repetition.'
 ];
 
+const hostIDs = {
+  rob: 'i50cPqx3R22xnUS0I6ZVOw',
+  eveleen: ''
+}
+
 const customPrompt = promptsArray[3];
 
 exports.handler = async function (event, context) {
@@ -29,6 +34,7 @@ exports.handler = async function (event, context) {
     };
   }
   console.log('event TYPE: ', requestBody.event)
+  console.log('REQ Body ---> ', requestBody)
   // Only accept ROBS payloads + only transcript end events
   if(requestBody.event !== 'recording.transcript_completed' || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
     return;

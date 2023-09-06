@@ -390,3 +390,32 @@ async function aiAnalyze(textInput, prompt) {
         }
     }
 }
+
+// const getACClientID = () => {
+
+// }
+
+const updateACClientProfile = (contact, field, value) => {
+  var settings = {
+    "url": `https://marketplacesuperheroes1683647536.api-us1.com/api/3/fieldValues/${field}`,
+    "method": "PUT",
+    "timeout": 0,
+    "headers": {
+      "Api-Token": "dba68be9c867f2994a3eb5663d120b1f67d55814834c0d96e06b70348d6fa2ca1420e905",
+      "Content-Type": "application/json",
+      "Cookie": "PHPSESSID=cff22d8c4e0799f81a768d9a3ebd0dc9; em_acp_globalauth_cookie=dea0fa9f-c962-4057-961f-2ecdb1d0797c"
+    },
+    "data": JSON.stringify({
+      "fieldValue": {
+        "contact": contact,
+        "field": field,
+        "value": value
+      },
+      "useDefaults": false
+    }),
+  };
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+  });
+}
