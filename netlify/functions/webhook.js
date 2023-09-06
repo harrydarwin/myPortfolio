@@ -39,12 +39,12 @@ exports.handler = async function (event, context) {
   const callTopic = requestBody?.payload?.object?.topic;
   console.log('TOPIC: ', callTopic ? callTopic : '');
   // Only accept ROBS payloads + only transcript end events
-  if(requestBody.event !== 'recording.transcript_completed' || requestBody.event !== 'recording.participant_joined' || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
+  if(requestBody.event !== 'recording.transcript_completed' || requestBody.event !== 'meeting.participant_joined' || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
     return;
   }
   console.log('EVENT BABY:', event);
   // console.log(requestBody.payload.object.host_id)
-  if(requestBody.event == 'recording.participant_joined'){
+  if(requestBody.event == 'meeting.participant_joined'){
     console.log("A PARTICIPANT JOINED THE MEETING ------> ");
     console.log('Name: ', requestBody?.payload?.participant?.user_name);
     console.log('Email: ', requestBody?.payload?.participant?.email);
