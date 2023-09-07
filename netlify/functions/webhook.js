@@ -34,13 +34,14 @@ exports.handler = async function (event, context) {
       body: JSON.stringify({ message: 'Invalid request body.' })
     };
   }
-  const participantObject = requestBody?.payload?.object?.participant;
-  console.log('Participant object --> ', participantObject ? participantObject : 'none');
+
   const acceptedEvents = ['recording.transcript_completed', 'meeting.participant_joined'];
    // Only accept ROBS payloads + only transcript end events
    if(!acceptedEvents.includes(requestBody.event) || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
     return;
   }
+  const participantObject = requestBody?.payload?.object?.participant;
+  console.log('Participant object --> ', participantObject ? participantObject : 'none');
   console.log('event TYPE: ', requestBody.event)
   console.log('REQ Body ---> ', requestBody)
   const callTopic = requestBody?.payload?.object?.topic;
