@@ -40,7 +40,7 @@ exports.handler = async function (event, context) {
    if(!acceptedEvents.includes(requestBody.event) || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
     return;
   }
-  const participantObject = requestBody?.payload?.object?.participant;
+  const participantObject = JSON.stringify(requestBody?.payload?.object?.participant, null, 2);
   console.log('Participant object --> ', participantObject ? participantObject : 'none');
   console.log('event TYPE: ', requestBody.event)
   console.log('REQ Body ---> ', requestBody)
