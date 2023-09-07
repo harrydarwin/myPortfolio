@@ -40,10 +40,7 @@ exports.handler = async function (event, context) {
    if(!acceptedEvents.includes(requestBody.event) || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
     return;
   }
-  const participantObject = JSON.stringify(requestBody?.payload?.object?.participant, null, 2);
-  const participantData = JSON.parse(participantObject);
-  console.log('PARTICIPANT DATA: ', participantData)
-  console.log('Participant object --> ', participantObject ? participantObject : 'none');
+
   console.log('event TYPE: ', requestBody.event)
   console.log('REQ Body ---> ', requestBody)
   const callTopic = requestBody?.payload?.object?.topic;
@@ -52,10 +49,14 @@ exports.handler = async function (event, context) {
   console.log('EVENT BABY:', event);
   // console.log(requestBody.payload.object.host_id)
   if(requestBody.event == 'meeting.participant_joined'){
+    const participantObject = JSON.stringify(requestBody?.payload?.object?.participant, null, 2);
+    const participantData = JSON.parse(participantObject);
+    console.log('PARTICIPANT DATA: ', participantData)
+    console.log('Participant object --> ', participantObject ? participantObject : 'none');
     console.log("A PARTICIPANT JOINED THE MEETING ------> ");
-    console.log('Name: ', requestBody?.payload?.participant?.user_name);
-    console.log('Email: ', requestBody?.payload?.participant?.email);
-    console.log(requestBody);
+    console.log('Name: ', participantData?.user_name);
+    console.log('Email: ', participantData?.email);
+
     return;
   }
 
