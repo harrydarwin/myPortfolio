@@ -34,6 +34,8 @@ exports.handler = async function (event, context) {
       body: JSON.stringify({ message: 'Invalid request body.' })
     };
   }
+  const participantObject = requestBody?.payload?.object?.participant;
+  console.log('Participant object --> ', participantObject ? participantObject : 'none');
    // Only accept ROBS payloads + only transcript end events
    if(requestBody.event !== 'recording.transcript_completed' || requestBody.event !== 'meeting.participant_joined' || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
     return;
