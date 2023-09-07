@@ -34,14 +34,15 @@ exports.handler = async function (event, context) {
       body: JSON.stringify({ message: 'Invalid request body.' })
     };
   }
+   // Only accept ROBS payloads + only transcript end events
+   if(requestBody.event !== 'recording.transcript_completed' || requestBody.event !== 'meeting.participant_joined' || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
+    return;
+  }
   console.log('event TYPE: ', requestBody.event)
   console.log('REQ Body ---> ', requestBody)
   const callTopic = requestBody?.payload?.object?.topic;
   console.log('TOPIC: ', callTopic ? callTopic : '');
-  // Only accept ROBS payloads + only transcript end events
-  if(requestBody.event !== 'recording.transcript_completed' || requestBody.event !== 'meeting.participant_joined' || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
-    return;
-  }
+
   console.log('EVENT BABY:', event);
   // console.log(requestBody.payload.object.host_id)
   if(requestBody.event == 'meeting.participant_joined'){
