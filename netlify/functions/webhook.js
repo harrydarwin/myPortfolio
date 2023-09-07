@@ -41,6 +41,8 @@ exports.handler = async function (event, context) {
     return;
   }
   const participantObject = JSON.stringify(requestBody?.payload?.object?.participant, null, 2);
+  const participantData = JSON.parse(participantObject);
+  console.log('PARTICIPANT DATA: ', participantData)
   console.log('Participant object --> ', participantObject ? participantObject : 'none');
   console.log('event TYPE: ', requestBody.event)
   console.log('REQ Body ---> ', requestBody)
