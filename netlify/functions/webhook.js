@@ -122,6 +122,7 @@ console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signat
                 meetingID: meetingID,
                 clientName: ''
               }
+              console.log('FINAL PAYLOAD -----> ', payload)
               // MOVE THIS BELOW, GRAB THE FILE URL HERE AND PASS THAT TO THE NEXT HOOK TO BE INSERTED DIRECTLY TO THE GETVTT FUNCTION
               try {
                 // Make an HTTP POST request to the /webhook-background endpoint
