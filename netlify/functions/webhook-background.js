@@ -52,6 +52,7 @@ const summaryPromptArray = [
 
 const customPrompt = promptsArray[4];
 let currentClientEmail;
+let meetingID;
 
 exports.handler = async function (event, context) {
   console.log('Payload recieved!!!')
@@ -82,7 +83,7 @@ exports.handler = async function (event, context) {
     statusCode: 200,
     body: JSON.stringify({ message: 'Request received. Processing in progress.' })
   };
-
+  meetingID = requestBody.meetingID
   // Perform any necessary asynchronous processing in the background
   await processInBackground(requestBody);
 
@@ -95,17 +96,17 @@ async function processInBackground(requestBody) {
     console.log('REQ BODY -in func ----->', requestBody)
     const stringConvoParts = [];
     let rawConversationString;
-    console.log(requestBody);
-    const meetingTopic = requestBody?.payload?.object?.topic
-    let topicName = false;
-    if(meetingTopic && meetingTopic.includes(' :')){
-      topicName = meetingTopic.split(' : ')[0];
-      console.log(topicName)
-      // if this works, add the name to the porompt
-    }
+    // console.log(requestBody);
+    // const meetingTopic = requestBody?.payload?.object?.topic
+    // let topicName = false;
+    // if(meetingTopic && meetingTopic.includes(' :')){
+    //   topicName = meetingTopic.split(' : ')[0];
+    //   console.log(topicName)
+    //   // if this works, add the name to the porompt
+    // }
     try {
         console.log('Fetching file...')
-        const vttText = await getVTTFileText(requestBody);
+        const vttText = await getVTTFileText(requestBody.fileURL);
         // Process the VTT file text
         console.log('VTTtext--', vttText);
         rawConversationString = vttText;
@@ -375,7 +376,8 @@ async function aiAnalyze(textInput, prompt) {
         try {
             const docRef = await setDoc(doc(db, "clientProfiles", fileName), {
                 name: formattedClient,
-                profile: clientProfile
+                profile: clientProfile,
+                meetingID: meetingID
               });
             // console.log("Document written with ID: ", docRef.id);
           } catch (e) {

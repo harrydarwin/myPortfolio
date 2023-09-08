@@ -115,9 +115,13 @@ console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signat
               // let rawConversationString;
               const selectedFileURL = `${recordingFiles[0].download_url}?access_token=${requestBody.download_token}`;
               console.log(selectedFileURL);
-
-              const payload = selectedFileURL; // Assign the event object to the payload variable
-
+              const meetingID = recordingFiles[0].meeting_id
+               // Assign the event object to the payload variable along with meeting details
+              const payload = {
+                fileURl: selectedFileURL,
+                meetingID: meetingID,
+                clientName: ''
+              }
               // MOVE THIS BELOW, GRAB THE FILE URL HERE AND PASS THAT TO THE NEXT HOOK TO BE INSERTED DIRECTLY TO THE GETVTT FUNCTION
               try {
                 // Make an HTTP POST request to the /webhook-background endpoint
