@@ -108,6 +108,7 @@ console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signat
       // const thing = await processZoomInput(requestBody);
       const recordingFiles = requestBody.payload.object.recording_files
       if(Array.isArray(recordingFiles)){
+        console.log(recordingFiles)
         console.log(recordingFiles[0], `${recordingFiles[0].download_url}?access_token=${requestBody.download_token}`)
         // recordingFiles.forEach((file, i) => {
           // for(let i = 0; i < recordingFiles.length; ++i){
