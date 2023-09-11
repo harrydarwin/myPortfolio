@@ -83,7 +83,7 @@ exports.handler = async function (event, context) {
     statusCode: 200,
     body: JSON.stringify({ message: 'Request received. Processing in progress.' })
   };
-  meetingID = requestBody.meetingID
+  meetingID = requestBody["meetingID"];
   // Perform any necessary asynchronous processing in the background
   await processInBackground(requestBody);
 
@@ -106,7 +106,7 @@ async function processInBackground(requestBody) {
     // }
     try {
         console.log('Fetching file...')
-        const vttText = await getVTTFileText(requestBody.fileURL);
+        const vttText = await getVTTFileText(requestBody["fileURL"]);
         // Process the VTT file text
         console.log('VTTtext--', vttText);
         rawConversationString = vttText;
