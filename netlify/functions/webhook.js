@@ -36,38 +36,20 @@ exports.handler = async function (event, context) {
   }
   console.log(requestBody.event, requestBody.payload.object.uuid)
   const acceptedEvents = ['recording.transcript_completed', 'meeting.participant_joined'];
-   // Only accept ROBS payloads + only transcript end events
-   if(!acceptedEvents.includes(requestBody.event) || requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
+
+   // Only accept ROBS payloads
+   if(requestBody.payload.object.host_id !== 'i50cPqx3R22xnUS0I6ZVOw'){
     return;
   }
 
-  console.log('event TYPE: ', requestBody.event)
-  console.log('REQ Body ---> ', requestBody)
-  const callTopic = requestBody?.payload?.object?.topic;
-  console.log('TOPIC: ', callTopic ? callTopic : '');
-
-  console.log('EVENT BABY:', event);
-  // console.log(requestBody.payload.object.host_id)
-  if(requestBody.event == 'meeting.participant_joined'){
-    const participantObject = JSON.stringify(requestBody?.payload?.object?.participant, null, 2);
-    const participantData = JSON.parse(participantObject);
-    console.log('PARTICIPANT DATA: ', participantData)
-    console.log('Participant object --> ', participantObject ? participantObject : 'none');
-    console.log("A PARTICIPANT JOINED THE MEETING ------> ");
-    console.log('Name: ', participantData?.user_name);
-    console.log('Email: ', participantData?.email);
-
-    return;
-  }
-
-  console.log('HEADERs', event.headers);
-  console.log('Body', requestBody);
-  const meetingTopic = requestBody?.payload?.object?.topic
-  let topicName = false;
-  if(meetingTopic && meetingTopic.includes(' :')){
-    topicName = meetingTopic.split(' : ')[0];
-    console.log(topicName)
-  }
+  // console.log('HEADERs', event.headers);
+  // console.log('Body', requestBody);
+  // const meetingTopic = requestBody?.payload?.object?.topic
+  // let topicName = false;
+  // if(meetingTopic && meetingTopic.includes(' :')){
+  //   topicName = meetingTopic.split(' : ')[0];
+  //   console.log(topicName)
+  // }
 
 
   const message = `v0:${event.headers['x-zm-request-timestamp']}:${JSON.stringify(requestBody)}`;
@@ -99,6 +81,27 @@ console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signat
         statusCode: 200,
         body: JSON.stringify({ message: 'Authorized request to Zoom Webhook sample.' }),
       };
+
+      // if(!acceptedEvents.includes(requestBody.event)) return;
+
+      console.log('event TYPE: ', requestBody.event)
+      console.log('REQ Body ---> ', requestBody)
+      const callTopic = requestBody?.payload?.object?.topic;
+      console.log('TOPIC: ', callTopic ? callTopic : '');
+
+      console.log('EVENT BABY:', event);
+      // console.log(requestBody.payload.object.host_id)
+      if(requestBody.event == 'meeting.participant_joined'){
+        const participantObject = JSON.stringify(requestBody?.payload?.object?.participant, null, 2);
+        const participantData = JSON.parse(participantObject);
+        console.log('PARTICIPANT DATA: ', participantData)
+        console.log('Participant object --> ', participantObject ? participantObject : 'none');
+        console.log("A PARTICIPANT JOINED THE MEETING ------> ");
+        console.log('Name: ', participantData?.user_name);
+        console.log('Email: ', participantData?.email);
+
+        return;
+      }
 
       console.log('Response:', response, response.body);
 
