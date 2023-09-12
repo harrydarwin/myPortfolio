@@ -122,7 +122,7 @@ console.log('MESSAGE SIGNATURE HORSE SHIT----->', message, hashForVerify, signat
               const meetingID = recordingFiles[0].meeting_id
                // Assign the event object to the payload variable along with meeting details
               const payload = {
-                fileURl: selectedFileURL,
+                fileURL: selectedFileURL,
                 meetingID: meetingID,
                 clientName: ''
               }
