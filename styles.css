@@ -1497,6 +1497,7 @@ form {
     flex-direction: column;
     justify-self: flex-end;
     height: 100%;
+    width:100%;
     align-items: space-between;
 }
 
